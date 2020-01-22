@@ -1,0 +1,950 @@
+{
+    "took" : 0,
+    "timed_out" : false,
+    "_shards" : {
+      "total" : 1,
+      "successful" : 1,
+      "skipped" : 0,
+      "failed" : 0
+    },
+    "hits" : {
+      "total" : {
+        "value" : 54,
+        "relation" : "eq"
+      },
+      "max_score" : 1.0,
+      "hits" : [
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "wzmTm28BatreK44zwXby",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 890,
+            "sentence_count" : 44,
+            "source_lang" : "Hindi",
+            "target_lang" : "English",
+            "user_id" : "d4e0b570-b72a-44e5-9110-5fdd54370a9d",
+            "high_court_name" : "Jabalpur",
+            "high_court_code" : "jb",
+            "username" : "kd",
+            "document_id" : "1578863149",
+            "created_on" : "01/12/2020, 21:05:49",
+            "created_on_iso" : "2020-01-12T21:05:49.454279"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "Sq2sg28BatreK44z7SaJ",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 128,
+            "source_lang" : "English",
+            "target_lang" : "Hindi",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578462145",
+            "created_on" : "01/08/2020, 05:42:25",
+            "created_on_iso" : "2020-01-08T00:12:25.000Z",
+            "sentence_count" : 1
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "p68oiW8BatreK44zME_v",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 1050,
+            "sentence_count" : 34,
+            "source_lang" : "English",
+            "target_lang" : "Hindi",
+            "user_id" : "cbaa9564-c96c-476e-9df2-89b8fa2e9b7b",
+            "high_court_name" : "Jabalpur",
+            "high_court_code" : "jb",
+            "username" : "arooptest12",
+            "document_id" : "1578554110",
+            "created_on" : "01/09/2020, 07:15:10",
+            "created_on_iso" : "2020-01-09T01:45:10.000Z"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "t6uifm8BatreK44zxwDU",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 1050,
+            "source_lang" : "English",
+            "target_lang" : "Hindi",
+            "user_id" : "cbaa9564-c96c-476e-9df2-89b8fa2e9b7b",
+            "high_court_name" : "Jabalpur",
+            "high_court_code" : "jb",
+            "username" : "arooptest12",
+            "document_id" : "1578377594",
+            "created_on" : "01/07/2020, 06:13:14",
+            "created_on_iso" : "2020-01-07T00:43:14.000Z",
+            "sentence_count" : 34
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "oanrem8BatreK44zLOj3",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 1050,
+            "user_id" : "cbaa9564-c96c-476e-9df2-89b8fa2e9b7b",
+            "high_court_code" : "jb",
+            "document_id" : "1578315230",
+            "created_on" : "01/06/2020, 12:53:50",
+            "created_on_iso" : "2020-01-06T07:23:50.000Z",
+            "sentence_count" : 34
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "iaqPfm8BatreK44zbvPn",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 1050,
+            "user_id" : "cbaa9564-c96c-476e-9df2-89b8fa2e9b7b",
+            "high_court_name" : "Jabalpur",
+            "high_court_code" : "jb",
+            "username" : "arooptest12",
+            "document_id" : "1578376326",
+            "created_on" : "01/07/2020, 05:52:06",
+            "created_on_iso" : "2020-01-07T00:22:06.000Z",
+            "sentence_count" : 34
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "vqqDfm8BatreK44zpeaa",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 1050,
+            "user_id" : "cbaa9564-c96c-476e-9df2-89b8fa2e9b7b",
+            "high_court_name" : "Jabalpur",
+            "high_court_code" : "jb",
+            "document_id" : "1578375554",
+            "created_on" : "01/07/2020, 05:39:14",
+            "created_on_iso" : "2020-01-07T00:09:14.000Z",
+            "sentence_count" : 34
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "v6nQem8BatreK44zytB7",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 1050,
+            "user_id" : "d4e0b570-b72a-44e5-9110-5fdd54370a9d",
+            "high_court_code" : "jb",
+            "document_id" : "1578313501",
+            "created_on" : "01/06/2020, 12:25:01",
+            "created_on_iso" : "2020-01-06T06:55:01.000Z",
+            "sentence_count" : 34
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "L6nfem8BatreK44zC9w0",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 1050,
+            "user_id" : "d4e0b570-b72a-44e5-9110-5fdd54370a9d",
+            "document_id" : "1578314435",
+            "created_on" : "01/06/2020, 12:40:35",
+            "created_on_iso" : "2020-01-06T07:10:35.000Z",
+            "sentence_count" : 34
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "rK2lhG8BatreK44z8deE",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 250,
+            "source_lang" : "English",
+            "target_lang" : "Hindi",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578478465",
+            "created_on" : "01/08/2020, 10:14:25",
+            "created_on_iso" : "2020-01-08T04:44:25.000Z",
+            "sentence_count" : 53
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "N6niem8BatreK44zLuCE",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 1050,
+            "user_id" : "d4e0b570-b72a-44e5-9110-5fdd54370a9d",
+            "document_id" : "1578314640",
+            "created_on" : "01/06/2020, 12:44:00",
+            "created_on_iso" : "2020-01-06T07:14:00.000Z",
+            "sentence_count" : 34
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "_j5ynm8BatreK44zj96E",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578911304",
+            "created_on" : "01/13/2020, 10:28:24",
+            "created_on_iso" : "2020-01-13T10:28:24.956844"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "yD5Xnm8BatreK44zMY0e",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 9309,
+            "sentence_count" : 2050,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578909510",
+            "created_on" : "01/13/2020, 09:58:30",
+            "created_on_iso" : "2020-01-13T09:58:30.793546"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "uj_Gnm8BatreK44zJ-VM",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 19062,
+            "sentence_count" : 5013,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578916781",
+            "created_on" : "01/13/2020, 11:59:41",
+            "created_on_iso" : "2020-01-13T11:59:41.001574"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "rT--nm8BatreK44zgrGg",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5238,
+            "sentence_count" : 1076,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578916282",
+            "created_on" : "01/13/2020, 11:51:22",
+            "created_on_iso" : "2020-01-13T11:51:22.358049"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "DEbGom8BatreK44zHorY",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 8161,
+            "sentence_count" : 1919,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578983889",
+            "created_on" : "01/14/2020, 06:38:09",
+            "created_on_iso" : "2020-01-14T06:38:09.513474"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "bT-vnm8BatreK44zm17J",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 9309,
+            "sentence_count" : 2050,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578915305",
+            "created_on" : "01/13/2020, 11:35:05",
+            "created_on_iso" : "2020-01-13T11:35:05.212094"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "rUazom8BatreK44zjlxB",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 4450,
+            "sentence_count" : 953,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578982673",
+            "created_on" : "01/14/2020, 06:17:53",
+            "created_on_iso" : "2020-01-14T06:17:53.326225"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "oEDSnm8BatreK44zTVEL",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 9315,
+            "sentence_count" : 1814,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578917578",
+            "created_on" : "01/13/2020, 12:12:58",
+            "created_on_iso" : "2020-01-13T12:12:58.925965"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "BT-jnm8BatreK44zCEZ6",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578914481",
+            "created_on" : "01/13/2020, 11:21:21",
+            "created_on_iso" : "2020-01-13T11:21:21.628402"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "vDoAnG8BatreK44zHjDq",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 547,
+            "sentence_count" : 92,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "d4e0b570-b72a-44e5-9110-5fdd54370a9d",
+            "high_court_name" : "Jabalpur",
+            "high_court_code" : "jb",
+            "username" : "kd",
+            "document_id" : "1578870251",
+            "created_on" : "01/12/2020, 23:04:11",
+            "created_on_iso" : "2020-01-12T23:04:11.043660"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "8DoDnG8BatreK44z7zcF",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5238,
+            "sentence_count" : 1076,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "d4e0b570-b72a-44e5-9110-5fdd54370a9d",
+            "high_court_name" : "Jabalpur",
+            "high_court_code" : "jb",
+            "username" : "kd",
+            "document_id" : "1578870500",
+            "created_on" : "01/12/2020, 23:08:20",
+            "created_on_iso" : "2020-01-12T23:08:20.495044"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "hDnIm28BatreK44z4tKt",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 2048,
+            "sentence_count" : 254,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "d4e0b570-b72a-44e5-9110-5fdd54370a9d",
+            "high_court_name" : "Jabalpur",
+            "high_court_code" : "jb",
+            "username" : "kd",
+            "document_id" : "1578866630",
+            "created_on" : "01/12/2020, 22:03:50",
+            "created_on_iso" : "2020-01-12T22:03:50.985124"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "Ajm8m28BatreK44zrL2b",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 2048,
+            "sentence_count" : 254,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "d4e0b570-b72a-44e5-9110-5fdd54370a9d",
+            "high_court_name" : "Jabalpur",
+            "high_court_code" : "jb",
+            "username" : "kd",
+            "document_id" : "1578865830",
+            "created_on" : "01/12/2020, 21:50:30",
+            "created_on_iso" : "2020-01-12T21:50:30.711436"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "xzncm28BatreK44zU_PY",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 2048,
+            "sentence_count" : 254,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "d4e0b570-b72a-44e5-9110-5fdd54370a9d",
+            "high_court_name" : "Jabalpur",
+            "high_court_code" : "jb",
+            "username" : "kd",
+            "document_id" : "1578867905",
+            "created_on" : "01/12/2020, 22:25:05",
+            "created_on_iso" : "2020-01-12T22:25:05.128612"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "czrym28BatreK44z-hoK",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 547,
+            "sentence_count" : 2092,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "d4e0b570-b72a-44e5-9110-5fdd54370a9d",
+            "high_court_name" : "Andhra Pradesh",
+            "high_court_code" : "AP",
+            "username" : "kd",
+            "document_id" : "1578869389",
+            "created_on" : "01/12/2020, 22:49:49",
+            "created_on_iso" : "2020-01-12T22:49:49.640266"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "Jzx_nW8BatreK44z97Uu",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 362,
+            "sentence_count" : 67,
+            "source_lang" : "English",
+            "target_lang" : "hi",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578895406",
+            "created_on" : "01/13/2020, 06:03:26",
+            "created_on_iso" : "2020-01-13T06:03:26.786516"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "bTyDnW8BatreK44zX7ze",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578895629",
+            "created_on" : "01/13/2020, 06:07:09",
+            "created_on_iso" : "2020-01-13T06:07:09.650683"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "CDx5nW8BatreK44zxKp_",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 9309,
+            "sentence_count" : 2050,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578894999",
+            "created_on" : "01/13/2020, 05:56:39",
+            "created_on_iso" : "2020-01-13T05:56:39.586471"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "wzxsnW8BatreK44zRJJJ",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578894115",
+            "created_on" : "01/13/2020, 05:41:55",
+            "created_on_iso" : "2020-01-13T05:41:55.309637"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "YTxxnW8BatreK44zR5vY",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578894443",
+            "created_on" : "01/13/2020, 05:47:23",
+            "created_on_iso" : "2020-01-13T05:47:23.822075"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "BTxdnW8BatreK44zW2c8",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578893138",
+            "created_on" : "01/13/2020, 05:25:38",
+            "created_on_iso" : "2020-01-13T05:25:38.084536"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "Hj4-nm8BatreK44zhScB",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578907894",
+            "created_on" : "01/13/2020, 09:31:34",
+            "created_on_iso" : "2020-01-13T09:31:34.337728"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "1j4_nm8BatreK44z5imG",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578907984",
+            "created_on" : "01/13/2020, 09:33:04",
+            "created_on_iso" : "2020-01-13T09:33:04.841711"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "ND5Bnm8BatreK44z9S07",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578908119",
+            "created_on" : "01/13/2020, 09:35:19",
+            "created_on_iso" : "2020-01-13T09:35:19.777845"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "HT5Hnm8BatreK44z3TkH",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578908506",
+            "created_on" : "01/13/2020, 09:41:46",
+            "created_on_iso" : "2020-01-13T09:41:46.739572"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "eT5Lnm8BatreK44zflPz",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578908744",
+            "created_on" : "01/13/2020, 09:45:44",
+            "created_on_iso" : "2020-01-13T09:45:44.835876"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "wD5Pnm8BatreK44zT21e",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578908994",
+            "created_on" : "01/13/2020, 09:49:54",
+            "created_on_iso" : "2020-01-13T09:49:54.797210"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "5DyJnW8BatreK44zQtqa",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 9309,
+            "sentence_count" : 2050,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578896014",
+            "created_on" : "01/13/2020, 06:13:34",
+            "created_on_iso" : "2020-01-13T06:13:34.922157"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "BjyLnW8BatreK44ziuB8",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 290,
+            "sentence_count" : 35,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578896165",
+            "created_on" : "01/13/2020, 06:16:05",
+            "created_on_iso" : "2020-01-13T06:16:05.417585"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "pT4pnm8BatreK44zawMz",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 9309,
+            "sentence_count" : 2050,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578906511",
+            "created_on" : "01/13/2020, 09:08:31",
+            "created_on_iso" : "2020-01-13T09:08:31.045695"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "Gj0Xnm8BatreK44z7uc8",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578905365",
+            "created_on" : "01/13/2020, 08:49:25",
+            "created_on_iso" : "2020-01-13T08:49:25.374679"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "4T2inW8BatreK44zVg1s",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578897658",
+            "created_on" : "01/13/2020, 06:40:58",
+            "created_on_iso" : "2020-01-13T06:40:58.894837"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "FD2bnW8BatreK44ziQKn",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "Tamil",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578897213",
+            "created_on" : "01/13/2020, 06:33:33",
+            "created_on_iso" : "2020-01-13T06:33:33.188301"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "ED4wnm8BatreK44zxxA0",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578906993",
+            "created_on" : "01/13/2020, 09:16:33",
+            "created_on_iso" : "2020-01-13T09:16:33.880641"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "8z41nm8BatreK44z8Bia",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 5864,
+            "sentence_count" : 987,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578907332",
+            "created_on" : "01/13/2020, 09:22:12",
+            "created_on_iso" : "2020-01-13T09:22:12.075451"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "WUbTom8BatreK44zLtR7",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 4523,
+            "sentence_count" : 1054,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578984745",
+            "created_on" : "01/14/2020, 06:52:25",
+            "created_on_iso" : "2020-01-14T06:52:25.969007"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "Bkfeom8BatreK44zdwJE",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 17234,
+            "sentence_count" : 4934,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578985483",
+            "created_on" : "01/14/2020, 07:04:43",
+            "created_on_iso" : "2020-01-14T07:04:43.048039"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "IUfpom8BatreK44zexiJ",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 7734,
+            "sentence_count" : 1686,
+            "source_lang" : "ta",
+            "target_lang" : "en",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578986207",
+            "created_on" : "01/14/2020, 07:16:47",
+            "created_on_iso" : "2020-01-14T07:16:47.112990"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "aUiCo28BatreK44zRlDY",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 1543,
+            "sentence_count" : 135,
+            "source_lang" : "en",
+            "target_lang" : "hi",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578996221",
+            "created_on" : "01/14/2020, 10:03:41",
+            "created_on_iso" : "2020-01-14T10:03:41.403816"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "yUiJo28BatreK44zAGJo",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 362,
+            "sentence_count" : 67,
+            "source_lang" : "en",
+            "target_lang" : "hi",
+            "user_id" : "24928dc1-a003-4226-ace8-c85874b71a30",
+            "username" : "ajitesh",
+            "document_id" : "1578996662",
+            "created_on" : "01/14/2020, 10:11:02",
+            "created_on_iso" : "2020-01-14T10:11:02.277664"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "hlWtrW8BatreK44zJ3a9",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 115,
+            "sentence_count" : 53,
+            "source_lang" : "English",
+            "target_lang" : "Hindi",
+            "user_id" : "d4e0b570-b72a-44e5-9110-5fdd54370a9d",
+            "high_court_name" : "Andhra Pradesh",
+            "high_court_code" : "AP",
+            "username" : "kd",
+            "document_id" : "1579166803",
+            "created_on" : "01/16/2020, 09:26:43",
+            "created_on_iso" : "2020-01-16T09:26:43.846458"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "m1WtrW8BatreK44zQHZ-",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 115,
+            "sentence_count" : 53,
+            "source_lang" : "English",
+            "target_lang" : "Hindi",
+            "user_id" : "d4e0b570-b72a-44e5-9110-5fdd54370a9d",
+            "high_court_name" : "Bangalore",
+            "high_court_code" : "sbc",
+            "username" : "kd",
+            "document_id" : "1579166810",
+            "created_on" : "01/16/2020, 09:26:50",
+            "created_on_iso" : "2020-01-16T09:26:50.190832"
+          }
+        },
+        {
+          "_index" : "doc_report",
+          "_type" : "_doc",
+          "_id" : "F1WurW8BatreK44zcn84",
+          "_score" : 1.0,
+          "_source" : {
+            "word_count" : 115,
+            "sentence_count" : 2053,
+            "source_lang" : "English",
+            "target_lang" : "Hindi",
+            "user_id" : "d4e0b570-b72a-44e5-9110-5fdd54370a9d",
+            "high_court_name" : "Bangalore",
+            "high_court_code" : "sbc",
+            "username" : "kd",
+            "document_id" : "1579166888",
+            "created_on" : "01/16/2020, 09:28:08",
+            "created_on_iso" : "2020-01-16T09:28:08.452795"
+          }
+        }
+      ]
+    }
+  }
