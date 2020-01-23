@@ -22,9 +22,9 @@ class PieChartScreen extends React.Component {
                 enabled: true,
                 textSize: 15,
                 form: 'CIRCLE',
-                horizontalAlignment: "RIGHT",
-                verticalAlignment: "CENTER",
-                orientation: "VERTICAL",
+                horizontalAlignment: "CENTER",
+                verticalAlignment: "BOTTOM",
+                orientation: "HORIZONTAL",
                 wordWrapEnabled: true
             },
             data: {
@@ -72,7 +72,7 @@ class PieChartScreen extends React.Component {
             if (getTargetlanguages && prevProps.getTargetlanguages != getTargetlanguages) {
                 let newData = JSON.parse(JSON.stringify(this.state.data))
                 newData.dataSets[0].values = getTargetlanguages
-
+                console.log('newData', newData)
                 this.setState({ data: newData })
             }
         }
@@ -91,7 +91,7 @@ class PieChartScreen extends React.Component {
                             chartDescription={this.state.description}
                             data={this.state.data}
                             legend={this.state.legend}
-                            highlights={this.state.highlights}
+                            // highlights={this.state.highlights}
 
                             entryLabelColor={processColor('green')}
                             entryLabelTextSize={10}
@@ -120,7 +120,7 @@ class PieChartScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         // flex: 1,
-        height: 350,
+        height: 400,
         backgroundColor: '#ffff',
         borderWidth: 1,
         borderColor: 'grey',
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         },
     },
     chart: {
-        flex: 1
+        flex: .95
     }
 });
 

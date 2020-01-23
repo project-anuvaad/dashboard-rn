@@ -9,7 +9,7 @@ import {
     TouchableWithoutFeedback
 } from 'react-native';
 
-import { BarChart } from 'react-native-charts-wrapper';
+import { HorizontalBarChart } from 'react-native-charts-wrapper';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
 class BarChartScreen extends React.Component {
@@ -57,21 +57,22 @@ class BarChartScreen extends React.Component {
                 valueFormatter: '',
                 granularityEnabled: true,
                 granularity: 1,
-                labelRotationAngle: -90,
+                // labelRotationAngle: -90,
                 position: 'BOTTOM',
                 drawGridLines: false,
                 drawAxisLine: true,
                 drawLabels: true,
+                labelCount: 20,
             },
             yAxis: {
                 left: {
-                    drawLabels: true,
-                    drawAxisLine: true,
+                    drawLabels: false,
+                    drawAxisLine: false,
                     drawGridLines: false,
                 },
                 right: {
-                    drawLabels: false,
-                    drawAxisLine: false,
+                    drawLabels: true,
+                    drawAxisLine: true,
                     drawGridLines: false,
                 },
             },
@@ -147,9 +148,9 @@ class BarChartScreen extends React.Component {
         const { title } = this.props
         return (
             <Card style={styles.container} onPress={() => this.props.onClickCard(this.state)}>
-                <Card.Content style={{ height: 350 }}>
+                <Card.Content style={{ height: 450 }}>
                     <Title>{title}</Title>
-                    <BarChart
+                    <HorizontalBarChart
                         style={styles.chart}
                         data={this.state.data}
                         xAxis={this.state.xAxis}
@@ -157,7 +158,7 @@ class BarChartScreen extends React.Component {
                         animation={{ durationX: 1000 }}
                         legend={this.state.legend}
                         gridBackgroundColor={processColor('#ffffff')}
-                        visibleRange={{ x: { min: 25, max: 25 } }}
+                        // visibleRange={{ x: { min: 20, max: 20 } }}
                         drawBarShadow={false}
                         drawValueAboveBar={true}
                         drawHighlightArrow={false}
@@ -181,7 +182,7 @@ class BarChartScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        height: 350,
+        height: 450,
         backgroundColor: '#ffff',
         borderWidth: 1,
         borderColor: 'grey',
@@ -197,7 +198,7 @@ const styles = StyleSheet.create({
     chart: {
         flex: 1,
         margin: 8,
-        // rotation:90
+        marginTop: 0
     },
     card: {
         shadowColor: 'rgba(0, 0, 0, 0.12)',
