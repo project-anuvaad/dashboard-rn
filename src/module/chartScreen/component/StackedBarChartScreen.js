@@ -5,17 +5,17 @@ import {
     Text,
     View, processColor
 } from 'react-native';
-​
+
 import { HorizontalBarChart } from 'react-native-charts-wrapper';
 import { Card, Title } from 'react-native-paper';
-​
+
 const stackLabels = ['Bengali', 'English', 'Gujarati', 'Hindi', 'Malayalam', 'Marathi', 'Tamil', 'Telugu', 'kannada', 'punjabi']
-​
+
 class StackedBarChartScreen extends React.Component {
-​
+
     constructor() {
         super();
-​
+
         this.state = {
             legend: {
                 enabled: true,
@@ -69,19 +69,19 @@ class StackedBarChartScreen extends React.Component {
             },
         };
     }
-​
+
     componentDidUpdate(prevProps) {
-​
+
         if (prevProps != this.props) {
             const { xValueFormatter ,getLanguagesByCourt } = this.props;
-​
+
             if (xValueFormatter && prevProps.xValueFormatter != xValueFormatter) {
                 let newData = JSON.parse(JSON.stringify(this.state.xAxis))
                 newData.valueFormatter = xValueFormatter
-​
+
                 this.setState({ xAxis: newData })
             }
-​
+
             if (getLanguagesByCourt && prevProps.getLanguagesByCourt != getLanguagesByCourt) {
                 let newData = JSON.parse(JSON.stringify(this.state.data))
                 newData.dataSets[0].values = getLanguagesByCourt
@@ -89,7 +89,7 @@ class StackedBarChartScreen extends React.Component {
             }
         }
     }
-​
+
     handleSelect(event) {
         let entry = event.nativeEvent
         if (entry == null) {
@@ -97,10 +97,10 @@ class StackedBarChartScreen extends React.Component {
         } else {
             this.setState({ ...this.state, selectedEntry: JSON.stringify(entry) })
         }
-​
+
         console.log(event.nativeEvent)
     }
-​
+
     render() {
         return (
             <Card style={styles.container}>
@@ -139,7 +139,7 @@ class StackedBarChartScreen extends React.Component {
         );
     }
 }
-​
+
 const styles = StyleSheet.create({
     container: {
         height: 550,
@@ -159,6 +159,6 @@ const styles = StyleSheet.create({
         flex: 1
     }
 });
-​
-​
+
+
 export default StackedBarChartScreen;
