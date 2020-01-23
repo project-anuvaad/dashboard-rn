@@ -72,7 +72,6 @@ class PieChartScreen extends React.Component {
             if (getTargetlanguages && prevProps.getTargetlanguages != getTargetlanguages) {
                 let newData = JSON.parse(JSON.stringify(this.state.data))
                 newData.dataSets[0].values = getTargetlanguages
-                console.log('newData', newData)
                 this.setState({ data: newData })
             }
         }
