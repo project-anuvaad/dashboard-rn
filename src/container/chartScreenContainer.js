@@ -50,16 +50,6 @@ class ChartScreenContainer extends Component {
                 'key': key,
                 'value': value
             }
-
-            // for target languages
-
-            if (key !== undefined) {
-                let tar_lan_obj = {
-                    'label': key,
-                    'value': value.length
-                }
-                getTargetlanguages.push(tar_lan_obj)
-            }
             ar.push(doc_count_obj)
             xValueFormatter.push(key);
         });
@@ -72,7 +62,7 @@ class ChartScreenContainer extends Component {
             }
             getDocCountPerCourt.push(a)
         });
-        this.setState({ xValueFormatter, getDocCountPerCourt, getTargetlanguages })
+        this.setState({ xValueFormatter, getDocCountPerCourt })
 
         // for Users per Court Chart
 
@@ -125,7 +115,25 @@ class ChartScreenContainer extends Component {
         })
         this.setState({ getSentenceCount, getwordCount })
 
+
+        // for target languages
+
+        let groupByTargetLang = _.groupBy(fileterArray, "_source.target_lang")
+        delete groupByTargetLang.undefined
+        _.forOwn(groupByTargetLang, function (value, key) {
+            if (key !== undefined) {
+                let tar_lan_obj = {
+                    'label': key,
+                    'value': value.length
+                }
+                getTargetlanguages.push(tar_lan_obj)
+            }
+        })
+
+        this.setState({ getTargetlanguages })
+
         // for Language By Court
+        
         let lang_count = [];
         let lang_Per_court_arr = []
         let dummyArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -144,13 +152,13 @@ class ChartScreenContainer extends Component {
         let self = this
         _.forEach(groupByLangPerCout, function (va, ke) {
             let grouplang = _.groupBy(va, "lang")
-            console.log(grouplang)
+            // console.log(grouplang)
             let b = _.forOwn(grouplang, function (value, key) {
                 console.log(key, value.length, ke)
                 if (key !== undefined) {
                     let a = self.checkPosition(key)
                     dummyArr[a] = value.length
-                    console.log(dummyArr)
+                    // console.log(dummyArr)
                 }
             })
             let lang_court_obj = {
@@ -158,7 +166,7 @@ class ChartScreenContainer extends Component {
                 'value': dummyArr
             }
             lang_Per_court_arr.push(lang_court_obj)
-            console.log('du', dummyArr)
+            // console.log('du', dummyArr)
 
         })
         console.log(lang_Per_court_arr)
