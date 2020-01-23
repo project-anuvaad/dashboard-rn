@@ -4,7 +4,7 @@ import {
 } from "react-navigation";
 
 import { createStackNavigator } from 'react-navigation-stack'
-import chartScreenContainer from '../container/chartScreenContainer'
+import chartScreenContainer from '../module/chartScreen/container/chartScreenContainer'
 
 const AppNavigation = createSwitchNavigator(
     {

@@ -8,7 +8,7 @@ const { height } = Dimensions.get('window')
 
 class ChartScreenComponent extends Component {
   render() {
-    const { xValueFormatter, getDocCountPerCourt, getUsersCountPerCourt, getSentenceCount, getwordCount, getTargetlanguages } = this.props
+    const { xValueFormatter, getDocCountPerCourt, getUsersCountPerCourt, getSentenceCount, getwordCount, getTargetlanguages, getLanguagesByCourt } = this.props
     return (
       <View style={{ height }}>
         <ScrollView
@@ -17,6 +17,7 @@ class ChartScreenComponent extends Component {
           <StackedBarChart
             title={'Languages By Court'}
             xValueFormatter={xValueFormatter}
+            getLanguagesByCourt={getLanguagesByCourt}
           />
 
           <BarChartScreen

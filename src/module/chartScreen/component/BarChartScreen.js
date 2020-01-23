@@ -93,7 +93,6 @@ class BarChartScreen extends React.Component {
 
     componentDidUpdate(prevProps) {
 
-        // console.log('prevProps', prevProps, ': : this.props', this.props)
 
         if (prevProps != this.props) {
             const { xValueFormatter, getDocCountPerCourt, getUsersCountPerCourt, getSentenceCount, getwordCount ,label} = this.props;

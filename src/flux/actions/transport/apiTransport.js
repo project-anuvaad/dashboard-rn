@@ -23,10 +23,8 @@ export default function dispatchAPI(api) {
         if (api.method === 'POST') {
             return dispatch => {
                 dispatch(apiStatusAsync(true, false, ''))
-                console.log("adasdasdasd", api.apiEndPoint(), api.getBody(), api.getHeaders())
                 axios.post(api.apiEndPoint(), api.getBody(), api.getHeaders())
                     .then(function (res) {
-                        console.log("helo res", res)
                         api.processResponse(res.data)
                         dispatch(apiStatusAsync(false, false, null, res.data))
                         dispatch(dispatchAPIAsync(api));
@@ -34,7 +32,6 @@ export default function dispatchAPI(api) {
                             dispatch(api.getNextStep())
                     })
                     .catch(function (err) {
-                        console.log("helo err", err)
                         if (api.type === 'ocr_process') {
                             dispatch(apiStatusAsync(false, true, 'ocr process failed', null, err.response.status === 401 ? true : false))
                         } else {

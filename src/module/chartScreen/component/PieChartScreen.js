@@ -32,14 +32,15 @@ class PieChartScreen extends React.Component {
                     values: [],
                     label: '',
                     config: {
-                        colors: [processColor('#C0FF8C'), processColor('#FFF78C'), processColor('#FFD08C'), processColor('#8CEAFF'), processColor('#FF8C9D')],
+                        colors: [processColor('#C0FF8C'), processColor('#FFF78C'), processColor('#FFD08C'), processColor('red'),
+                        processColor('blue'), processColor('green'), processColor('violet'), processColor('pink'), processColor('orange'), processColor('grey')],
                         valueTextSize: 9,
                         valueTextColor: processColor('green'),
                         sliceSpace: 3,
                         selectionShift: 5,
                         // xValuePosition: "OUTSIDE_SLICE",
-                        // yValuePosition: "OUTSIDE_SLICE",
-                        valueFormatter: "#.#",
+                        yValuePosition: "OUTSIDE_SLICE",
+                        valueFormatter: "#.#'%'",
                         valueLineColor: processColor('green'),
                         valueLinePart1Length: 0.5
                     }

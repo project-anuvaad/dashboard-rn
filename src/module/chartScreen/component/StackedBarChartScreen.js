@@ -5,25 +5,25 @@ import {
     Text,
     View, processColor
 } from 'react-native';
-
-import { BarChart } from 'react-native-charts-wrapper';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
-
+​
+import { HorizontalBarChart } from 'react-native-charts-wrapper';
+import { Card, Title } from 'react-native-paper';
+​
 const stackLabels = ['Bengali', 'English', 'Gujarati', 'Hindi', 'Malayalam', 'Marathi', 'Tamil', 'Telugu', 'kannada', 'punjabi']
-
+​
 class StackedBarChartScreen extends React.Component {
-
+​
     constructor() {
         super();
-
+​
         this.state = {
             legend: {
                 enabled: true,
                 textSize: 14,
                 form: "CIRCLE",
                 // horizontalAlignment: "RIGHT",
-                // verticalAlignment: "CENTER",
-                // orientation: "VERTICAL",
+                // verticalAlignment: "BOTTOM",
+                orientation: "HORIZONTAL",
                 formSize: 8,
                 xEntrySpace: 5,
                 yEntrySpace: 5,
@@ -31,7 +31,7 @@ class StackedBarChartScreen extends React.Component {
             },
             data: {
                 dataSets: [{
-                    values: [{ y: [40, 30, 20, 10, 0, 0, 0, 0, 0, 0] }, { y: [10, 0, 10, 10] }, { y: [30, 20, 50, 0] }, { y: [0, 30, 50, 10] }],
+                    values: [],
                     label: '',
                     config: {
                         colors: [processColor('#C0FF8C'), processColor('#FFF78C'), processColor('#FFD08C'), processColor('red'),
@@ -48,45 +48,48 @@ class StackedBarChartScreen extends React.Component {
                 valueFormatter: [],
                 granularityEnabled: true,   
                 granularity: 1,
-                granularityEnabled: true,
-                granularity: 1,
-                labelRotationAngle: -90,
+                labelRotationAngle: 0,
                 position: 'BOTTOM',
                 drawGridLines: false,
                 drawAxisLine: true,
                 drawLabels: true,
+                labelCount: 20,
             },
             yAxis: {
                 left: {
-                    drawLabels: true,
-                    drawAxisLine: true,
-                    drawGridLines: false,
-                },
-                right: {
                     drawLabels: false,
                     drawAxisLine: false,
                     drawGridLines: false,
                 },
+                right: {
+                    drawLabels: true,
+                    drawAxisLine: true,
+                    drawGridLines: false,
+                }
             },
-
         };
     }
-
+​
     componentDidUpdate(prevProps) {
-
-        // console.log('prevProps', prevProps, ': : this.props', this.props)
-
+​
         if (prevProps != this.props) {
-            const { xValueFormatter } = this.props;
+            const { xValueFormatter ,getLanguagesByCourt } = this.props;
+​
             if (xValueFormatter && prevProps.xValueFormatter != xValueFormatter) {
                 let newData = JSON.parse(JSON.stringify(this.state.xAxis))
                 newData.valueFormatter = xValueFormatter
-
+​
                 this.setState({ xAxis: newData })
+            }
+​
+            if (getLanguagesByCourt && prevProps.getLanguagesByCourt != getLanguagesByCourt) {
+                let newData = JSON.parse(JSON.stringify(this.state.data))
+                newData.dataSets[0].values = getLanguagesByCourt
+                this.setState({ data: newData })
             }
         }
     }
-
+​
     handleSelect(event) {
         let entry = event.nativeEvent
         if (entry == null) {
@@ -94,16 +97,16 @@ class StackedBarChartScreen extends React.Component {
         } else {
             this.setState({ ...this.state, selectedEntry: JSON.stringify(entry) })
         }
-
+​
         console.log(event.nativeEvent)
     }
-
+​
     render() {
         return (
             <Card style={styles.container}>
-                <Card.Content style={{ height: '100%' }}>
+                <Card.Content style={{ height: 550 }}>
                     <Title>{'Languages By Court'}</Title>
-                    <BarChart
+                    <HorizontalBarChart
                         style={styles.chart}
                         xAxis={this.state.xAxis}
                         yAxis={this.state.yAxis}
@@ -124,7 +127,6 @@ class StackedBarChartScreen extends React.Component {
                         highlights={this.state.highlights}
                         onSelect={this.handleSelect.bind(this)}
                         onChange={(event) => console.log(event.nativeEvent)}
-                        drawValueAboveBar
                         scaleEnabled={false}
                         dragEnabled={false}
                         pinchZoom={false}
@@ -137,10 +139,10 @@ class StackedBarChartScreen extends React.Component {
         );
     }
 }
-
+​
 const styles = StyleSheet.create({
     container: {
-        height: 450,
+        height: 550,
         backgroundColor: '#ffff',
         borderWidth: 1,
         borderColor: 'grey',
@@ -157,6 +159,6 @@ const styles = StyleSheet.create({
         flex: 1
     }
 });
-
-
+​
+​
 export default StackedBarChartScreen;

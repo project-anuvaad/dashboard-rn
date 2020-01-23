@@ -4,11 +4,10 @@
 import API from '../apis/api';
 import C from '../constants';
 
-export class GetChartDataAction extends API {
-    constructor(size, timeout = 2000) {
+export class GetChartDataCountAction extends API {
+    constructor(timeout = 2000) {
         super('GET', timeout, false);
-        this.type = C.GET_CHART_DATA;
-        this.size = size
+        this.type = C.GET_CHART_DATA_COUNT;
     }
 
     toString() {
@@ -17,11 +16,11 @@ export class GetChartDataAction extends API {
 
     processResponse(res) {
         super.processResponse(res);
-        this.chartData = res;
+        this.chartData = res.hits.total.value;
     }
 
     apiEndPoint() {
-        return `${super.apiEndPoint()}/doc_report/_search?pretty=true&size=${this.size}`;
+        return `${super.apiEndPoint()}/doc_report/_search?pretty=true`;
     }
 
     getHeaders() {
