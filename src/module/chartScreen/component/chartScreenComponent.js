@@ -20,7 +20,7 @@ class ChartScreenComponent extends Component {
       <ScrollView>
         <View style={styles.slide}>
           <BarChartScreen
-            title={'Documents Per Count'}
+            title={'Documents Per Court'}
             xValueFormatter={xValueFormatter}
             getDocCountPerCourt={getDocCountPerCourt}
             onClickCard={(data) => this.props.onClickCard(data)}
@@ -29,7 +29,7 @@ class ChartScreenComponent extends Component {
         </View>
         <View style={styles.slide}>
           <BarChartScreen
-            title={'Users Per Count'}
+            title={'Users Per Court'}
             xValueFormatter={xValueFormatter}
             getUsersCountPerCourt={getUsersCountPerCourt}
             onClickCard={(data) => this.props.onClickCard(data)}
