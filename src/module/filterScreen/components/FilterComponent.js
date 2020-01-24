@@ -34,10 +34,12 @@ class FilterComponent extends Component {
         this.setState({ renderView: !this.state.renderView })
     }
 
-    dateRange = (value) => {
-        if (value === 'lastMonth') {
+    onClickSubmit(){
+        this.props.filterClickedHandler('custom',this.state.fromDate, this.state.toDate)
+    }
 
-        }
+    dateRange = (value) => {
+        this.props.filterClickedHandler(value)
     }
 
     render() {
@@ -45,6 +47,7 @@ class FilterComponent extends Component {
             <View style={{ height: height - 60 }}>
                 <View style={{ justifyContent: 'center', alignItems: 'center', width, height: '100%' }}>
 
+                    <CustomButton label={'Show All'} onPressButton={() => this.dateRange('all')} />
                     <CustomButton label={'Last Month'} onPressButton={() => this.dateRange('lastMonth')} />
                     <CustomButton label={'Last Week'} onPressButton={() => this.dateRange('lastWeek')} />
                     <CustomButton label={'Last Day'} onPressButton={() => this.dateRange('lastDay')} />

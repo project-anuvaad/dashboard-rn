@@ -9,7 +9,7 @@ import {
 import { HorizontalBarChart } from 'react-native-charts-wrapper';
 import { Card, Title } from 'react-native-paper';
 
-const stackLabels = ['Bengali', 'English', 'Gujarati', 'Hindi', 'Malayalam', 'Marathi', 'Tamil', 'Telugu', 'kannada', 'punjabi']
+const stackLabels = ['Bengali', 'English', 'Gujarati', 'Hindi', 'Malayalam', 'Marathi', 'Tamil', 'Telugu', 'Kannada', 'Punjabi']
 
 class StackedBarChartScreen extends React.Component {
 

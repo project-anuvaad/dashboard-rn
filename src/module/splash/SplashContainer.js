@@ -25,10 +25,10 @@ class SplashContainer extends Component {
     render() {
         const { isLoading } = this.state
         return(
-        <View style={{ height, width }}>
+        <View style={{ height:'100%', width:'100%' }}>
                 <ImageBackground
-                    // source={require('../../assets/images/splashMain.png')}
-                    style={{ height, width, justifyContent: "center", alignItems: "center" }}
+                    // source={require('../../assets/images/Anuvaad.png')}
+                    style={{ height:'100%', width:'100%', resizeMode: "contain" }}
                     resizeMode="cover">         
         
                     {isLoading && <Spinner animating={isLoading} /> }      
