@@ -7,10 +7,10 @@ class DatePicker extends Component {
     render() {
         const { value ,showPicker,textValue,label} = this.props
         return (
-            <View style={[styles.dateTimeContainer, { paddingLeft: '2%', justifyContent: "center", borderBottomColor: '#1976D2', marginStart: '10%', marginEnd: '10%' }]}>
+            <View style={[styles.dateTimeContainer, { paddingLeft: '2%', justifyContent: "center", borderBottomColor: '#409DD6', marginStart: '10%', marginEnd: '10%' }]}>
 
                 <TouchableOpacity onPress={() => this.props.showDatepicker()} style={{ flexDirection: "row" }}>
-                    <Text style={{ flex: 3, fontSize: 20, color: '#1976D2', fontWeight: "bold", textAlign: 'left' }}>{`${label} :`}</Text>
+                    <Text style={{ flex: 3, fontSize: 20, color: '#409DD6', fontWeight: "bold", textAlign: 'left' }}>{`${label} :`}</Text>
                     <Text style={{ flex: 6, fontSize: 20, color: '#000', fontWeight: "bold", textAlign: 'left' }}>{textValue}</Text>
                 </TouchableOpacity>
                 { showPicker &&
@@ -32,7 +32,7 @@ const styles = {
         alignItems: "center",
         borderBottomWidth: 1,
         borderRadius: 2,
-        borderBottomColor: '#1976D2',
+        borderBottomColor: '#409DD6',
         height: 50,
         // backgroundColor: '#fff'
     },

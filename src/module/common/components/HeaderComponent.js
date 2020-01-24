@@ -39,7 +39,7 @@ class HeaderComponent extends Component {
 const styles = {
     mainHeaderContainerStyle: {
         height: 60, 
-        backgroundColor: '#1976D2',
+        backgroundColor: '#409DD6',
         flexDirection: 'row',
         alignItems: 'center',   
         

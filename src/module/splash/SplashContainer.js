@@ -25,9 +25,9 @@ class SplashContainer extends Component {
     render() {
         const { isLoading } = this.state
         return(
-        <View style={{ height:'100%', width:'100%' }}>
+        <View style={{ height:'120%', width:'100%',marginTop:-60 }}>
                 <ImageBackground
-                    // source={require('../../assets/images/Anuvaad.png')}
+                    source={require('../../assets/images/screen.png')}
                     style={{ height:'100%', width:'100%', resizeMode: "contain" }}
                     resizeMode="cover">         
         

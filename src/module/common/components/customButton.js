@@ -23,7 +23,7 @@ const styles = {
         width: '50%',
         paddingVertical: 10,
         margin: '2%',
-        backgroundColor: '#1976D2'
+        backgroundColor: '#409DD6'
     },
 
 };
