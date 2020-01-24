@@ -41,12 +41,14 @@ const styles = {
         height: 60, 
         backgroundColor: '#1976D2',
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',   
+        
+        zIndex:100
     },
     hamburgerBtnStyle: {
         paddingHorizontal: '5%',
-        width: '20%',
-        height: '80%',
+        width: '18%',
+        height: '60%',
         // alignItems: 'center',
         // justifyContent: 'center',
         // backgroundColor: 'red'

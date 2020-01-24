@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { GetChartDataCountAction } from '../../../flux/actions/apis/getChartDataCountAction'
 import { GetChartDataAction } from '../../../flux/actions/apis/getChartDataAction'
-// import Content from '../../../data'
+import Content from '../../../data'
 import _ from 'lodash'
 import Spinner from '../../common/components/loadingIndicator';
 import HeaderComponent from '../../common/components/HeaderComponent';
@@ -75,18 +75,18 @@ class ChartScreenContainer extends Component {
         }
     }
     // componentDidUpdate(prevProps) {
-    //     if(prevProps != this.props) {
+    //     if (prevProps != this.props) {
     //         const { getChartDataCount, getChartData, apiStatus } = this.props
-    //         if(getChartDataCount && prevProps.getChartDataCount != getChartDataCount && !apiStatus.error) {
+    //         if (getChartDataCount && prevProps.getChartDataCount != getChartDataCount && !apiStatus.error) {
     //             let apiObj = new GetChartDataAction(getChartDataCount);
     //             this.props.APITransport(apiObj);
     //         }
-    //         if(getChartData && prevProps.getChartData != getChartData && !apiStatus.error) {
+    //         if (getChartData && prevProps.getChartData != getChartData && !apiStatus.error) {
     //             this.createCharts(getChartData.hits.hits);
     //         }
-    //         if(apiStatus && prevProps.apiStatus != apiStatus && apiStatus.error){
+    //         if (apiStatus && prevProps.apiStatus != apiStatus && apiStatus.error) {
     //             this.setState({ isLoading: false })
-    //             alert('apiStatus  '+ apiStatus.message)
+    //             alert('apiStatus  ' + apiStatus.message)
     //         }
     //     }
     // }
@@ -251,13 +251,17 @@ class ChartScreenContainer extends Component {
         console.log('data', data)
     }
 
+    onBackClick=()=>{
+        console.log('onBackClick')
+        this.props.navigation.navigate('filterScreen')
+    }
+
     render() {
         const { getDocCountPerCourt, getUsersCountPerCourt, getSentenceCount, getwordCount, getTargetlanguages, getLanguagesByCourt, isLoading } = this.state
         return (
             <View style={{ height }}>
-                <HeaderComponent title='Dashboard' />
+                <HeaderComponent title='Dashboard' backButton={true} backClick={this.onBackClick}/>
                 <ChartScreenComponent
-
                     xValueFormatter={this.state.xValueFormatter}
                     getDocCountPerCourt={getDocCountPerCourt}
                     stackLabels={stackLabels}
