@@ -30,12 +30,12 @@ class FilterContainer extends Component {
     }
 
     componentDidMount() {
-        let apiObj = new GetChartDataCountAction();
-        this.setState({
-            isLoading: true
-        }, () => {
-            this.props.APITransport(apiObj);
-        })
+        // let apiObj = new GetChartDataCountAction();
+        // this.setState({
+        //     isLoading: true
+        // }, () => {
+        //     this.props.APITransport(apiObj);
+        // })
         // let data = Content.hits
         // let sourceArray = data.hits
 
@@ -203,12 +203,12 @@ class FilterContainer extends Component {
         const { isLoading } = this.state
         return(
             <View>
-            <HeaderComponent />
+            <HeaderComponent  title='Filter' />
             <FilterComponent
                 // lastMonthClick={}
                 {...this.props}
             />
-            {isLoading && <Spinner animating={isLoading} />}
+            {/* {isLoading && <Spinner animating={isLoading} />} */}
             </View>
         );
     }

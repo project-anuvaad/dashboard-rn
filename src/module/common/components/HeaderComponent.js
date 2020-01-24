@@ -56,7 +56,7 @@ const styles = {
         height: '100%',
     },
     headerTitleTextStyle: {
-        fontSize: 16,
+        fontSize: 20,
         color: 'white',
         textAlign: 'center',
         width: '100%',
