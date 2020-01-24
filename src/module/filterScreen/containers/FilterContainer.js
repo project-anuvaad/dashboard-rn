@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { View, Dimensions } from 'react-native'
-import ChartScreenComponent from '../component/chartScreenComponent'
+import { View, Dimensions,  } from 'react-native'
+import Spinner from '../../common/components/loadingIndicator';
+import FilterComponent from '../components/FilterComponent'
+import HeaderComponent from '../../common/components/HeaderComponent'
 import APITransport from '../../../flux/actions/transport/apiTransport'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -8,14 +10,12 @@ import { GetChartDataCountAction } from '../../../flux/actions/apis/getChartData
 import { GetChartDataAction } from '../../../flux/actions/apis/getChartDataAction'
 // import Content from '../../../data'
 import _ from 'lodash'
-import Spinner from '../../common/components/loadingIndicator';
-import HeaderComponent from '../../common/components/HeaderComponent';
+const { height, width } = Dimensions.get('window')
 
-
-const { height } = Dimensions.get('window')
-class ChartScreenContainer extends Component {
+class FilterContainer extends Component {
     constructor(props) {
-        super(props)
+        super(props);
+
         this.state = {
             doc_courts: [],
             xValueFormatter: [],
@@ -30,33 +30,33 @@ class ChartScreenContainer extends Component {
     }
 
     componentDidMount() {
-        // let apiObj = new GetChartDataCountAction();
-        // this.setState({
-        //     isLoading: true
-        // }, () => {
-        //     this.props.APITransport(apiObj);
-        // })
+        let apiObj = new GetChartDataCountAction();
+        this.setState({
+            isLoading: true
+        }, () => {
+            this.props.APITransport(apiObj);
+        })
         // let data = Content.hits
         // let sourceArray = data.hits
 
 
     }
-    // componentDidUpdate(prevProps) {
-    //     if(prevProps != this.props) {
-    //         const { getChartDataCount, getChartData, apiStatus } = this.props
-    //         if(getChartDataCount && prevProps.getChartDataCount != getChartDataCount && !apiStatus.error) {
-    //             let apiObj = new GetChartDataAction(getChartDataCount);
-    //             this.props.APITransport(apiObj);
-    //         }
-    //         if(getChartData && prevProps.getChartData != getChartData && !apiStatus.error) {
-    //             this.createCharts(getChartData.hits.hits);
-    //         }
-    //         if(apiStatus && prevProps.apiStatus != apiStatus && apiStatus.error){
-    //             this.setState({ isLoading: false })
-    //             alert('apiStatus  '+ apiStatus.message)
-    //         }
-    //     }
-    // }
+    componentDidUpdate(prevProps) {
+        if(prevProps != this.props) {
+            const { getChartDataCount, getChartData, apiStatus } = this.props
+            if(getChartDataCount && prevProps.getChartDataCount != getChartDataCount && !apiStatus.error) {
+                let apiObj = new GetChartDataAction(getChartDataCount);
+                this.props.APITransport(apiObj);
+            }
+            if(getChartData && prevProps.getChartData != getChartData && !apiStatus.error) {
+                this.createCharts(getChartData.hits.hits);
+            }
+            if(apiStatus && prevProps.apiStatus != apiStatus && apiStatus.error){
+                this.setState({ isLoading: false })
+                alert('apiStatus  '+ apiStatus.message)
+            }
+        }
+    }
     createCharts = (sourceArray) => {
        // for Document Per Court Chart
        let xValueFormatter = [];
@@ -199,35 +199,18 @@ class ChartScreenContainer extends Component {
             return pos
         }
     }
-
-    onClickCard = (data) => {
-        console.log('data', data)
-    }
-
     render() {
-        const { getDocCountPerCourt, getUsersCountPerCourt, getSentenceCount, getwordCount, getTargetlanguages, getLanguagesByCourt, isLoading } = this.state
-        return (
-            <View style={{ height }}>
-                <HeaderComponent title='Dashboard'/>
-                <ChartScreenComponent
-
-                    xValueFormatter={this.state.xValueFormatter}
-                    getDocCountPerCourt={getDocCountPerCourt}
-
-                    getUsersCountPerCourt={getUsersCountPerCourt}
-
-                    getSentenceCount={getSentenceCount}
-
-                    getwordCount={getwordCount}
-
-                    getTargetlanguages={getTargetlanguages}
-                    getLanguagesByCourt={getLanguagesByCourt}
-
-                    onClickCard={(data) => this.onClickCard(data)}
-                />
-                {isLoading && <Spinner animating={isLoading} />}
+        const { isLoading } = this.state
+        return(
+            <View>
+            <HeaderComponent />
+            <FilterComponent
+                // lastMonthClick={}
+                {...this.props}
+            />
+            {isLoading && <Spinner animating={isLoading} />}
             </View>
-        )
+        );
     }
 }
 
@@ -245,4 +228,4 @@ const mapDispatchToProps = (dispatch) => {
     }, dispatch)
 }
 
-export default (connect(mapStateToProps, mapDispatchToProps)(ChartScreenContainer));
+export default (connect(mapStateToProps, mapDispatchToProps)(FilterContainer));

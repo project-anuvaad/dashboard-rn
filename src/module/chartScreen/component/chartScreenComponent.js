@@ -10,7 +10,7 @@ class ChartScreenComponent extends Component {
   render() {
     const { xValueFormatter, getDocCountPerCourt, getUsersCountPerCourt, getSentenceCount, getwordCount, getTargetlanguages, getLanguagesByCourt } = this.props
     return (
-      <View style={{ height }}>
+      <View style={{ height: height-60 }}>
         <ScrollView
           contentContainerStyle={{ backgroundColor: '#eee', paddingBottom: '20%' }}
         >
