@@ -1,16 +1,16 @@
 import React from 'react';
 import {
-    AppRegistry,
     StyleSheet,
-    Text,
-    View,
     processColor,
+    Dimensions
 } from 'react-native';
 
-import { StackNavigator, SafeAreaView } from 'react-navigation';
+import { SafeAreaView } from 'react-navigation';
 
 import { PieChart } from 'react-native-charts-wrapper';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { Card, Title } from 'react-native-paper';
+
+const { height } = Dimensions.get('window')
 
 class PieChartScreen extends React.Component {
 
@@ -82,7 +82,7 @@ class PieChartScreen extends React.Component {
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 <Card style={styles.container}>
-                    <Card.Content style={{ height: '100%' }}>
+                    <Card.Content style={{ height: height * 0.65 ,marginTop:'5%'}}>
                         <Title>{'Target Languages'}</Title>
                         <PieChart
                             style={styles.chart}
@@ -120,7 +120,8 @@ class PieChartScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         // flex: 1,
-        height: 400,
+        alignContent:'center',
+        height: height * 0.8,
         backgroundColor: '#ffff',
         borderWidth: 1,
         borderColor: 'grey',

@@ -1,16 +1,14 @@
 import React from 'react';
 import {
-    AppRegistry,
     StyleSheet,
-    Text,
-    View,
     processColor,
-    TouchableOpacity,
-    TouchableWithoutFeedback
+    Dimensions,
 } from 'react-native';
 
 import { HorizontalBarChart } from 'react-native-charts-wrapper';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import {  Card, Title } from 'react-native-paper';
+
+const { height } = Dimensions.get('window')
 
 class BarChartScreen extends React.Component {
 
@@ -147,7 +145,7 @@ class BarChartScreen extends React.Component {
         const { title } = this.props
         return (
             <Card style={styles.container} onPress={() => this.props.onClickCard(this.state)}>
-                <Card.Content style={{ height: 450 }}>
+                <Card.Content style={{ height: height * 0.78 }}>
                     <Title>{title}</Title>
                     <HorizontalBarChart
                         style={styles.chart}
@@ -181,7 +179,7 @@ class BarChartScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        height: 450,
+        height: height * 0.8,
         backgroundColor: '#ffff',
         borderWidth: 1,
         borderColor: 'grey',
