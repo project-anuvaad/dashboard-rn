@@ -72,6 +72,10 @@ class BarChartScreen extends React.Component {
                     drawLabels: true,
                     drawAxisLine: true,
                     drawGridLines: false,
+                    granularityEnabled: true,
+                    granularity: 1,
+                    // labelRotationAngle: -90,
+                    // axisMinimum: 0
                 },
             },
         };
@@ -145,7 +149,7 @@ class BarChartScreen extends React.Component {
         const { title } = this.props
         return (
             <Card style={styles.container} onPress={() => this.props.onClickCard(this.state)}>
-                <Card.Content style={{ height: height * 0.78 }}>
+                <Card.Content style={{ height: height * 0.9 }}>
                     <Title>{title}</Title>
                     <HorizontalBarChart
                         style={styles.chart}
@@ -179,7 +183,7 @@ class BarChartScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        height: height * 0.8,
+        height: height * 0.9,
         backgroundColor: '#ffff',
         borderWidth: 1,
         borderColor: 'lightgrey',

@@ -42,6 +42,18 @@ class FilterComponent extends Component {
         this.props.filterClickedHandler(value)
     }
 
+    onFromDateChanged = (event, date) => {
+        if(event.type !== 'dismissed') {
+            this.setDate(event, date, 'from', 'fromDate')
+        }
+    }
+
+    onToDateChanged = (event, date) => {
+        if(event.type !== 'dismissed') {
+            this.setDate(event, date, 'to', 'toDate')
+        }
+    }
+
     render() {
         return (
             <View style={{ height: height - 60 }}>
@@ -58,7 +70,9 @@ class FilterComponent extends Component {
                             <View>
                                 <DatePicker
                                     value={this.state.fromDate}
-                                    setDate={(event, date) => this.setDate(event, date, 'from', 'fromDate')}
+                                    setDate={(event, date) => {
+                                        this.onFromDateChanged(event, date)
+                                    }}
                                     showDatepicker={() => this.showDatepicker('from')}
                                     showPicker={this.state.from}
                                     textValue={this.state.fromDate.toISOString().substring(0, 10)}
@@ -66,7 +80,7 @@ class FilterComponent extends Component {
                                 />
                                 <DatePicker
                                     value={this.state.fromDate}
-                                    setDate={(event, date) => this.setDate(event, date, 'to', 'toDate')}
+                                    setDate={(event, date) => this.onToDateChanged(event, date)}
                                     showDatepicker={() => this.showDatepicker('to')}
                                     showPicker={this.state.to}
                                     textValue={this.state.toDate.toISOString().substring(0, 10)}

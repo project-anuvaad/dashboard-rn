@@ -35,6 +35,8 @@ target 'dashboard_rn' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
   pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'
 
+  pod 'react-native-viewpager', :path => '../node_modules/@react-native-community/viewpager'
+
   target 'dashboard_rnTests' do
     inherit! :search_paths
     # Pods for testing

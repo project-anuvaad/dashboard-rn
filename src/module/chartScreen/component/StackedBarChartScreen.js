@@ -24,8 +24,8 @@ class StackedBarChartScreen extends React.Component {
                 verticalAlignment: "BOTTOM",
                 orientation: "HORIZONTAL",
                 formSize: 8,
-                xEntrySpace: 5,
-                yEntrySpace: 5,
+                xEntrySpace: 50,
+                yEntrySpace: 2,
                 wordWrapEnabled: true
             },
             data: {
@@ -33,8 +33,8 @@ class StackedBarChartScreen extends React.Component {
                     values: [],
                     label: '',
                     config: {
-                        colors: [processColor('#C0FF8C'), processColor('#FFF78C'), processColor('#FFD08C'), processColor('red'),
-                        processColor('blue'), processColor('green'), processColor('violet'), processColor('pink'), processColor('orange'), processColor('grey')],
+                        colors: [processColor('#C0FF8C'), processColor('#FFF78C'), processColor('#FFD08C'), processColor('#ff6666'),
+                        processColor('#6e6eff'), processColor('#74c754'), processColor('violet'), processColor('pink'), processColor('orange'), processColor('grey')],
                         stackLabels: stackLabels
                     }
                 }],
@@ -47,12 +47,13 @@ class StackedBarChartScreen extends React.Component {
                 valueFormatter: [],
                 granularityEnabled: true,   
                 granularity: 1,
-                labelRotationAngle: 0,
+                // labelRotationAngle: 0,
                 position: 'BOTTOM',
                 drawGridLines: false,
                 drawAxisLine: true,
                 drawLabels: true,
                 labelCount: 20,
+                // axisMinimum: 5
             },
             yAxis: {
                 left: {
@@ -64,6 +65,8 @@ class StackedBarChartScreen extends React.Component {
                     drawLabels: true,
                     drawAxisLine: true,
                     drawGridLines: false,
+                    granularityEnabled: true,   
+                    granularity: 1,
                 }
             },
         };
@@ -103,7 +106,7 @@ class StackedBarChartScreen extends React.Component {
     render() {
         return (
             <Card style={styles.container}>
-                <Card.Content style={{ height: height * 0.8 }}>
+                <Card.Content style={{ height: height * 0.9 }}>
                     <Title>{'Languages By Court'}</Title>
                     <HorizontalBarChart
                         style={styles.chart}
@@ -141,7 +144,7 @@ class StackedBarChartScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        height: height * 0.8,
+        height: height * 0.9,
         backgroundColor: '#ffff',
         borderWidth: 1,
         borderColor: 'lightgrey',

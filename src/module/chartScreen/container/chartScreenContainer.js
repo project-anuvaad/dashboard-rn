@@ -26,7 +26,8 @@ class ChartScreenContainer extends Component {
             getwordCount: [],
             getTargetlanguages: [],
             getLanguagesByCourt: [],
-            isLoading: false
+            isLoading: false,
+            headerLabel: 'All'
         }
     }
 
@@ -54,19 +55,31 @@ class ChartScreenContainer extends Component {
         let currentDate = new Date()
         switch (selectedRange) {
             case 'lastMonth':
+                this.setState({
+                    headerLabel: 'Last Month'
+                })
                 var firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
                 var lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
                 return { startDate: firstDay, endDate: lastDay };
             case 'lastWeek':
+                this.setState({
+                    headerLabel: 'Last Week'
+                })
                 let lastWeekDate = new Date(new Date().setDate(currentDate.getDate() - 7))
                 var firstDay = lastWeekDate.getDate() - lastWeekDate.getDay();
                 var lastDay = firstDay + 6;
                 return { startDate: new Date(new Date(new Date().setDate(firstDay)).setHours(0, 0, 0, 0)), endDate: new Date(new Date(new Date().setDate(lastDay)).setHours(23, 59, 59, 59)) };
             case 'lastDay':
+                this.setState({
+                    headerLabel: 'Last Day'
+                })
                 currentDate.setDate(currentDate.getDate() - 1)
                 console.log({ startDate: new Date(currentDate.setHours(0, 0, 0, 0)), endDate: new Date(new Date().setHours(0, 0, 0, 0)) })
                 return { startDate: new Date(currentDate.setHours(0, 0, 0, 0)), endDate: new Date(new Date().setHours(0, 0, 0, 0)) };
             case 'custom':
+                this.setState({
+                    headerLabel: 'Custom'
+                })
                 console.log({ startDate: new Date(customStartDate), endDate: new Date(customEndDate) })
                 return { startDate: new Date(customStartDate), endDate: new Date(customEndDate) };
             default:
@@ -79,7 +92,7 @@ class ChartScreenContainer extends Component {
         // for Document Per Court Chart
         let xValueFormatter = [];
         let ar = []
-        let getTargetlanguages = []
+        let getTargetlanguages = [{},{},{},{},{},{},{},{},{},{}]
         let sourceArray = _.filter(sourceActualArray, function (o) {
             if (dateRange) {
                 if (new Date(o._source.created_on_iso) >= dateRange.startDate && new Date(o._source.created_on_iso) <= dateRange.endDate) {
@@ -94,7 +107,7 @@ class ChartScreenContainer extends Component {
                 return o._source
             }
         })
-        let groupByName = _.groupBy(fileterArray, "high_court_name")
+        let groupByName = _.groupBy(fileterArray, "high_court_code")
         delete groupByName.undefined
         _.forOwn(groupByName, function (value, key) {
             let doc_count_obj = {
@@ -103,7 +116,7 @@ class ChartScreenContainer extends Component {
                 'y': value.length
             }
             ar.push(doc_count_obj)
-            xValueFormatter.push(key);
+            xValueFormatter.push(key.toUpperCase());
         });
         this.setState({ xValueFormatter, getDocCountPerCourt: ar })
         // for Users per Court Chart
@@ -137,13 +150,21 @@ class ChartScreenContainer extends Component {
         delete groupByTargetLang.undefined
         _.forOwn(groupByTargetLang, function (value, key) {
             if (key !== undefined) {
+                let a = stackLabels.indexOf(key)
                 let tar_lan_obj = {
                     'value': value.length,
                     'label': key
                 }
-                getTargetlanguages.push(tar_lan_obj)
+                getTargetlanguages[a]= tar_lan_obj
             }
         })
+        getTargetlanguages = getTargetlanguages.filter((lang)=>{
+            if(!lang || !lang.value){
+                return false
+            }
+            return true
+        })
+        console.log(getTargetlanguages)
         this.setState({ getTargetlanguages })
         // for Language By Court
         let getLanguagesByCourt = []
@@ -167,7 +188,7 @@ class ChartScreenContainer extends Component {
             })
             let lang_court_obj = {
                 'y': positionArr,
-                'marker': langArr
+                // 'marker': langArr
             }
             getLanguagesByCourt.push(lang_court_obj)
         })
@@ -184,10 +205,10 @@ class ChartScreenContainer extends Component {
     }
 
     render() {
-        const { getDocCountPerCourt, getUsersCountPerCourt, getSentenceCount, getwordCount, getTargetlanguages, getLanguagesByCourt, isLoading } = this.state
+        const { getDocCountPerCourt, getUsersCountPerCourt, getSentenceCount, getwordCount, getTargetlanguages, getLanguagesByCourt, isLoading, headerLabel } = this.state
         return (
             <View style={{ height }}>
-                <HeaderComponent title='Dashboard' backButton={true} backClick={this.onBackClick} />
+                <HeaderComponent title={'Dashboard-'+headerLabel} backButton={true} backClick={this.onBackClick}/>
                 <ChartScreenComponent
                     xValueFormatter={this.state.xValueFormatter}
                     getDocCountPerCourt={getDocCountPerCourt}

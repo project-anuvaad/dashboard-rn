@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { Button } from 'react-native-paper';
+import { TouchableOpacity, Text } from 'react-native';
 
 class CustomButton extends Component {
 
     render() {
         const { label } = this.props
         return (
-            <Button
+            <TouchableOpacity
                 style={styles.btnStyle}
-                mode="contained"
+                activeOpacity= {.8}
                 onPress={()=>this.props.onPressButton()}
             >
-                {label}
-            </Button>
+                <Text style={styles.labelStyle}>
+                    {label}
+                </Text>
+            </TouchableOpacity>
         )
     }
 }
@@ -21,11 +22,15 @@ class CustomButton extends Component {
 const styles = {
     btnStyle: {
         width: '50%',
-        paddingVertical: 10,
+        paddingVertical: 13,
         margin: '2%',
         backgroundColor: '#409DD6'
     },
-
+    labelStyle: {
+        color: '#FFFFFF',
+        textAlign: 'center',
+        fontSize: 16
+    }
 };
 
 export default CustomButton

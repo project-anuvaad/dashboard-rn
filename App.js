@@ -7,13 +7,7 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  StatusBar,
-  View,
-} from 'react-native';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { SafeAreaView,  StatusBar } from 'react-native';
 
 import AppNavigator from './src/navigator/AppNavigator'
 import { Provider } from 'react-redux';
@@ -21,18 +15,12 @@ import { storeFactory } from './src/flux/store/store';
 
 const App = () => {
   return (
-    <>
-      <Provider store={storeFactory}>
-        <PaperProvider>
-          <StatusBar barStyle="light-content" backgroundColor="#409DD6" />
-          {/* <SafeAreaView > */}
-          <View style={{ flex: 1, backgroundColor: '#ffff' }}>
-            <AppNavigator />
-          </View>
-          {/* </SafeAreaView> */}
-        </PaperProvider>
+    <Provider store={storeFactory}>
+        <SafeAreaView style={{ flex:1, backgroundColor: '#409DD6'}}>
+          <StatusBar barStyle="light-content" backgroundColor= '#409DD6' />
+          <AppNavigator />
+        </SafeAreaView>
       </Provider>
-    </>
   );
 };
 

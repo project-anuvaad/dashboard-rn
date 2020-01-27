@@ -3,7 +3,6 @@ import { View, StyleSheet, Dimensions, ScrollView } from 'react-native'
 import BarChartScreen from './BarChartScreen'
 import PieChart from './PieChartScreen'
 import StackedBarChart from './StackedBarChartScreen'
-import Swiper from 'react-native-swiper'
 
 const { height } = Dimensions.get('window')
 
@@ -11,12 +10,6 @@ class ChartScreenComponent extends Component {
   render() {
     const { xValueFormatter, getDocCountPerCourt, getUsersCountPerCourt, getSentenceCount, getwordCount, getTargetlanguages, getLanguagesByCourt, refs } = this.props
     return (
-      // <Swiper style={[styles.wrapper, { height: height }]}
-      //   showsButtons={false} orientation={'vertical'}
-      //   dotStyle={{ opacity: 0 }}
-      //   activeDotStyle={{ opacity: 0 }}
-      //   loop={false}
-      // >
       <ScrollView>
         <View style={styles.slide}>
           <BarChartScreen
@@ -71,7 +64,6 @@ class ChartScreenComponent extends Component {
           />
         </View>
       </ScrollView>
-      // </Swiper>
 
     )
   }

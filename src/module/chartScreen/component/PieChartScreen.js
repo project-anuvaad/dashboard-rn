@@ -32,17 +32,17 @@ class PieChartScreen extends React.Component {
                     values: [],
                     label: '',
                     config: {
-                        colors: [processColor('#C0FF8C'), processColor('#FFF78C'), processColor('#FFD08C'), processColor('red'),
-                        processColor('blue'), processColor('green'), processColor('violet'), processColor('pink'), processColor('orange'), processColor('grey')],
-                        valueTextSize: 9,
-                        valueTextColor: processColor('green'),
-                        sliceSpace: 3,
+                        colors: [processColor('#C0FF8C'), processColor('#FFF78C'), processColor('#FFD08C'), processColor('#ff6666'),
+                        processColor('#6e6eff'), processColor('#74c754'), processColor('violet'), processColor('pink'), processColor('orange'), processColor('grey')],
+                        valueTextSize: 7,
+                        valueTextColor: processColor('black'),
+                        sliceSpace: 0,
                         selectionShift: 5,
                         // xValuePosition: "OUTSIDE_SLICE",
                         yValuePosition: "OUTSIDE_SLICE",
                         valueFormatter: "#.#'%'",
-                        valueLineColor: processColor('green'),
-                        valueLinePart1Length: 0.5
+                        valueLineColor: processColor('black'),
+                        valueLinePart1Length: 0.2
                     }
                 }],
             },
@@ -80,7 +80,7 @@ class PieChartScreen extends React.Component {
 
     render() {
         return (
-            <SafeAreaView style={{ flex: 1 }}>
+            // <SafeAreaView style={{ flex: 1 }}>
                 <Card style={styles.container}>
                     <Card.Content style={{ height: height * 0.65 ,marginTop:'5%'}}>
                         <Title>{'Target Languages'}</Title>
@@ -112,7 +112,7 @@ class PieChartScreen extends React.Component {
                         />
                     </Card.Content>
                 </Card>
-            </SafeAreaView>
+            // </SafeAreaView>
         );
     }
 }
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     container: {
         // flex: 1,
         alignContent:'center',
-        height: height * 0.8,
+        height: height * 0.9,
         backgroundColor: '#ffff',
         borderWidth: 1,
         borderColor: 'lightgrey',
