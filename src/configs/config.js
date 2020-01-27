@@ -1,5 +1,5 @@
 const configs = {
-    'BASE_URL': 'http://52.88.54.220:9200',
+    'BASE_URL': 'http://auth.anuvaad.org',
 }
 
 export default configs;
