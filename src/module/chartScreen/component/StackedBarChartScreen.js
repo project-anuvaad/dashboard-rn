@@ -1,16 +1,15 @@
 import React from 'react';
 import {
-    AppRegistry,
     StyleSheet,
-    Text,
-    View, processColor
+    processColor,
+    Dimensions
 } from 'react-native';
 
 import { HorizontalBarChart } from 'react-native-charts-wrapper';
 import { Card, Title } from 'react-native-paper';
 
-const stackLabels = ['Bengali', 'English', 'Gujarati', 'Hindi', 'Malayalam', 'Marathi', 'Tamil', 'Telugu', 'kannada', 'punjabi']
-
+const stackLabels = ['Bengali', 'English', 'Gujarati', 'Hindi', 'Malayalam', 'Marathi', 'Tamil', 'Telugu', 'Kannada', 'Punjabi']
+const { height, width } = Dimensions.get('window')
 class StackedBarChartScreen extends React.Component {
 
     constructor() {
@@ -104,7 +103,7 @@ class StackedBarChartScreen extends React.Component {
     render() {
         return (
             <Card style={styles.container}>
-                <Card.Content style={{ height: 550 }}>
+                <Card.Content style={{ height: height * 0.8 }}>
                     <Title>{'Languages By Court'}</Title>
                     <HorizontalBarChart
                         style={styles.chart}
@@ -142,10 +141,10 @@ class StackedBarChartScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        height: 550,
+        height: height * 0.8,
         backgroundColor: '#ffff',
         borderWidth: 1,
-        borderColor: 'grey',
+        borderColor: 'lightgrey',
         margin: '2%',
         shadowColor: 'rgba(0, 0, 0, 0.12)',
         shadowOpacity: 0.8,

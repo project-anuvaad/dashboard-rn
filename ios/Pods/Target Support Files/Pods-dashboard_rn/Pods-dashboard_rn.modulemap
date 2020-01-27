@@ -1,0 +1,6 @@
+module Pods_dashboard_rn {
+  umbrella header "Pods-dashboard_rn-umbrella.h"
+
+  export *
+  module * { export * }
+}

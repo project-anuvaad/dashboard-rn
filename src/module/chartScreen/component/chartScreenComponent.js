@@ -1,41 +1,42 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native'
+import { View, StyleSheet, Dimensions, ScrollView } from 'react-native'
 import BarChartScreen from './BarChartScreen'
 import PieChart from './PieChartScreen'
 import StackedBarChart from './StackedBarChartScreen'
+import Swiper from 'react-native-swiper'
 
 const { height } = Dimensions.get('window')
 
 class ChartScreenComponent extends Component {
   render() {
-    const { xValueFormatter, getDocCountPerCourt, getUsersCountPerCourt, getSentenceCount, getwordCount, getTargetlanguages, getLanguagesByCourt } = this.props
+    const { xValueFormatter, getDocCountPerCourt, getUsersCountPerCourt, getSentenceCount, getwordCount, getTargetlanguages, getLanguagesByCourt, refs } = this.props
     return (
-      <View style={{ height: height-60 }}>
-        <ScrollView
-          contentContainerStyle={{ backgroundColor: '#eee', paddingBottom: '20%' }}
-        >
-          <StackedBarChart
-            title={'Languages By Court'}
-            xValueFormatter={xValueFormatter}
-            getLanguagesByCourt={getLanguagesByCourt}
-          />
-
+      // <Swiper style={[styles.wrapper, { height: height }]}
+      //   showsButtons={false} orientation={'vertical'}
+      //   dotStyle={{ opacity: 0 }}
+      //   activeDotStyle={{ opacity: 0 }}
+      //   loop={false}
+      // >
+      <ScrollView>
+        <View style={styles.slide}>
           <BarChartScreen
-            title={'Documents Per Count'}
+            title={'Documents Per Court'}
             xValueFormatter={xValueFormatter}
             getDocCountPerCourt={getDocCountPerCourt}
             onClickCard={(data) => this.props.onClickCard(data)}
             label={'Count'}
           />
-
+        </View>
+        <View style={styles.slide}>
           <BarChartScreen
-            title={'Users Per Count'}
+            title={'Users Per Court'}
             xValueFormatter={xValueFormatter}
             getUsersCountPerCourt={getUsersCountPerCourt}
             onClickCard={(data) => this.props.onClickCard(data)}
             label={'Users'}
           />
-
+        </View>
+        <View style={styles.slide}>
           <BarChartScreen
             title={'Sentence Count'}
             xValueFormatter={xValueFormatter}
@@ -44,6 +45,9 @@ class ChartScreenComponent extends Component {
             label={'Total Sentence Count'}
           />
 
+
+        </View>
+        <View style={styles.slide}>
           <BarChartScreen
             title={'Word Count'}
             xValueFormatter={xValueFormatter}
@@ -52,14 +56,23 @@ class ChartScreenComponent extends Component {
             label={'Total Word Count'}
           />
 
-          <PieChart 
-          title={'Target Languages'}
-          getTargetlanguages={getTargetlanguages} 
+        </View>
+        <View style={styles.slide}>
+          <PieChart
+            title={'Target Languages'}
+            getTargetlanguages={getTargetlanguages}
           />
+        </View>
+        <View style={styles.slide}>
+          <StackedBarChart
+            title={'Languages By Court'}
+            xValueFormatter={xValueFormatter}
+            getLanguagesByCourt={getLanguagesByCourt}
+          />
+        </View>
+      </ScrollView>
+      // </Swiper>
 
-
-        </ScrollView>
-      </View>
     )
   }
 
@@ -68,10 +81,15 @@ class ChartScreenComponent extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF'
+    backgroundColor: '#FFF'
   },
   text: {
     fontSize: 42,
-  }
+  },
+  wrapper: {
+    backgroundColor: '#FFF',
+  },
+  slide: {
+  },
 });
 export default ChartScreenComponent

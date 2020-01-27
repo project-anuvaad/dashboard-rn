@@ -24,7 +24,7 @@ const App = () => {
     <>
       <Provider store={storeFactory}>
         <PaperProvider>
-          <StatusBar barStyle="light-content" backgroundColor="#1976D2" />
+          <StatusBar barStyle="light-content" backgroundColor="#409DD6" />
           {/* <SafeAreaView > */}
           <View style={{ flex: 1, backgroundColor: '#ffff' }}>
             <AppNavigator />

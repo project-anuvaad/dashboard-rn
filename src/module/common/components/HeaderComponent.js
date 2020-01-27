@@ -39,14 +39,16 @@ class HeaderComponent extends Component {
 const styles = {
     mainHeaderContainerStyle: {
         height: 60, 
-        backgroundColor: '#1976D2',
+        backgroundColor: '#409DD6',
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',   
+        
+        zIndex:100
     },
     hamburgerBtnStyle: {
         paddingHorizontal: '5%',
-        width: '20%',
-        height: '80%',
+        width: '18%',
+        height: '60%',
         // alignItems: 'center',
         // justifyContent: 'center',
         // backgroundColor: 'red'
@@ -56,7 +58,7 @@ const styles = {
         height: '100%',
     },
     headerTitleTextStyle: {
-        fontSize: 16,
+        fontSize: 20,
         color: 'white',
         textAlign: 'center',
         width: '100%',
