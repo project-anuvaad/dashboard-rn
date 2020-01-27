@@ -74,27 +74,11 @@ class ChartScreenContainer extends Component {
 
         }
     }
-    // componentDidUpdate(prevProps) {
-    //     if (prevProps != this.props) {
-    //         const { getChartDataCount, getChartData, apiStatus } = this.props
-    //         if (getChartDataCount && prevProps.getChartDataCount != getChartDataCount && !apiStatus.error) {
-    //             let apiObj = new GetChartDataAction(getChartDataCount);
-    //             this.props.APITransport(apiObj);
-    //         }
-    //         if (getChartData && prevProps.getChartData != getChartData && !apiStatus.error) {
-    //             this.createCharts(getChartData.hits.hits);
-    //         }
-    //         if (apiStatus && prevProps.apiStatus != apiStatus && apiStatus.error) {
-    //             this.setState({ isLoading: false })
-    //             alert('apiStatus  ' + apiStatus.message)
-    //         }
-    //     }
-    // }
+  
     createCharts = (sourceActualArray, dateRange) => {
         // for Document Per Court Chart
         let xValueFormatter = [];
         let ar = []
-        let getDocCountPerCourt = []
         let getTargetlanguages = []
         let sourceArray = _.filter(sourceActualArray, function (o) {
             if (dateRange) {
@@ -105,33 +89,27 @@ class ChartScreenContainer extends Component {
                 return o
             }
         })
-        let fileterArray = _.filter(sourceArray, function (o) {
-            return o._source.high_court_name &&
-                o._source
+        let fileterArray = sourceArray.map(function (o) {
+            if (o._source && o._source.high_court_name) {
+                return o._source
+            }
         })
-        let groupByName = _.groupBy(fileterArray, "_source.high_court_name")
+        let groupByName = _.groupBy(fileterArray, "high_court_name")
+        delete groupByName.undefined
         _.forOwn(groupByName, function (value, key) {
             let doc_count_obj = {
                 'key': key,
-                'value': value
+                'value': value,
+                'y': value.length
             }
             ar.push(doc_count_obj)
             xValueFormatter.push(key);
         });
-        let DocCountPerCourt = ar.map((v) => {
-            return _.uniqBy(v.value, obj => obj._source.document_id);
-        })
-        _.forOwn(DocCountPerCourt, function (value, key) {
-            let a = {
-                'y': value.length,
-            }
-            getDocCountPerCourt.push(a)
-        });
-        this.setState({ xValueFormatter, getDocCountPerCourt })
+        this.setState({ xValueFormatter, getDocCountPerCourt: ar })
         // for Users per Court Chart
         let getUsersCountPerCourt = []
         let usersPerCourt = ar.map((v) => {
-            return _.uniqBy(v.value, obj => obj._source.user_id);
+            return _.uniqBy(v.value, obj => obj.user_id);
         })
         _.forOwn(usersPerCourt, function (value, key) {
             let user_court_obj = {
@@ -143,39 +121,19 @@ class ChartScreenContainer extends Component {
         // for sentence Count and word Count per court
         let getSentenceCount = []
         let getwordCount = []
-        let common_count = []
         _.forEach(ar, function (v1, k1) {
+            let sentence_count = 0
+            let word_count = 0
             _.forEach(v1.value, function (v2, k2) {
-                if (v2._source.high_court_name === v1.key) {
-                    let count_obj = {
-                        'court_name': v1.key,
-                        'sentence_count': v2._source.sentence_count,
-                        'word_count': v2._source.word_count,
-                    }
-                    common_count.push(count_obj)
-                }
+                sentence_count += v2.sentence_count
+                word_count += v2.word_count
             })
+            getSentenceCount.push({ y: sentence_count })
+            getwordCount.push({ y: word_count })
         });
-        let sortByKey = _.groupBy(common_count, "court_name")
-        _.forOwn(sortByKey, function (value, key) {
-            let sentence_count_court = _.sumBy(value, function (v) {
-                return v.sentence_count;
-            });
-            let sentence_count_court_obj = {
-                'y': sentence_count_court
-            }
-            let word_count_court = _.sumBy(value, function (v1) {
-                return v1.word_count;
-            });
-            let word_count_court_obj = {
-                'y': word_count_court
-            }
-            getSentenceCount.push(sentence_count_court_obj)
-            getwordCount.push(word_count_court_obj)
-        })
         this.setState({ getSentenceCount, getwordCount })
         // for target languages
-        let groupByTargetLang = _.groupBy(fileterArray, "_source.target_lang")
+        let groupByTargetLang = _.groupBy(fileterArray, "target_lang")
         delete groupByTargetLang.undefined
         _.forOwn(groupByTargetLang, function (value, key) {
             if (key !== undefined) {
@@ -188,70 +146,39 @@ class ChartScreenContainer extends Component {
         })
         this.setState({ getTargetlanguages })
         // for Language By Court
-        let lang_count = [];
         let getLanguagesByCourt = []
         let positionArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         let langArr = ['', '', '', '', '', '', '', '', '', '']
         _.forEach(ar, function (v1, k1) {
-            _.forEach(v1.value, function (v2, k2) {
-                if (v2._source.high_court_name === v1.key) {
-                    let count_obj = {
-                        'court_name': v1.key,
-                        'lang': v2._source.target_lang,
-                    }
-                    lang_count.push(count_obj)
-                }
-            })
-        })
-        let groupByLangPerCout = _.groupBy(lang_count, "court_name")
-        let self = this
-        _.forEach(groupByLangPerCout, function (va, ke) {
-            let grouplang = _.groupBy(va, "lang")
-            delete grouplang.undefined
+            let lang_obj = {}
             positionArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             langArr = ['', '', '', '', '', '', '', '', '', '']
-            let b = _.forOwn(grouplang, function (value, key) {
+            _.forEach(v1.value, function (v2, k2) {
+                if (lang_obj[v2.target_lang]) {
+                    lang_obj[v2.target_lang] += 1
+                } else {
+                    lang_obj[v2.target_lang] = 1
+                }
+            })
+            _.forOwn(lang_obj, function (value, key) {
                 let a = stackLabels.indexOf(key)
-                positionArr[a] = value.length
+                positionArr[a] = value
                 langArr[a] = key
             })
             let lang_court_obj = {
                 'y': positionArr,
-                'marker':langArr
+                'marker': langArr
             }
             getLanguagesByCourt.push(lang_court_obj)
-
         })
-        console.log(getLanguagesByCourt)
-        //    this.setState({ getLanguagesByCourt })
         this.setState({ getLanguagesByCourt, isLoading: false })
-    }
-
-    checkPosition(v) {
-        if (v !== undefined) {
-            let pos = 0
-            switch (v) {
-                case 'Tamil':
-                    pos = 7
-                    break;
-                case 'English':
-                    pos = 1
-                    break;
-                case 'Hindi':
-                    pos = 3
-                    break;
-                default:
-                    pos = 0
-            }
-            return pos
-        }
     }
 
     onClickCard = (data) => {
         console.log('data', data)
     }
 
-    onBackClick=()=>{
+    onBackClick = () => {
         console.log('onBackClick')
         this.props.navigation.navigate('filterScreen')
     }
@@ -260,7 +187,7 @@ class ChartScreenContainer extends Component {
         const { getDocCountPerCourt, getUsersCountPerCourt, getSentenceCount, getwordCount, getTargetlanguages, getLanguagesByCourt, isLoading } = this.state
         return (
             <View style={{ height }}>
-                <HeaderComponent title='Dashboard' backButton={true} backClick={this.onBackClick}/>
+                <HeaderComponent title='Dashboard' backButton={true} backClick={this.onBackClick} />
                 <ChartScreenComponent
                     xValueFormatter={this.state.xValueFormatter}
                     getDocCountPerCourt={getDocCountPerCourt}

@@ -64,25 +64,7 @@ class FilterContainer extends Component {
         this.props.navigation.navigate('chartScreen', { selectedRange: range, startDate, endDate })
     }
 
-    checkPosition(v) {
-        if (v !== undefined) {
-            let pos = 0
-            switch (v) {
-                case 'Tamil':
-                    pos = 7
-                    break;
-                case 'English':
-                    pos = 1
-                    break;
-                case 'Hindi':
-                    pos = 3
-                    break;
-                default:
-                    pos = 0
-            }
-            return pos
-        }
-    }
+    
     render() {
         const { isLoading } = this.state
         return (
@@ -90,10 +72,9 @@ class FilterContainer extends Component {
                 <HeaderComponent title='Filter' />
                 <FilterComponent
                     filterClickedHandler={this.handleFilterClicked.bind(this)}
-                    // lastMonthClick={}
                     {...this.props}
                 />
-                {/* {isLoading && <Spinner animating={isLoading} />} */}
+                {isLoading && <Spinner animating={isLoading} />}
             </View>
         );
     }
