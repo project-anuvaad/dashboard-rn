@@ -10,7 +10,9 @@ class ChartScreenComponent extends Component {
   render() {
     const { xValueFormatter, getDocCountPerCourt, getUsersCountPerCourt, getSentenceCount, getwordCount, getTargetlanguages, getLanguagesByCourt, refs } = this.props
     return (
-      <ScrollView>
+      <ScrollView 
+        contentContainerStyle={{paddingBottom: '10%'}}
+      >
         <View style={styles.slide}>
           <BarChartScreen
             title={'Documents Per Court'}

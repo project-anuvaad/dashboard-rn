@@ -21,6 +21,18 @@ class FilterComponent extends Component {
         }
     }
 
+    componentDidMount() {
+        this.props.navigation.addListener('willBlur', () => {
+            this.setState({
+                fromDate: new Date(),
+                toDate: new Date(),
+                mode: 'date',
+                from: false,
+                to: false,
+                renderView: false
+            })
+        })
+    }
     showDatepicker = (prop) => {
         this.setState({ [prop]: true })
     }

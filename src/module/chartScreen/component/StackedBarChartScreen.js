@@ -24,7 +24,7 @@ class StackedBarChartScreen extends React.Component {
                 verticalAlignment: "BOTTOM",
                 orientation: "HORIZONTAL",
                 formSize: 8,
-                xEntrySpace: 50,
+                xEntrySpace: 5,
                 yEntrySpace: 2,
                 wordWrapEnabled: true
             },
