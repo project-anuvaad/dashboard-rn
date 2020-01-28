@@ -83,7 +83,7 @@ class PieChartScreen extends React.Component {
             // <SafeAreaView style={{ flex: 1 }}>
                 <Card style={styles.container}>
                     <Card.Content style={{ height: height * 0.65 ,marginTop:'5%'}}>
-                        <Title>{'Target Languages'}</Title>
+                        <Title>{this.props.title}</Title>
                         <PieChart
                             style={styles.chart}
                             logEnabled={true}

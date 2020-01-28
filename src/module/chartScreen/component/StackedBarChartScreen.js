@@ -107,7 +107,7 @@ class StackedBarChartScreen extends React.Component {
         return (
             <Card style={styles.container}>
                 <Card.Content style={{ height: height * 0.9 }}>
-                    <Title>{'Languages By Court'}</Title>
+                    <Title>{this.props.title}</Title>
                     <HorizontalBarChart
                         style={styles.chart}
                         xAxis={this.state.xAxis}

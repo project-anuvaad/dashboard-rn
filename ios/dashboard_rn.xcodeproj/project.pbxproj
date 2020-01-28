@@ -10,7 +10,7 @@
 		04F19BDA9D7B4FA59E746235 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 071327F770CC494AB061B06E /* Foundation.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
-		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		13B07FBF1A68108700A75B9A /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1D92C88D96554014B7DE86A6 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 338C6C8C3194447ABA8E602C /* SimpleLineIcons.ttf */; };
 		1DEC3EC135FD42DEB89A0B97 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A671511E78242C2BEA3E7FE /* AntDesign.ttf */; };
@@ -29,6 +29,7 @@
 		D0EECF5DB0E2402C9C522707 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FE0496BC2C543749F19096A /* Octicons.ttf */; };
 		E918ABF9B47D46DE87689A10 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB765CE29F09411889E62E0C /* Entypo.ttf */; };
 		ED3F2A5323DB2758002572CB /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3F2A5223DB2758002572CB /* File.swift */; };
+		EDCF0A8323E036E500B4D60E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = EDCF0A8223E036E500B4D60E /* logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +41,7 @@
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = dashboard_rn/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = dashboard_rn/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = dashboard_rn/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = images.xcassets; path = dashboard_rn/images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = dashboard_rn/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = dashboard_rn/main.m; sourceTree = "<group>"; };
 		23509188D42F1644D81013E8 /* Pods-dashboard_rn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dashboard_rn.debug.xcconfig"; path = "Target Support Files/Pods-dashboard_rn/Pods-dashboard_rn.debug.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +74,7 @@
 		ED3F2A5123DB2758002572CB /* dashboard_rn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dashboard_rn-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED3F2A5223DB2758002572CB /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		ED58B91342454E5AA9495114 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		EDCF0A8223E036E500B4D60E /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		FFDFFA37DBC51351BFB1F94B /* libPods-dashboard_rn-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dashboard_rn-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -111,7 +113,7 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				13B07FB51A68108700A75B9A /* images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				ED3F2A5223DB2758002572CB /* File.swift */,
+				EDCF0A8223E036E500B4D60E /* logo.png */,
 				13B07FAE1A68108700A75B9A /* dashboard_rn */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* dashboard_rnTests */,
@@ -267,7 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				13B07FBF1A68108700A75B9A /* images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				1DEC3EC135FD42DEB89A0B97 /* AntDesign.ttf in Resources */,
 				E918ABF9B47D46DE87689A10 /* Entypo.ttf in Resources */,
@@ -279,6 +282,7 @@
 				38032626210244158B870F4A /* FontAwesome5_Solid.ttf in Resources */,
 				C97920F0D5594BC2A24E1782 /* Fontisto.ttf in Resources */,
 				04F19BDA9D7B4FA59E746235 /* Foundation.ttf in Resources */,
+				EDCF0A8323E036E500B4D60E /* logo.png in Resources */,
 				7B7F42A3C6044C90814EB203 /* Ionicons.ttf in Resources */,
 				4F82A0A8215E43B694C74E09 /* MaterialCommunityIcons.ttf in Resources */,
 				8FECC361D7F74035A2ADE2DD /* MaterialIcons.ttf in Resources */,

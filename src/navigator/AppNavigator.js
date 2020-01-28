@@ -7,6 +7,7 @@ import { createStackNavigator } from 'react-navigation-stack'
 import chartScreenContainer from '../module/chartScreen/container/chartScreenContainer'
 import SplashContainer from '../module/splash/SplashContainer'
 import FilterContainer from '../module/filterScreen/containers/FilterContainer'
+import { Platform } from 'react-native'
 
 
 const DashBoardNavigation = createStackNavigator(
@@ -19,16 +20,16 @@ const DashBoardNavigation = createStackNavigator(
         },
 
     }, {
-        initialRouteName: 'filterScreen',
-        headerMode: 'none'
-    }
+    initialRouteName: 'filterScreen',
+    headerMode: 'none'
+}
 )
 const AppNavigation = createSwitchNavigator(
-    {   
+    {
         splash: {
             screen: SplashContainer
         },
-        dashboardMain: DashBoardNavigation 
+        dashboardMain: DashBoardNavigation
     },
     {
         initialRouteName: 'splash',

@@ -69,7 +69,7 @@ class FilterComponent extends Component {
     render() {
         return (
             <View style={{ height: height - 60 }}>
-                <View style={{ justifyContent: 'center', alignItems: 'center', width, height: '100%' }}>
+                <View style={{ justifyContent: 'center', alignItems: 'center', width, height: '100%',marginTop:'-12%' }}>
 
                     <CustomButton label={'Show All'} onPressButton={() => this.dateRange('all')} />
                     <CustomButton label={'Last Month'} onPressButton={() => this.dateRange('lastMonth')} />
