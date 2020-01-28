@@ -15,7 +15,7 @@ class ChartScreenComponent extends Component {
       >
         <View style={styles.slide}>
           <BarChartScreen
-            title={'Documents Per Court'}
+            title={'Documents Translated'}
             xValueFormatter={xValueFormatter}
             getDocCountPerCourt={getDocCountPerCourt}
             onClickCard={(data) => this.props.onClickCard(data)}
@@ -24,7 +24,7 @@ class ChartScreenComponent extends Component {
         </View>
         <View style={styles.slide}>
           <BarChartScreen
-            title={'Users Per Court'}
+            title={'Logged in User'}
             xValueFormatter={xValueFormatter}
             getUsersCountPerCourt={getUsersCountPerCourt}
             onClickCard={(data) => this.props.onClickCard(data)}
@@ -54,7 +54,7 @@ class ChartScreenComponent extends Component {
         </View>
         <View style={styles.slide}>
           <PieChart
-            title={'Target Languages'}
+            title={'Translated Language Share'}
             getTargetlanguages={getTargetlanguages}
           />
         </View>
