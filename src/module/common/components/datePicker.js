@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+// import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from 'react-native-modal-datetime-picker'
 
 class DatePicker extends Component {
 
     render() {
-        const { value ,showPicker,textValue,label} = this.props
+        const { value ,showPicker,textValue,label, onConfirm, onCancel} = this.props
         return (
             <View style={[styles.dateTimeContainer, { paddingLeft: '2%', justifyContent: "center", borderBottomColor: '#409DD6', marginStart: '10%', marginEnd: '10%' }]}>
 
@@ -13,14 +14,21 @@ class DatePicker extends Component {
                     <Text style={{ flex: 3, fontSize: 20, color: '#409DD6', fontWeight: "bold", textAlign: 'left' }}>{`${label} :`}</Text>
                     <Text style={{ flex: 6, fontSize: 20, color: '#000', fontWeight: "bold", textAlign: 'left' }}>{textValue}</Text>
                 </TouchableOpacity>
-                { showPicker &&
+                {/* { showPicker &&
                     <DateTimePicker
                     value={value}
                     mode={'date'}
                     is24Hour={true}
                     display="default"
                     onChange={(event, date) => this.props.setDate(event, date)} />
-                }
+                } */}
+                <DateTimePicker
+                    isVisible={showPicker}
+                    onConfirm={onConfirm}
+                    onCancel={onCancel}
+                    maximumDate={new Date()}
+                    mode='date'
+                />
             </View>
         )
     }

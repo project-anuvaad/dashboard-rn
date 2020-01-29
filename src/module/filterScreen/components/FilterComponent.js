@@ -12,11 +12,12 @@ class FilterComponent extends Component {
         super(props);
 
         this.state = {
-            fromDate: new Date(),
-            toDate: new Date(),
+            fromDate: new Date().toISOString().substring(0, 10),
+            toDate: new Date().toISOString().substring(0, 10),
             mode: 'date',
             from: false,
             to: false,
+            minimumDate: null,
             renderView: false
         }
     }
@@ -24,11 +25,12 @@ class FilterComponent extends Component {
     componentDidMount() {
         this.props.navigation.addListener('willBlur', () => {
             this.setState({
-                fromDate: new Date(),
-                toDate: new Date(),
+                fromDate: new Date().toISOString().substring(0, 10),
+                toDate: new Date().toISOString().substring(0, 10),
                 mode: 'date',
                 from: false,
                 to: false,
+                minimumDate: null,
                 renderView: false
             })
         })
@@ -54,16 +56,53 @@ class FilterComponent extends Component {
         this.props.filterClickedHandler(value)
     }
 
-    onFromDateChanged = (event, date) => {
-        if(event.type !== 'dismissed') {
-            this.setDate(event, date, 'from', 'fromDate')
-        }
+    onFromDateChanged = (date) => {
+        // if(event.type !== 'dismissed') {
+        //     this.setDate(event, date, 'from', 'fromDate')
+        // }
+        var dateData = new Date(date)
+        this.setState({
+            minimumDate: dateData,
+        })
+        let monthData = dateData.getMonth() + 1
+        let currentDate =
+        dateData.getDate().toString().length < 2
+            ? '0' + dateData.getDate()
+            : dateData.getDate()
+        let month =
+        String(monthData).length < 2 ? '0' + monthData : monthData
+        let year = dateData.getFullYear()
+
+        this.setState({
+            fromDate: year + '-' + month + '-' + currentDate
+        })
+
+        this.onCancel()
+
     }
 
-    onToDateChanged = (event, date) => {
-        if(event.type !== 'dismissed') {
-            this.setDate(event, date, 'to', 'toDate')
-        }
+    onToDateChanged = (date) => {
+        // if(event.type !== 'dismissed') {
+        //     this.setDate(event, date, 'to', 'toDate')
+        // }
+        var dateData = new Date(date)
+        let monthData = dateData.getMonth() + 1
+        let currentDate = dateData.getDate().toString().length < 2
+            ? '0' + dateData.getDate()
+            : dateData.getDate()
+        let month =
+        String(monthData).length < 2 ? '0' + monthData : monthData
+        let year = dateData.getFullYear()
+        this.setState({
+            toDate: year + '-' + month + '-' + currentDate
+        })
+        this.onCancel()
+    }
+    onCancel = () => {
+        this.setState({
+            from: false,
+            to: false
+        })
     }
 
     render() {
@@ -81,21 +120,25 @@ class FilterComponent extends Component {
                         this.state.renderView ?
                             <View>
                                 <DatePicker
-                                    value={this.state.fromDate}
-                                    setDate={(event, date) => {
-                                        this.onFromDateChanged(event, date)
-                                    }}
+                                    // value={this.state.fromDate}
+                                    // setDate={(event, date) => {
+                                    //     this.onFromDateChanged(event, date)
+                                    // }}
+                                    onConfirm={this.onFromDateChanged}
+                                    onCancel={this.onCancel}
                                     showDatepicker={() => this.showDatepicker('from')}
                                     showPicker={this.state.from}
-                                    textValue={this.state.fromDate.toISOString().substring(0, 10)}
+                                    textValue={this.state.fromDate}
                                     label={'From'}
                                 />
                                 <DatePicker
-                                    value={this.state.fromDate}
-                                    setDate={(event, date) => this.onToDateChanged(event, date)}
+                                    // value={this.state.toDate}
+                                    // setDate={(event, date) => this.onToDateChanged(event, date)}
+                                    onConfirm={this.onToDateChanged}
+                                    onCancel={this.onCancel}
                                     showDatepicker={() => this.showDatepicker('to')}
                                     showPicker={this.state.to}
-                                    textValue={this.state.toDate.toISOString().substring(0, 10)}
+                                    textValue={this.state.toDate}
                                     label={'To'}
                                 />
                                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>

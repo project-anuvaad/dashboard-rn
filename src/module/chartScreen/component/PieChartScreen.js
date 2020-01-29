@@ -82,7 +82,7 @@ class PieChartScreen extends React.Component {
         return (
             // <SafeAreaView style={{ flex: 1 }}>
                 <Card style={styles.container}>
-                    <Card.Content style={{ height: height * 0.65 ,marginTop:'5%'}}>
+                    <Card.Content style={{ height: height * 0.9 }}>
                         <Title>{this.props.title}</Title>
                         <PieChart
                             style={styles.chart}
@@ -98,13 +98,13 @@ class PieChartScreen extends React.Component {
                             drawEntryLabels={false}
 
                             rotationEnabled={false}
-                            rotationAngle={60}
+                            rotationAngle={40}
                             usePercentValues={true}
                             styledCenterText={{ text: '', color: processColor('pink'), size: 20 }}
                             centerTextRadiusPercent={10}
-                            holeRadius={60}
+                            holeRadius={30}
                             holeColor={processColor('#fff')}
-                            transparentCircleRadius={45}
+                            transparentCircleRadius={0}
                             transparentCircleColor={processColor('#f0f0f088')}
                             maxAngle={360}
                             onSelect={this.handleSelect.bind(this)}
