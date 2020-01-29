@@ -27,7 +27,7 @@ class ChartScreenContainer extends Component {
             getTargetlanguages: [],
             getLanguagesByCourt: [],
             isLoading: false,
-            headerLabel: 'All'
+            headerLabel: 'Till Today'
         }
     }
 
@@ -78,7 +78,7 @@ class ChartScreenContainer extends Component {
                 return { startDate: new Date(currentDate.setHours(0, 0, 0, 0)), endDate: new Date(new Date().setHours(0, 0, 0, 0)) };
             case 'custom':
                 this.setState({
-                    headerLabel: 'Custom'
+                    headerLabel: customStartDate + ' to ' + customEndDate
                 })
                 console.log({ startDate: new Date(customStartDate), endDate: new Date(customEndDate) })
                 return { startDate: new Date(customStartDate), endDate: new Date(customEndDate) };
@@ -208,7 +208,7 @@ class ChartScreenContainer extends Component {
         const { getDocCountPerCourt, getUsersCountPerCourt, getSentenceCount, getwordCount, getTargetlanguages, getLanguagesByCourt, isLoading, headerLabel } = this.state
         return (
             <View style={{ height }}>
-                <HeaderComponent title={'Dashboard-'+headerLabel} backButton={true} backClick={this.onBackClick}/>
+                <HeaderComponent title={headerLabel} backButton={true} backClick={this.onBackClick}/>
                 <ChartScreenComponent
                     xValueFormatter={this.state.xValueFormatter}
                     getDocCountPerCourt={getDocCountPerCourt}
