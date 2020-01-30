@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Dimensions, TouchableOpacity, Text, Platform } from 'react-native';
 import { Button } from 'react-native-paper';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from 'react-native-modal-datetime-picker'
 import CustomButton from '../../common/components/customButton'
 import DatePicker from '../../common/components/datePicker'
 
@@ -60,6 +60,7 @@ class FilterComponent extends Component {
         // if(event.type !== 'dismissed') {
         //     this.setDate(event, date, 'from', 'fromDate')
         // }
+        this.onCancelFrom()
         var dateData = new Date(date)
         this.setState({
             minimumDate: dateData,
@@ -77,7 +78,7 @@ class FilterComponent extends Component {
             fromDate: year + '-' + month + '-' + currentDate
         })
 
-        this.onCancel()
+        
 
     }
 
@@ -85,6 +86,7 @@ class FilterComponent extends Component {
         // if(event.type !== 'dismissed') {
         //     this.setDate(event, date, 'to', 'toDate')
         // }
+        this.onCancelTo()
         var dateData = new Date(date)
         let monthData = dateData.getMonth() + 1
         let currentDate = dateData.getDate().toString().length < 2
@@ -96,16 +98,21 @@ class FilterComponent extends Component {
         this.setState({
             toDate: year + '-' + month + '-' + currentDate
         })
-        this.onCancel()
+        
     }
-    onCancel = () => {
+    onCancelFrom = () => {
         this.setState({
-            from: false,
+            from: false
+        })
+    }
+    onCancelTo = () => {
+        this.setState({
             to: false
         })
     }
 
     render() {
+        console.log('this.state', this.state.from, this.state.to)
         return (
             <View style={{ height: height - 60 }}>
                 <View style={{ justifyContent: 'center', alignItems: 'center', width, height: '100%',marginTop:'-12%' }}>
@@ -124,22 +131,37 @@ class FilterComponent extends Component {
                                     // setDate={(event, date) => {
                                     //     this.onFromDateChanged(event, date)
                                     // }}
-                                    onConfirm={this.onFromDateChanged}
-                                    onCancel={this.onCancel}
+                                    // onConfirmFrom={this.onFromDateChanged}
+                                    // onCancelFrom={this.onCancel}
                                     showDatepicker={() => this.showDatepicker('from')}
-                                    showPicker={this.state.from}
+                                    // showPickerFrom={this.state.from}
                                     textValue={this.state.fromDate}
                                     label={'From'}
+                                />
+                                <DateTimePicker
+                                    isVisible={this.state.from}
+                                    onConfirm={this.onFromDateChanged}
+                                    onCancel={this.onCancelFrom}
+                                    maximumDate={new Date()}
+                                    mode='date'
                                 />
                                 <DatePicker
                                     // value={this.state.toDate}
                                     // setDate={(event, date) => this.onToDateChanged(event, date)}
-                                    onConfirm={this.onToDateChanged}
-                                    onCancel={this.onCancel}
+                                    // onConfirmTo={this.onToDateChanged}
+                                    // onCancelTo={this.onCancel}
                                     showDatepicker={() => this.showDatepicker('to')}
-                                    showPicker={this.state.to}
+                                    // showPickerTo={this.state.to}
                                     textValue={this.state.toDate}
                                     label={'To'}
+                                />
+                                <DateTimePicker
+                                    isVisible={this.state.to}
+                                    onConfirm={this.onToDateChanged}
+                                    onCancel={this.onCancelTo}
+                                    maximumDate={new Date()}
+                                    minimumDate={this.state.minimumDate ? new Date(this.state.minimumDate) : new Date(1)}
+                                    mode='date'
                                 />
                                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                                     <CustomButton label={'Submit'} onPressButton={() => this.onClickSubmit()} />
