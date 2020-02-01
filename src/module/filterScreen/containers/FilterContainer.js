@@ -8,6 +8,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { GetChartDataCountAction } from '../../../flux/actions/apis/getChartDataCountAction'
 import { GetChartDataAction } from '../../../flux/actions/apis/getChartDataAction'
+import { GetFeedbackDataAction } from '../../../flux/actions/apis/getFeedbackDataAction'
+
 // import Content from '../../../data'
 import _ from 'lodash'
 const { height, width } = Dimensions.get('window')
@@ -43,7 +45,7 @@ class FilterContainer extends Component {
     }
     componentDidUpdate(prevProps) {
         if (prevProps != this.props) {
-            const { getChartDataCount, getChartData, apiStatus } = this.props
+            const { getChartDataCount, getChartData, getFeedbackData, apiStatus, navigation } = this.props
             if (getChartDataCount && prevProps.getChartDataCount != getChartDataCount && !apiStatus.error) {
                 this.setState({ isLoading: true })
                 let apiObj = new GetChartDataAction(getChartDataCount);
@@ -51,6 +53,13 @@ class FilterContainer extends Component {
             }
             if (getChartData && prevProps.getChartData != getChartData && !apiStatus.error) {
                 this.setState({ isLoading: false })
+            }
+            if (getFeedbackData && prevProps.getFeedbackData != getFeedbackData && !apiStatus.error) {
+                this.setState({ 
+                    isLoading: false 
+                }, () => {
+                    navigation.navigate('feedbackQuestions', {questions: getFeedbackData})
+                })
             }
             if (apiStatus && prevProps.apiStatus != apiStatus && apiStatus.error) {
                 this.setState({ isLoading: false })
@@ -64,6 +73,14 @@ class FilterContainer extends Component {
         this.props.navigation.navigate('chartScreen', { selectedRange: range, startDate, endDate })
     }
 
+    feedbackClicked = () => {
+        let apiObj = new GetFeedbackDataAction();
+        this.setState({
+            isLoading: true
+        }, () => {
+            this.props.APITransport(apiObj);
+        })
+    }
     
     render() {
         const { isLoading } = this.state
@@ -72,6 +89,7 @@ class FilterContainer extends Component {
                 <HeaderComponent title='Dashboard' />
                 <FilterComponent
                     filterClickedHandler={this.handleFilterClicked.bind(this)}
+                    feedbackClicked={this.feedbackClicked}
                     {...this.props}
                 />
                 {isLoading && <Spinner animating={isLoading} />}
@@ -84,7 +102,8 @@ const mapStateToProps = (state) => {
     return {
         apiStatus: state.apiStatus,
         getChartData: state.getChartData,
-        getChartDataCount: state.getChartDataCount
+        getChartDataCount: state.getChartDataCount,
+        getFeedbackData: state.getFeedbackData
     }
 }
 

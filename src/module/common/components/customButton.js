@@ -4,15 +4,15 @@ import { TouchableOpacity, Text, View } from 'react-native';
 class CustomButton extends Component {
 
     render() {
-        const { label } = this.props
+        const { label, customViewStyle, customBtnStyle, customLabelStyle } = this.props
         return (
-            <View style={styles.viewStyle}>
+            <View style={[styles.viewStyle, customViewStyle]}>
                 <TouchableOpacity
-                    style={styles.btnStyle}
+                    style={[styles.btnStyle, customBtnStyle]}
                     activeOpacity={.8}
                     onPress={() => this.props.onPressButton()}
                 >
-                    <Text style={styles.labelStyle}>
+                    <Text style={[styles.labelStyle, customLabelStyle]}>
                         {label}
                     </Text>
                 </TouchableOpacity>

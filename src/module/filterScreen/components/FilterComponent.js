@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, TouchableOpacity, Text, Platform } from 'react-native';
-import { Button } from 'react-native-paper';
+import { View, Dimensions, TouchableOpacity, Text, Platform, ScrollView } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import CustomButton from '../../common/components/customButton'
 import DatePicker from '../../common/components/datePicker'
@@ -18,7 +17,8 @@ class FilterComponent extends Component {
             from: false,
             to: false,
             minimumDate: null,
-            renderView: false
+            renderView: false,
+            index: 0,
         }
     }
 
@@ -40,7 +40,6 @@ class FilterComponent extends Component {
     }
 
     setDate = (event, date, show, save) => {
-        console.log('event', event)
         this.setState({ [show]: false, [save]: date })
     }
 
@@ -67,18 +66,18 @@ class FilterComponent extends Component {
         })
         let monthData = dateData.getMonth() + 1
         let currentDate =
-        dateData.getDate().toString().length < 2
-            ? '0' + dateData.getDate()
-            : dateData.getDate()
+            dateData.getDate().toString().length < 2
+                ? '0' + dateData.getDate()
+                : dateData.getDate()
         let month =
-        String(monthData).length < 2 ? '0' + monthData : monthData
+            String(monthData).length < 2 ? '0' + monthData : monthData
         let year = dateData.getFullYear()
 
         this.setState({
             fromDate: year + '-' + month + '-' + currentDate
         })
 
-        
+
 
     }
 
@@ -93,12 +92,12 @@ class FilterComponent extends Component {
             ? '0' + dateData.getDate()
             : dateData.getDate()
         let month =
-        String(monthData).length < 2 ? '0' + monthData : monthData
+            String(monthData).length < 2 ? '0' + monthData : monthData
         let year = dateData.getFullYear()
         this.setState({
             toDate: year + '-' + month + '-' + currentDate
         })
-        
+
     }
     onCancelFrom = () => {
         this.setState({
@@ -111,11 +110,41 @@ class FilterComponent extends Component {
         })
     }
 
+    onFirstTabClicked = () => {
+        this.setState({
+            index: 0
+        })
+    }
+    onSecondTabClicked = () => {
+        this.setState({
+            index: 1
+        }, this.props.feedbackClicked())
+    }
     render() {
-        console.log('this.state', this.state.from, this.state.to)
+        const { index } = this.state
         return (
-            <View style={{ height: height - 60 }}>
-                <View style={{ justifyContent: 'center', alignItems: 'center', width, height: '100%',marginTop:'-12%' }}>
+            <View style={{ height: height - 60, paddingVertical: '2%' }}>
+                <View style={styles.tabContainer}>
+                    <CustomButton
+                        customViewStyle={{ margin: '0%', width: '50%', justifyContent: 'center' }}
+                        customBtnStyle={{ height: 50 }}
+                        customLabelStyle={index == 0 ? styles.activeTab : styles.inactiveTab}
+                        label={'Documents'}
+                        onPressButton={() => this.onFirstTabClicked()}
+                    />
+                    <View
+                        style={{ width: 1, backgroundColor: 'white', height: '100%', margin: '0%' }}
+                    />
+                    <CustomButton
+                        customViewStyle={{ margin: '0%', width: '50%', justifyContent: 'center' }}
+                        customBtnStyle={{ height: 50 }}
+                        customLabelStyle={index == 1 ? styles.activeTab : styles.inactiveTab}
+                        label={'Feedback'}
+                        onPressButton={() => this.onSecondTabClicked()}
+                    />
+
+                </View>
+                <ScrollView contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', width, paddingBottom: '20%', paddingTop: '20%' }}>
 
                     <CustomButton label={'Show All'} onPressButton={() => this.dateRange('all')} />
                     <CustomButton label={'Last Month'} onPressButton={() => this.dateRange('lastMonth')} />
@@ -169,14 +198,31 @@ class FilterComponent extends Component {
                             </View>
                             : null
                     }
-                </View>
+                </ScrollView>
             </View>
         );
     }
 }
 
 const styles = {
-
+    tabContainer: {
+        alignSelf: 'center',
+        flexDirection: 'row',
+        width: '90%',
+        height: '9%',
+        backgroundColor: '#409DD6',
+        borderRadius: 8,
+        elevaion: 8,
+        paddingHorizontal: '1%'
+    },
+    activeTab: {
+        color: 'white',
+        fontWeight: 'bold'
+    },
+    inactiveTab: {
+        color: 'white',
+        fontWeight: 'normal'
+    }
 }
 
 export default FilterComponent;

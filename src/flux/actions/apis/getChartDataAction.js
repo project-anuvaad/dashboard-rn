@@ -1,5 +1,5 @@
 /**
- * File Upload API
+ * Chart Data API
  */
 import API from '../apis/api';
 import C from '../constants';

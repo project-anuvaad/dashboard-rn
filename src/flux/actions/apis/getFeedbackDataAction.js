@@ -1,13 +1,13 @@
 /**
- * Chart Data Count API
+ * Feedback Data API
  */
 import API from '../apis/api';
 import C from '../constants';
 
-export class GetChartDataCountAction extends API {
+export class GetFeedbackDataAction extends API {
     constructor(timeout = 2000) {
         super('GET', timeout, false);
-        this.type = C.GET_CHART_DATA_COUNT;
+        this.type = C.GET_FEEDBACK_DATA;
     }
 
     toString() {
@@ -16,11 +16,11 @@ export class GetChartDataCountAction extends API {
 
     processResponse(res) {
         super.processResponse(res);
-        this.chartData = res.hits.total.value;
+        this.chartData = res;
     }
 
     apiEndPoint() {
-        return `${super.apiEndPoint()}/doc_report/_search?pretty=true`;
+        return `${super.apiEndPoint()}/feedback_report/_search`;
     }
 
     getHeaders() {

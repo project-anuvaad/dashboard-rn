@@ -7,7 +7,8 @@ import { createStackNavigator } from 'react-navigation-stack'
 import chartScreenContainer from '../module/chartScreen/container/chartScreenContainer'
 import SplashContainer from '../module/splash/SplashContainer'
 import FilterContainer from '../module/filterScreen/containers/FilterContainer'
-import { Platform } from 'react-native'
+import FeedbackQuestionContainer from '../module/feedbackScreen/containers/FeedbackQuestionContainer'
+import FeedbackChartContainer from "../module/feedbackScreen/containers/FeedbackChartContainer";
 
 
 const DashBoardNavigation = createStackNavigator(
@@ -18,6 +19,12 @@ const DashBoardNavigation = createStackNavigator(
         chartScreen: {
             screen: chartScreenContainer
         },
+        feedbackQuestions: {
+            screen: FeedbackQuestionContainer
+        },
+        feedbackChart: {
+            screen: FeedbackChartContainer
+        }
 
     }, {
     initialRouteName: 'filterScreen',
