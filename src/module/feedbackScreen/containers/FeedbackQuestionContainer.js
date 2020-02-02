@@ -10,8 +10,7 @@ class FeedbackQuestionContainer extends Component {
 
         this.state = {
             groupByQuestions: null,
-            questions: null,
-            xValue: []
+            questions: null
         }
     }
 
@@ -27,9 +26,9 @@ class FeedbackQuestionContainer extends Component {
             
             let chartData = []
             let pieData = []
-            let xValue = []
             _.forOwn(groupByQuestions, function (value, key) {
                 let addToList = false
+                chartData = []
                 let yesCount = 0
                 pieData = []
                 let noCount = 0
@@ -68,7 +67,6 @@ class FeedbackQuestionContainer extends Component {
                     
                     questions.push(questionsObj)
                     
-                    xValue.push(key)
                 }
                 else {
                         let obj1 = {
@@ -94,8 +92,7 @@ class FeedbackQuestionContainer extends Component {
             
             this.setState({
                 groupByQuestions,
-                questions,
-                xValue
+                questions
             })
         }
     }
@@ -110,7 +107,6 @@ class FeedbackQuestionContainer extends Component {
                 <HeaderComponent title={'Feedback'} backButton={true} backClick={this.onBackClick}/>
                 <FeedbackQuestionComponent
                     questions={this.state.questions}
-                    xValue={this.state.xValue}
                     {...this.props}
                 />
             </View>

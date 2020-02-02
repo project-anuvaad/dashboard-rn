@@ -18,19 +18,19 @@ class FeedbackChartContainer extends Component {
 
     componentDidMount() {
         const { params } = this.props.navigation.state
-        if(params && params.chartData && params.type) {
-            if(params.type == 'chart') {
+        if(params && params.charts) {
+            if(params.charts.type == 'chart') {
                 this.setState({
-                    chartDataFeedback: params.chartData,
-                    xValue: params.xValue,
-                    type: params.type
+                    chartDataFeedback: params.charts.chartData,
+                    xValue: [params.charts.key],
+                    type: params.charts.type
                 })    
             }
             else {
                 this.setState({
-                    pieData: params.chartData,
+                    pieData: params.charts.chartData,
                     xValue: [],
-                    type: params.type
+                    type: params.charts.type
                 })
             }
         }
@@ -49,7 +49,7 @@ class FeedbackChartContainer extends Component {
             <View style={{ flex: 1, backgroundColor: '#FFFFFF'}}>
                 <HeaderComponent title={'Feedback'} backButton={true} backClick={this.onBackClick}/>
                 <FeedbackChartComponent
-                    type={params.type ? params.type : this.state.type}
+                    type={params.charts ? params.charts.type : this.state.type}
                     chartDataFeedback={this.state.chartDataFeedback}
                     pieData={this.state.pieData}
                     xValue={this.state.xValue}

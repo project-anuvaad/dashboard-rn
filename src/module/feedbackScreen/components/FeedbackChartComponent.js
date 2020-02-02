@@ -11,8 +11,8 @@ class FeedbackChartComponent extends Component {
     }
     renderCharts = () => {
         const { type, chartDataFeedback, xValue, pieData } = this.props
-        console.log('questions', type)
-        if(type != null) {
+        console.log('xvalue', xValue)
+        if(type) {
         return (
             <View>
                 {type === 'chart' ?

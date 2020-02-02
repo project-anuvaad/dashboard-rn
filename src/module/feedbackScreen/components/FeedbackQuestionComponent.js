@@ -15,7 +15,7 @@ class FeedbackQuestionComponent extends Component {
         // const { question } = this.props
         // if(question.type == 'pie') {
             console.log('questionquestionquestion', question)
-            this.props.navigation.navigate('feedbackChart', { chartData: question.chartData, xValue: this.props.xValue, type: question.type});
+            this.props.navigation.navigate('feedbackChart', { charts: question});
         // }
     }
 
