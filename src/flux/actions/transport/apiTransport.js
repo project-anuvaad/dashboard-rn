@@ -57,7 +57,7 @@ export default function dispatchAPI(api) {
         } else {
             return dispatch => {
                 dispatch(apiStatusAsync(true, false, ''))
-                axios.get(api.apiEndPoint(), api.getHeaders())
+                axios.get(api.apiEndPoint(), api.getBody(), api.getHeaders())
                     .then(function (res) {
                         api.processResponse(res.data)
                         dispatch(apiStatusAsync(false, false, null, res.data))

@@ -44,65 +44,51 @@ class ChartScreenContainer extends Component {
         const selectedRange = params ? params.selectedRange : null;
         const startDate = params ? params.startDate : null;
         const endDate = params ? params.endDate : null;
-        let dateRange = this.getDatesFromSelectedRange(selectedRange, startDate, endDate)
-        if (this.props.getChartData && this.props.getChartData.hits && this.props.getChartData.hits.hits) {
-            this.createCharts(this.props.getChartData.hits.hits, dateRange);
+        this.getHeaderLabel(selectedRange, startDate, endDate)
+        if (params && params.data && params.data.hits && params.data.hits.hits) {
+            this.createCharts(params.data.hits.hits);
         }
 
     }
 
-    getDatesFromSelectedRange(selectedRange, customStartDate, customEndDate) {
-        let currentDate = new Date()
+    getHeaderLabel(selectedRange, customStartDate, customEndDate) {
         switch (selectedRange) {
             case 'lastMonth':
                 this.setState({
                     headerLabel: 'Last Month'
                 })
-                var firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
-                var lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
-                return { startDate: firstDay, endDate: lastDay };
-            case 'lastWeek':
-                this.setState({
-                    headerLabel: 'Last Week'
-                })
-                let lastWeekDate = new Date(new Date().setDate(currentDate.getDate() - 7))
-                var firstDay = lastWeekDate.getDate() - lastWeekDate.getDay();
-                var lastDay = firstDay + 6;
-                return { startDate: new Date(new Date(new Date().setDate(firstDay)).setHours(0, 0, 0, 0)), endDate: new Date(new Date(new Date().setDate(lastDay)).setHours(23, 59, 59, 59)) };
+                return
             case 'lastDay':
                 this.setState({
                     headerLabel: 'Last Day'
                 })
-                currentDate.setDate(currentDate.getDate() - 1)
-                console.log({ startDate: new Date(currentDate.setHours(0, 0, 0, 0)), endDate: new Date(new Date().setHours(0, 0, 0, 0)) })
-                return { startDate: new Date(currentDate.setHours(0, 0, 0, 0)), endDate: new Date(new Date().setHours(0, 0, 0, 0)) };
+                return
             case 'custom':
                 this.setState({
                     headerLabel: customStartDate + ' to ' + customEndDate
                 })
-                console.log({ startDate: new Date(customStartDate), endDate: new Date(customEndDate) })
-                return { startDate: new Date(customStartDate), endDate: new Date(customEndDate) };
+                return
             default:
                 return null;
 
         }
     }
   
-    createCharts = (sourceActualArray, dateRange) => {
+    createCharts = (sourceActualArray) => {
         // for Document Per Court Chart
         let xValueFormatter = [];
         let ar = []
         let getTargetlanguages = [{},{},{},{},{},{},{},{},{},{}]
-        let sourceArray = _.filter(sourceActualArray, function (o) {
-            if (dateRange) {
-                if (new Date(o._source.created_on_iso) >= dateRange.startDate && new Date(o._source.created_on_iso) <= dateRange.endDate) {
-                    return o
-                }
-            } else {
-                return o
-            }
-        })
-        let fileterArray = sourceArray.map(function (o) {
+        // let sourceArray = _.filter(sourceActualArray, function (o) {
+        //     if (dateRange) {
+        //         if (new Date(o._source.created_on_iso) >= dateRange.startDate && new Date(o._source.created_on_iso) <= dateRange.endDate) {
+        //             return o
+        //         }
+        //     } else {
+        //         return o
+        //     }
+        // })
+        let fileterArray = sourceActualArray.map(function (o) {
             if (o._source && o._source.high_court_name) {
                 return o._source
             }
@@ -164,7 +150,6 @@ class ChartScreenContainer extends Component {
             }
             return true
         })
-        console.log(getTargetlanguages)
         this.setState({ getTargetlanguages })
         // for Language By Court
         let getLanguagesByCourt = []
@@ -200,7 +185,6 @@ class ChartScreenContainer extends Component {
     }
 
     onBackClick = () => {
-        console.log('onBackClick')
         this.props.navigation.navigate('filterScreen')
     }
 

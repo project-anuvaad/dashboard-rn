@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Dimensions, } from 'react-native'
+import { View, Alert } from 'react-native'
 import Spinner from '../../common/components/loadingIndicator';
 import FilterComponent from '../components/FilterComponent'
 import HeaderComponent from '../../common/components/HeaderComponent'
@@ -8,51 +8,66 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { GetChartDataCountAction } from '../../../flux/actions/apis/getChartDataCountAction'
 import { GetChartDataAction } from '../../../flux/actions/apis/getChartDataAction'
+import { GetFeedbacktDataCountAction } from '../../../flux/actions/apis/getFeedbackDataCountAction'
 import { GetFeedbackDataAction } from '../../../flux/actions/apis/getFeedbackDataAction'
-
-// import Content from '../../../data'
 import _ from 'lodash'
-const { height, width } = Dimensions.get('window')
+// import Content from '../../../data'
 
 class FilterContainer extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            doc_courts: [],
-            xValueFormatter: [],
-            getDocCountPerCourt: [],
-            getUsersCountPerCourt: [],
-            getSentenceCount: [],
-            getwordCount: [],
-            getTargetlanguages: [],
-            getLanguagesByCourt: [],
-            isLoading: false
+            isLoading: false,
+            dateQuery: {}
         }
     }
 
     componentDidMount() {
-        let apiObj = new GetChartDataCountAction();
-        this.setState({
-            isLoading: true
-        }, () => {
-            this.props.APITransport(apiObj);
-        })
+        // let apiObj = new GetChartDataCountAction();
+        // this.setState({
+        //     isLoading: true
+        // }, () => {
+        //     this.props.APITransport(apiObj);
+        // })
         // let data = Content.hits
         // let sourceArray = data.hits
-
-
     }
+
     componentDidUpdate(prevProps) {
         if (prevProps != this.props) {
-            const { getChartDataCount, getChartData, getFeedbackData, apiStatus, navigation } = this.props
+            const { getChartDataCount, getChartData, getFeedbackDataCount ,getFeedbackData, apiStatus, navigation } = this.props
+            const { range, startDate, endDate, dateQuery } = this.state
             if (getChartDataCount && prevProps.getChartDataCount != getChartDataCount && !apiStatus.error) {
-                this.setState({ isLoading: true })
-                let apiObj = new GetChartDataAction(getChartDataCount);
-                this.props.APITransport(apiObj);
+                if(getChartDataCount.hits.total.value !== 0) {
+                    let apiObj = new GetChartDataAction(getChartDataCount.hits.total.value, dateQuery);
+                    this.props.APITransport(apiObj);    
+                }
+                else{
+                    this.setState({
+                        isLoading: false
+                    }, () => {
+                        Alert.alert('Message','No Data Available')
+                    })
+                }
             }
             if (getChartData && prevProps.getChartData != getChartData && !apiStatus.error) {
-                this.setState({ isLoading: false })
+                this.setState({ isLoading: false }, () => {
+                    this.props.navigation.navigate('chartScreen', { selectedRange: range, startDate, endDate, data: getChartData })
+                })
+            }
+            if (getFeedbackDataCount && prevProps.getFeedbackDataCount != getFeedbackDataCount && !apiStatus.error) {
+                if(getFeedbackDataCount.hits.total.value !== 0) {
+                    let apiObj = new GetFeedbackDataAction(getFeedbackDataCount.hits.total.value, dateQuery);
+                    this.props.APITransport(apiObj);    
+                }
+                else{
+                    this.setState({
+                        isLoading: false
+                    }, () => {
+                        Alert.alert('Message','No Data Available')
+                    })
+                }
             }
             if (getFeedbackData && prevProps.getFeedbackData != getFeedbackData && !apiStatus.error) {
                 this.setState({ 
@@ -63,23 +78,115 @@ class FilterContainer extends Component {
             }
             if (apiStatus && prevProps.apiStatus != apiStatus && apiStatus.error) {
                 this.setState({ isLoading: false })
-                alert('apiStatus  ' + apiStatus.message)
+                alert('api Status  ' + apiStatus.message)
             }
         }
     }
-    
 
-    handleFilterClicked(range, startDate, endDate) {
-        this.props.navigation.navigate('chartScreen', { selectedRange: range, startDate, endDate })
+    getDatesFromSelectedRange(selectedRange, customStartDate, customEndDate) {
+        let currentDate = new Date()
+        switch (selectedRange) {
+            case 'lastMonth':
+                this.setState({
+                    headerLabel: 'Last Month'
+                })
+                var firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+                var lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+                return { startDate: firstDay, endDate: lastDay };
+                case 'lastWeek':
+                this.setState({
+                    headerLabel: 'Last Week'
+                })
+                let lastWeekDate = new Date(new Date().setDate(currentDate.getDate() - 7))
+                var firstDay = new Date(new Date().setDate(currentDate.getDate() - 7 - lastWeekDate.getDay()));
+                var lastDay =  new Date(new Date().setDate(currentDate.getDate() - 7 - lastWeekDate.getDay()));
+                lastDay.setDate(lastDay.getDate() + 6);
+                return { startDate: new Date(new Date(firstDay).setHours(0, 0, 0, 0)), endDate: new Date(new Date(lastDay).setHours(23, 59, 59, 59)) };
+            case 'lastDay':
+                this.setState({
+                    headerLabel: 'Last Day'
+                })
+                currentDate.setDate(currentDate.getDate() - 1)
+                return { startDate: new Date(currentDate.setHours(0, 0, 0, 0)), endDate: new Date(new Date().setHours(0, 0, 0, 0)) };
+            case 'custom':
+                this.setState({
+                    headerLabel: customStartDate + ' to ' + customEndDate
+                })
+                return { startDate: new Date(customStartDate), endDate: new Date(customEndDate) };
+            default:
+                return null;
+
+        }
     }
 
-    feedbackClicked = () => {
-        let apiObj = new GetFeedbackDataAction();
+    handleFilterClicked(range, index, startDate, endDate) {
         this.setState({
-            isLoading: true
-        }, () => {
-            this.props.APITransport(apiObj);
+            range,
+            startDate,
+            endDate
         })
+        let dateRange = this.getDatesFromSelectedRange(range, startDate, endDate)
+        if(index == 0) {
+            if(dateRange) {
+               let dateQuery = {
+                    "query":{
+                        "range" : {
+                            "created_on_iso" : {
+                                "gte" : dateRange.startDate.toISOString().substring(0, 10),
+                                "lte" : dateRange.endDate.toISOString().substring(0, 10)
+                            }
+                        }
+                    }
+                }
+                this.setState({
+                    isLoading: true,
+                    dateQuery
+                }, () => {
+                    let apiObj = new GetChartDataCountAction(dateQuery);
+                    this.props.APITransport(apiObj);
+                })   
+            }
+            else {
+                this.setState({
+                    isLoading: true,
+                    dateQuery: {}
+                }, () => {
+                    let apiObj = new GetChartDataCountAction(this.state.dateQuery);
+                    this.props.APITransport(apiObj);
+                })
+            }
+        }
+        else if(index == 1) {
+            if(dateRange) {
+               let dateQuery = {
+                    "query":{
+                        "range" : {
+                            "created_on" : {
+                                "gte" : dateRange.startDate.toISOString().substring(0, 10),
+                                "lte" : dateRange.endDate.toISOString().substring(0, 10)
+                            }
+                        }
+                    }
+                }
+                this.setState({
+                    isLoading: true,
+                    dateQuery
+                }, () => {
+                    let apiObj = new GetFeedbacktDataCountAction(dateQuery);
+                    this.props.APITransport(apiObj);
+                })   
+            }
+            else {
+                this.setState({
+                    isLoading: true,
+                    dateQuery: {}
+                }, () => {
+                    let apiObj = new GetFeedbacktDataCountAction(this.state.dateQuery);
+                    this.props.APITransport(apiObj);
+                })
+            }
+        }
+
     }
     
     render() {
@@ -89,7 +196,6 @@ class FilterContainer extends Component {
                 <HeaderComponent title='Dashboard' />
                 <FilterComponent
                     filterClickedHandler={this.handleFilterClicked.bind(this)}
-                    feedbackClicked={this.feedbackClicked}
                     {...this.props}
                 />
                 {isLoading && <Spinner animating={isLoading} />}
@@ -103,6 +209,7 @@ const mapStateToProps = (state) => {
         apiStatus: state.apiStatus,
         getChartData: state.getChartData,
         getChartDataCount: state.getChartDataCount,
+        getFeedbackDataCount: state.getFeedbackDataCount,
         getFeedbackData: state.getFeedbackData
     }
 }

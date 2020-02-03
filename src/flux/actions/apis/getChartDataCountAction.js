@@ -5,9 +5,10 @@ import API from '../apis/api';
 import C from '../constants';
 
 export class GetChartDataCountAction extends API {
-    constructor(timeout = 2000) {
+    constructor(dateObj, timeout = 2000) {
         super('GET', timeout, false);
         this.type = C.GET_CHART_DATA_COUNT;
+        this.dateObj = dateObj
     }
 
     toString() {
@@ -16,7 +17,7 @@ export class GetChartDataCountAction extends API {
 
     processResponse(res) {
         super.processResponse(res);
-        this.chartData = res.hits.total.value;
+        this.chartData = res;
     }
 
     apiEndPoint() {
@@ -28,6 +29,15 @@ export class GetChartDataCountAction extends API {
             headers: {
             }
         }
+    }
+
+    getBody() {
+        return {
+            params: {
+                source_content_type: 'application/json',
+                source: JSON.stringify(this.dateObj)
+            }
+        };
     }
 
     getPayload() {

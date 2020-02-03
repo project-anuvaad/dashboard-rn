@@ -11,7 +11,6 @@ class FeedbackChartComponent extends Component {
     }
     renderCharts = () => {
         const { type, chartDataFeedback, xValue, pieData } = this.props
-        console.log('xvalue', xValue)
         if(type) {
         return (
             <View>
@@ -36,8 +35,6 @@ class FeedbackChartComponent extends Component {
         }
     }
     render() { 
-        const { type, chartDataFeedback, xValue, pieData } = this.props
-        console.log('this.props', this.props)
         return(
             <ScrollView 
                 contentContainerStyle={{ paddingBottom: '20%'}}

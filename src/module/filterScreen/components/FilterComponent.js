@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, TouchableOpacity, Text, Platform, ScrollView } from 'react-native';
+import { View, Dimensions, ScrollView, Text } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import CustomButton from '../../common/components/customButton'
 import DatePicker from '../../common/components/datePicker'
@@ -31,16 +31,14 @@ class FilterComponent extends Component {
                 from: false,
                 to: false,
                 minimumDate: null,
-                renderView: false
+                renderView: false,
+                index: 0,
             })
         })
     }
+
     showDatepicker = (prop) => {
         this.setState({ [prop]: true })
-    }
-
-    setDate = (event, date, show, save) => {
-        this.setState({ [show]: false, [save]: date })
     }
 
     onClickCustom = () => {
@@ -48,17 +46,14 @@ class FilterComponent extends Component {
     }
 
     onClickSubmit(){
-        this.props.filterClickedHandler('custom',this.state.fromDate, this.state.toDate)
+        this.props.filterClickedHandler('custom', this.state.index, this.state.fromDate, this.state.toDate)
     }
 
-    dateRange = (value) => {
-        this.props.filterClickedHandler(value)
+    dateRange = (value, index) => {
+        this.props.filterClickedHandler(value, index)
     }
 
     onFromDateChanged = (date) => {
-        // if(event.type !== 'dismissed') {
-        //     this.setDate(event, date, 'from', 'fromDate')
-        // }
         this.onCancelFrom()
         var dateData = new Date(date)
         this.setState({
@@ -76,15 +71,9 @@ class FilterComponent extends Component {
         this.setState({
             fromDate: year + '-' + month + '-' + currentDate
         })
-
-
-
     }
 
     onToDateChanged = (date) => {
-        // if(event.type !== 'dismissed') {
-        //     this.setDate(event, date, 'to', 'toDate')
-        // }
         this.onCancelTo()
         var dateData = new Date(date)
         let monthData = dateData.getMonth() + 1
@@ -97,29 +86,20 @@ class FilterComponent extends Component {
         this.setState({
             toDate: year + '-' + month + '-' + currentDate
         })
-
     }
+
     onCancelFrom = () => {
-        this.setState({
-            from: false
-        })
-    }
-    onCancelTo = () => {
-        this.setState({
-            to: false
-        })
+        this.setState({ from: false })
     }
 
-    onFirstTabClicked = () => {
-        this.setState({
-            index: 0
-        })
+    onCancelTo = () => {
+        this.setState({ to: false })
     }
-    onSecondTabClicked = () => {
-        this.setState({
-            index: 1
-        }, this.props.feedbackClicked())
+
+    onTabClicked = (indexValue) => {
+        this.setState({ index: indexValue })
     }
+
     render() {
         const { index } = this.state
         return (
@@ -130,7 +110,7 @@ class FilterComponent extends Component {
                         customBtnStyle={{ height: 50 }}
                         customLabelStyle={index == 0 ? styles.activeTab : styles.inactiveTab}
                         label={'Documents'}
-                        onPressButton={() => this.onFirstTabClicked()}
+                        onPressButton={() => this.onTabClicked(0)}
                     />
                     <View
                         style={{ width: 1, backgroundColor: 'white', height: '100%', margin: '0%' }}
@@ -140,30 +120,32 @@ class FilterComponent extends Component {
                         customBtnStyle={{ height: 50 }}
                         customLabelStyle={index == 1 ? styles.activeTab : styles.inactiveTab}
                         label={'Feedback'}
-                        onPressButton={() => this.onSecondTabClicked()}
+                        onPressButton={() => this.onTabClicked(1)}
                     />
 
                 </View>
+        
                 <ScrollView contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', width, paddingBottom: '20%', paddingTop: '20%' }}>
 
-                    <CustomButton label={'Show All'} onPressButton={() => this.dateRange('all')} />
-                    <CustomButton label={'Last Month'} onPressButton={() => this.dateRange('lastMonth')} />
-                    <CustomButton label={'Last Week'} onPressButton={() => this.dateRange('lastWeek')} />
-                    <CustomButton label={'Last Day'} onPressButton={() => this.dateRange('lastDay')} />
+                    <View style={{ paddingVertical: '2%'}}>
+                        <Text 
+                            style={{ fontSize: 16, textAlign: 'center', fontWeight: 'bold'}}
+                        >
+                            {index == 0 ? 'Document Filter' : 'Feedback Filter'}
+                        </Text>
+                    </View>
+
+                    <CustomButton label={'Show All'} onPressButton={() => this.dateRange('all', index)} />
+                    <CustomButton label={'Last Month'} onPressButton={() => this.dateRange('lastMonth', index)} />
+                    <CustomButton label={'Last Week'} onPressButton={() => this.dateRange('lastWeek', index)} />
+                    <CustomButton label={'Last Day'} onPressButton={() => this.dateRange('lastDay', index)} />
                     <CustomButton label={'Custom Date'} onPressButton={() => this.onClickCustom()} />
 
                     {
                         this.state.renderView ?
                             <View>
                                 <DatePicker
-                                    // value={this.state.fromDate}
-                                    // setDate={(event, date) => {
-                                    //     this.onFromDateChanged(event, date)
-                                    // }}
-                                    // onConfirmFrom={this.onFromDateChanged}
-                                    // onCancelFrom={this.onCancel}
                                     showDatepicker={() => this.showDatepicker('from')}
-                                    // showPickerFrom={this.state.from}
                                     textValue={this.state.fromDate}
                                     label={'From'}
                                 />
@@ -174,13 +156,8 @@ class FilterComponent extends Component {
                                     maximumDate={new Date()}
                                     mode='date'
                                 />
-                                <DatePicker
-                                    // value={this.state.toDate}
-                                    // setDate={(event, date) => this.onToDateChanged(event, date)}
-                                    // onConfirmTo={this.onToDateChanged}
-                                    // onCancelTo={this.onCancel}
+                                <DatePicker                                    
                                     showDatepicker={() => this.showDatepicker('to')}
-                                    // showPickerTo={this.state.to}
                                     textValue={this.state.toDate}
                                     label={'To'}
                                 />
@@ -220,7 +197,7 @@ const styles = {
         fontWeight: 'bold'
     },
     inactiveTab: {
-        color: 'white',
+        color: '#d3e0d7',
         fontWeight: 'normal'
     }
 }

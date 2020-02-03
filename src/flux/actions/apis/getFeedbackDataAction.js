@@ -5,9 +5,11 @@ import API from '../apis/api';
 import C from '../constants';
 
 export class GetFeedbackDataAction extends API {
-    constructor(timeout = 2000) {
+    constructor(size, dateObj, timeout = 2000) {
         super('GET', timeout, false);
         this.type = C.GET_FEEDBACK_DATA;
+        this.size = size,
+        this.dateObj = dateObj
     }
 
     toString() {
@@ -20,12 +22,21 @@ export class GetFeedbackDataAction extends API {
     }
 
     apiEndPoint() {
-        return `${super.apiEndPoint()}/feedback_report/_search`;
+        return `${super.apiEndPoint()}/feedback_report/_search?pretty=true&size=${this.size}`;
     }
 
     getHeaders() {
         return {
             headers: {
+            }
+        }
+    }
+    
+    getBody() {
+        return {
+            params: {
+                source_content_type: 'application/json',
+                source: JSON.stringify(this.dateObj)
             }
         }
     }

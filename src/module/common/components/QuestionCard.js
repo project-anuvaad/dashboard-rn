@@ -29,9 +29,9 @@ const QuestionCard = ({
                 </View> :
                 <View style={styles.questionContainer}>
                     <Text style={styles.titleLabelTextStyle}>{'No:'}</Text>
-                    <Text style={styles.titleTextStyle}>{(noCount/sum)*100+'%'}</Text>
+                    <Text style={styles.titleTextStyle}>{((noCount/sum)*100).toFixed(2)+'%'}</Text>
                     <Text style={[styles.titleLabelTextStyle, {paddingLeft: '6%'}]}>{'Yes:'}</Text>
-                    <Text style={styles.titleTextStyle}>{(yesCount/sum)*100+'%'}</Text>
+                    <Text style={styles.titleTextStyle}>{((yesCount/sum)*100).toFixed(2)+'%'}</Text>
                 </View>
             }
             </TouchableOpacity>
@@ -47,7 +47,7 @@ const styles = {
         paddingHorizontal: '5%',
         justifyContent: 'center',
         borderRadius: 8,
-        backgroundColor: '#42e0f5'
+        backgroundColor: '#409DD6'
     },
     questionContainer: {
         flexDirection: 'row', 
@@ -56,12 +56,13 @@ const styles = {
     titleLabelTextStyle: {
         fontWeight: 'bold', 
         fontSize: 16, 
-        color: 'grey', 
+        color: '#e6ebf2', 
         paddingRight: '2%'
     },
     titleTextStyle: {
         fontWeight: 'bold', 
-        fontSize: 16 
+        fontSize: 16 ,
+        color: '#e6ebf2'
     }
 
 }

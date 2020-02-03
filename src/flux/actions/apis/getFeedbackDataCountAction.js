@@ -1,14 +1,13 @@
 /**
- * Chart Data API
+ * Feedback Data Count API
  */
-import API from '../apis/api';
+import API from './api';
 import C from '../constants';
 
-export class GetChartDataAction extends API {
-    constructor(size, dateObj, timeout = 2000) {
+export class GetFeedbacktDataCountAction extends API {
+    constructor(dateObj, timeout = 2000) {
         super('GET', timeout, false);
-        this.type = C.GET_CHART_DATA;
-        this.size = size,
+        this.type = C.GET_FEEDBACK_DATA_COUNT;
         this.dateObj = dateObj
     }
 
@@ -22,13 +21,12 @@ export class GetChartDataAction extends API {
     }
 
     apiEndPoint() {
-        return `${super.apiEndPoint()}/doc_report/_search?pretty=true&size=${this.size}`;
+        return `${super.apiEndPoint()}/feedback_report/_search?pretty=true`;
     }
 
     getHeaders() {
         return {
-            headers: {
-                }
+            headers: {}
         }
     }
 
@@ -38,9 +36,9 @@ export class GetChartDataAction extends API {
                 source_content_type: 'application/json',
                 source: JSON.stringify(this.dateObj)
             }
-        }   
+        };
     }
-    
+
     getPayload() {
         return this.chartData;
     }

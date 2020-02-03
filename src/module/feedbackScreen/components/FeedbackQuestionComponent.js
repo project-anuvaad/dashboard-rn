@@ -12,16 +12,11 @@ class FeedbackQuestionComponent extends Component {
     }
 
     onClickCard = (question) => {
-        // const { question } = this.props
-        // if(question.type == 'pie') {
-            console.log('questionquestionquestion', question)
-            this.props.navigation.navigate('feedbackChart', { charts: question});
-        // }
+        this.props.navigation.navigate('feedbackChart', { charts: question});
     }
 
     renderQuestions = () => {
         const { questions } = this.props
-        console.log('questions', questions)
         if(questions) {
             return (
                 questions.map(question => {
