@@ -131,7 +131,7 @@ class FilterComponent extends Component {
                         <Text 
                             style={{ fontSize: 16, textAlign: 'center', fontWeight: 'bold'}}
                         >
-                            {index == 0 ? 'Document Filter' : 'Feedback Filter'}
+                            {index == 0 ? 'Document Filters' : 'Feedback Filters'}
                         </Text>
                     </View>
 
