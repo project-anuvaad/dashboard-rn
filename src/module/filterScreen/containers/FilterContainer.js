@@ -13,6 +13,8 @@ import { GetFeedbackDataAction } from '../../../flux/actions/apis/getFeedbackDat
 import _ from 'lodash'
 // import Content from '../../../data'
 
+const stackLabels = ['yes', 'no'];
+
 class FilterContainer extends Component {
     constructor(props) {
         super(props);
@@ -73,7 +75,64 @@ class FilterContainer extends Component {
                 this.setState({ 
                     isLoading: false 
                 }, () => {
-                    navigation.navigate('feedbackQuestions', {questions: getFeedbackData})
+                    let questionsArr = []
+                    let questions = []
+                    getFeedbackData.hits.hits.forEach(items => {
+                        questionsArr.push(items._source)
+                    });
+                    let groupByQuestions = _.groupBy(questionsArr, "question")
+                    
+                    let chartData = []
+                    let pieData = []
+                    _.forOwn(groupByQuestions, function (value, key) {
+                        let addToList = false
+                        chartData = []
+                        pieData = []
+                        let questionsObj = {}
+                        let obj = {}
+                        let xValueFormatter = []
+                        let groupByAnswer = _.groupBy(value, "answer") 
+                        
+                        _.forOwn(groupByAnswer, function (value, key) {
+                            obj = {}
+                            if(!isNaN(key)){
+                                addToList = true
+                                obj = {
+                                    'key': key,
+                                    'value': value,
+                                    'y': value.length
+                                }
+                                chartData.push(obj)
+                                xValueFormatter.push(key.toUpperCase());
+                            }
+                            else{
+                                let a = stackLabels.indexOf(key)
+                                obj = {
+                                    'value': value.length,
+                                    'label': key.toUpperCase()
+                                }
+                                pieData[a] = obj
+                            }
+                        })
+                        if(addToList) {
+                            questionsObj = {
+                                'key': key,
+                                'type':  'chart',
+                                'xValue': xValueFormatter,
+                                'chartData' : chartData
+                            }
+                            questions.push(questionsObj)
+                        }
+                        else{ 
+                            questionsObj = {
+                                'key': key,
+                                'type':  'pie',
+                                chartData: pieData
+                            }
+                            questions.push(questionsObj)
+                        }
+                    })
+                    navigation.navigate('feedbackChart', {questions: questions})
                 })
             }
             if (apiStatus && prevProps.apiStatus != apiStatus && apiStatus.error) {

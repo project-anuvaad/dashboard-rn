@@ -29,67 +29,53 @@ class FeedbackQuestionContainer extends Component {
             _.forOwn(groupByQuestions, function (value, key) {
                 let addToList = false
                 chartData = []
-                let yesCount = 0
                 pieData = []
-                let noCount = 0
-                let valueSum = 0
                 let questionsObj = {}
-                value.map((v) => {
-                    if (!isNaN(v.answer)) {
+                let obj = {}
+                let xValueFormatter = []
+                let groupByAnswer = _.groupBy(value, "answer") 
+                
+                _.forOwn(groupByAnswer, function (value, key) {
+                    obj = {}
+                    if(!isNaN(key)){
                         addToList = true
-                        valueSum += v.answer
-                    }
-                    else {
-                        if(v.answer == 'no') {
-                            noCount++
+                        obj = {
+                            'key': key,
+                            'value': value,
+                            'y': value.length
                         }
-                        else {
-                            yesCount++
-                            
-                        }
-
+                        chartData.push(obj)
+                        xValueFormatter.push(key.toUpperCase());
                     }
-                    
+                    else{
+                        obj = {
+                            'value': value.length,
+                            'label': key.toUpperCase()
+                        }
+                        pieData.push(obj)
+                    }
                 })
-                if (addToList) {
-                    let obj = {
-                        'key': key,
-                        'value': value,
-                        'y': valueSum / value.length
-                    }
-                    chartData.push(obj)
+                if(addToList) {
                     questionsObj = {
                         'key': key,
                         'type':  'chart',
-                        'averageRating': obj.y,
+                        'averageRating': value.length,
+                        'xValue': xValueFormatter,
                         'chartData' : chartData
                     }
-                    
                     questions.push(questionsObj)
-                    
                 }
-                else {
-                        let obj1 = {
-                            'value': noCount,
-                            'label': 'No'
-                        }
-                        let obj2 = {
-                            'value': yesCount,
-                            'label': 'Yes'
-                        }
-                        pieData.push(obj1, obj2)
-
-                        questionsObj = {
-                            'key': key,
-                            'type':  'pie',
-                            'no': noCount,
-                            'yes': yesCount,
-                            chartData: pieData
-                        }
-                        questions.push(questionsObj)
+                else{ 
+                    questionsObj = {
+                        'key': key,
+                        'type':  'pie',
+                        'no': 1,
+                        'yes': 1,
+                        chartData: pieData
+                    }
+                    questions.push(questionsObj)
                 }
             })
-            
             this.setState({
                 groupByQuestions,
                 questions

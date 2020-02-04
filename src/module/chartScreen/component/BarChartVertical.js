@@ -91,8 +91,23 @@ class BarChartVertical extends React.Component {
         } else {
             this.setState({ ...this.state, selectedEntry: JSON.stringify(entry) })
         }
+    }
+    
+    componentDidMount() {
+        const { chartData, xValueFormatter, label} = this.props;
+        if(xValueFormatter) {
+            let newData = JSON.parse(JSON.stringify(this.state.xAxis))
+            newData.valueFormatter = xValueFormatter
+            this.setState({ xAxis: newData })    
+        }
+        if(chartData && label) {
+            let newData = JSON.parse(JSON.stringify(this.state.data))
+            newData.dataSets[0].values = chartData
+            newData.dataSets[0].label = label
+            newData.dataSets[0].config.color = processColor('#05E5CD')
+            this.setState({ data: newData })
+        }
 
-        console.log(event.nativeEvent)
     }
 
     componentDidUpdate(prevProps) {

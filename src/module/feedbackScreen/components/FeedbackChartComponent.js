@@ -9,33 +9,40 @@ class FeedbackChartComponent extends Component {
     constructor(props) {
         super(props);
     }
-    renderCharts = () => {
-        const { type, chartDataFeedback, xValue, pieData } = this.props
-        if(type) {
-        return (
-            <View>
-                {type === 'chart' ?
-                <BarChartVertical
-                    title={'Feedback'}
-                    xValueFormatter={xValue}
-                    chartData={chartDataFeedback}
-                    onClickCard={(data) => this.props.onClickCard(data)}
-                    label={'Average Rating'}
-                />
-                    :
-                <PieChartScreen
-                    title={'Feedback'}
-                    getTargetlanguages={pieData}
-                    customCardStyle={{height: height * .7}}
-                    customCardContentStyle={{height: height * .7}}
 
-                />}                
-            </View>
+    renderCharts = () => {
+        // const { type, chartDataFeedback, xValue, pieData } = this.props
+        const { questions } = this.props
+        if(questions) {
+            return (
+                questions.map((item, index) => {
+                    return (
+                        <View key={index}>
+                            {item.type === 'chart' &&
+                            <BarChartVertical
+                                title={item.key}
+                                xValueFormatter={item.xValue}
+                                chartData={item.chartData}
+                                onClickCard={(data) => this.props.onClickCard(data)}
+                                label={'Rating'}
+                            />
+                    }
+                    {item.type === 'pie' && 
+                            <PieChartScreen
+                                title={item.key}
+                                getTargetlanguages={item.chartData}
+                                customCardStyle={{height: height * .7}}
+                                customCardContentStyle={{height: height * .7}}
+                            />}                
+                        </View>
+                        )
+                })
             )
         }
     }
+
     render() { 
-        return(
+          return(
             <ScrollView 
                 contentContainerStyle={{ paddingBottom: '20%'}}
                 bounces={false}

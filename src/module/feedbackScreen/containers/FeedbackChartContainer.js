@@ -9,35 +9,13 @@ class FeedbackChartContainer extends Component {
         super(props);
 
         this.state = {
-            chartDataFeedback: [],
-            pieData: [],
-            xValue: [],
-            type: null
+            questions: []
         }
     }
 
-    componentDidMount() {
-        const { params } = this.props.navigation.state
-        if(params && params.charts) {
-            if(params.charts.type == 'chart') {
-                this.setState({
-                    chartDataFeedback: params.charts.chartData,
-                    xValue: [params.charts.key],
-                    type: params.charts.type
-                })    
-            }
-            else {
-                this.setState({
-                    pieData: params.charts.chartData,
-                    xValue: [],
-                    type: params.charts.type
-                })
-            }
-        }
-    }
 
     onBackClick = () => {
-        this.props.navigation.navigate('feedbackQuestions')
+        this.props.navigation.navigate('filterScreen')
     }
     onClickCard = (data) => {
         console.log('data', data)
@@ -49,10 +27,7 @@ class FeedbackChartContainer extends Component {
             <View style={{ flex: 1, backgroundColor: '#FFFFFF'}}>
                 <HeaderComponent title={'Feedback'} backButton={true} backClick={this.onBackClick}/>
                 <FeedbackChartComponent
-                    type={params.charts ? params.charts.type : this.state.type}
-                    chartDataFeedback={this.state.chartDataFeedback}
-                    pieData={this.state.pieData}
-                    xValue={this.state.xValue}
+                    questions={this.state.questions}
                     onClickCard={this.onClickCard}
                     {...this.props}
                 />

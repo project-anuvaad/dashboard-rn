@@ -67,6 +67,14 @@ class PieChartScreen extends React.Component {
         console.log(event.nativeEvent)
     }
 
+    componentDidMount() {
+        const { getTargetlanguages } = this.props;
+        if(getTargetlanguages) {
+            let newData = JSON.parse(JSON.stringify(this.state.data))
+                newData.dataSets[0].values = getTargetlanguages
+                this.setState({ data: newData })
+        }
+    }
     componentDidUpdate(prevProps){
         if (prevProps != this.props) {
             const { getTargetlanguages } = this.props;

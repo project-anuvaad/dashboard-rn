@@ -19,9 +19,12 @@ class FeedbackQuestionComponent extends Component {
         const { questions } = this.props
         if(questions) {
             return (
-                questions.map(question => {
+                questions.map((question, index) => {
                     return(
-                        <View style={{ marginVertical: '2%', marginHorizontal: '4%',}}>
+                        <View 
+                            style={{ marginVertical: '2%', marginHorizontal: '4%',}}
+                            key={index}
+                        >
                             <QuestionCard 
                                 Question={question.key}
                                 chart={question.type == 'chart'}
