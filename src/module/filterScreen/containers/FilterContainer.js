@@ -149,10 +149,10 @@ class FilterContainer extends Component {
                 this.setState({
                     headerLabel: 'Last Month'
                 })
-                var firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
-                var lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+                var firstDay = new Date(Date.UTC(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
+                var lastDay = new Date(Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), 0));
                 return { startDate: firstDay, endDate: lastDay };
-                case 'lastWeek':
+            case 'lastWeek':
                 this.setState({
                     headerLabel: 'Last Week'
                 })
@@ -160,13 +160,13 @@ class FilterContainer extends Component {
                 var firstDay = new Date(new Date().setDate(currentDate.getDate() - 7 - lastWeekDate.getDay()));
                 var lastDay =  new Date(new Date().setDate(currentDate.getDate() - 7 - lastWeekDate.getDay()));
                 lastDay.setDate(lastDay.getDate() + 6);
-                return { startDate: new Date(new Date(firstDay).setHours(0, 0, 0, 0)), endDate: new Date(new Date(lastDay).setHours(23, 59, 59, 59)) };
+                return { startDate: firstDay, endDate: lastDay };
             case 'lastDay':
                 this.setState({
                     headerLabel: 'Last Day'
                 })
                 currentDate.setDate(currentDate.getDate() - 1)
-                return { startDate: new Date(currentDate.setHours(0, 0, 0, 0)), endDate: new Date(new Date().setHours(0, 0, 0, 0)) };
+                return { startDate: new Date(currentDate), endDate: new Date(new Date()) };
             case 'custom':
                 this.setState({
                     headerLabel: customStartDate + ' to ' + customEndDate
@@ -185,18 +185,20 @@ class FilterContainer extends Component {
             endDate
         })
         let dateRange = this.getDatesFromSelectedRange(range, startDate, endDate)
+        console.log('dateRange', dateRange)
         if(index == 0) {
             if(dateRange) {
                let dateQuery = {
                     "query":{
                         "range" : {
                             "created_on_iso" : {
-                                "gte" : dateRange.startDate.toISOString().substring(0, 10),
-                                "lte" : dateRange.endDate.toISOString().substring(0, 10)
+                                "gte" : dateRange.startDate.toISOString(),
+                                "lte" : dateRange.endDate.toISOString()
                             }
                         }
                     }
                 }
+                console.log('dateQuery', dateQuery)
                 this.setState({
                     isLoading: true,
                     dateQuery
@@ -221,8 +223,8 @@ class FilterContainer extends Component {
                     "query":{
                         "range" : {
                             "created_on" : {
-                                "gte" : dateRange.startDate.toISOString().substring(0, 10),
-                                "lte" : dateRange.endDate.toISOString().substring(0, 10)
+                                "gte" : dateRange.startDate.toISOString(),
+                                "lte" : dateRange.endDate.toISOString()
                             }
                         }
                     }
