@@ -9,7 +9,6 @@ class FeedbackChartContainer extends Component {
         super(props);
 
         this.state = {
-            questions: []
         }
     }
 
@@ -27,7 +26,7 @@ class FeedbackChartContainer extends Component {
             <View style={{ flex: 1, backgroundColor: '#FFFFFF'}}>
                 <HeaderComponent title={'Feedback'} backButton={true} backClick={this.onBackClick}/>
                 <FeedbackChartComponent
-                    questions={this.state.questions}
+                    questions={params.questions}
                     onClickCard={this.onClickCard}
                     {...this.props}
                 />
