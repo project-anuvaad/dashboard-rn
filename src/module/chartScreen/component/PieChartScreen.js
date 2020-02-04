@@ -91,7 +91,11 @@ class PieChartScreen extends React.Component {
             // <SafeAreaView style={{ flex: 1 }}>
                 <Card style={[styles.container, this.props.customCardStyle]}>
                     <Card.Content style={[{ height: height * 0.9 }, this.props.customCardContentStyle]}>
-                        <Title>{this.props.title}</Title>
+                    <Title
+                        style={{
+                            textTransform: 'capitalize'
+                        }}
+                    >{this.props.title}</Title>
                         <PieChart
                             style={styles.chart}
                             logEnabled={true}

@@ -137,7 +137,11 @@ class BarChartVertical extends React.Component {
         return (
             <Card style={styles.container} onPress={() => this.props.onClickCard(this.state)}>
                 <Card.Content style={{ height: height * 0.7 }}>
-                    <Title>{title}</Title>
+                    <Title
+                        style={{
+                            textTransform: 'capitalize'
+                        }}
+                    >{title}</Title>
                     <BarChart
                         style={styles.chart}
                         data={this.state.data}
