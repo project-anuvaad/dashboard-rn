@@ -13,6 +13,8 @@ class FilterComponent extends Component {
         this.state = {
             fromDate: new Date().toISOString().substring(0, 10),
             toDate: new Date().toISOString().substring(0, 10),
+            currentFromDate: new Date(),
+            currentToDate: new Date(),
             mode: 'date',
             from: false,
             to: false,
@@ -33,6 +35,8 @@ class FilterComponent extends Component {
                 minimumDate: null,
                 renderView: false,
                 index: 0,
+                currentFromDate: new Date(),
+                currentToDate: new Date()
             })
         })
     }
@@ -58,6 +62,7 @@ class FilterComponent extends Component {
         var dateData = new Date(date)
         this.setState({
             minimumDate: dateData,
+            currentFromDate: dateData
         })
         let monthData = dateData.getMonth() + 1
         let currentDate =
@@ -84,7 +89,8 @@ class FilterComponent extends Component {
             String(monthData).length < 2 ? '0' + monthData : monthData
         let year = dateData.getFullYear()
         this.setState({
-            toDate: year + '-' + month + '-' + currentDate
+            toDate: year + '-' + month + '-' + currentDate,
+            currentToDate: dateData
         })
     }
 
@@ -97,7 +103,14 @@ class FilterComponent extends Component {
     }
 
     onTabClicked = (indexValue) => {
-        this.setState({ index: indexValue })
+        this.setState({ 
+            index: indexValue, 
+            renderView: false,
+            currentFromDate: new Date(),
+            fromDate: new Date().toISOString().substring(0, 10),
+            toDate: new Date().toISOString().substring(0, 10),
+            currentToDate: new Date()
+        })
     }
 
     render() {
@@ -153,6 +166,7 @@ class FilterComponent extends Component {
                                     isVisible={this.state.from}
                                     onConfirm={this.onFromDateChanged}
                                     onCancel={this.onCancelFrom}
+                                    date={this.state.currentFromDate}
                                     maximumDate={new Date()}
                                     mode='date'
                                 />
@@ -165,6 +179,7 @@ class FilterComponent extends Component {
                                     isVisible={this.state.to}
                                     onConfirm={this.onToDateChanged}
                                     onCancel={this.onCancelTo}
+                                    date={this.state.currentToDate}
                                     maximumDate={new Date()}
                                     minimumDate={this.state.minimumDate ? new Date(this.state.minimumDate) : new Date(1)}
                                     mode='date'
