@@ -91,6 +91,11 @@ class FilterContainer extends Component {
                         let questionsObj = {}
                         let obj = {}
                         let xValueFormatter = []
+                        value.map((v)=>{
+                            if(!v.answer){
+                                v.answer = 0
+                            }
+                        })
                         let groupByAnswer = _.groupBy(value, "answer") 
                         
                         _.forOwn(groupByAnswer, function (value, key) {

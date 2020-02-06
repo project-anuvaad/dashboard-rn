@@ -34,7 +34,7 @@ class FilterComponent extends Component {
                 to: false,
                 minimumDate: null,
                 renderView: false,
-                index: 0,
+                // index: 0,
                 currentFromDate: new Date(),
                 currentToDate: new Date()
             })
