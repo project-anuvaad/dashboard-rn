@@ -19,6 +19,22 @@ class FeedbackChartComponent extends Component {
                     return (
                         <View key={index}>
                             {item.type === 'chart' &&
+                            <BarChartVertical
+                            nothorizontal
+                            label={item.label}
+                            title={item.key}
+                            xValueFormatter={item.xValue}
+                            chartData={item.chartData}
+                          />
+                            // <BarChartVertical
+                            //     title={item.key}
+                            //     xValueFormatter={item.xValue}
+                            //     chartData={item.chartData}
+                            //     onClickCard={(data) => this.props.onClickCard(data)}
+                            //     label={'Rating'}
+                            // />
+                    }
+                            {item.type === 'stackedchart' &&
                             <StackedBarChart
                             nothorizontal
                             title={item.key}

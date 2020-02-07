@@ -76,8 +76,6 @@ class FilterContainer extends Component {
                 this.setState({
                     isLoading: false
                 }, () => {
-                    let target_languages = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-                    let languages_by_questions = []
                     let position_arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                     let lang_arr = ['', '', '', '', '', '', '', '', '', '']
                     let questionsArr = []
@@ -101,8 +99,35 @@ class FilterContainer extends Component {
                                 v.answer = 0
                             }
                         })
+                        let groupByLang = _.groupBy(value, "target_lang")
                         let groupByAnswer = _.groupBy(value, "answer")
+                        _.forOwn(groupByLang, function (value, lang_key) {
+                            chartData = []
+                            let xValueFormatter = []
+                            let groupByAnswer = _.groupBy(value, "answer")
+                            _.forOwn(groupByAnswer, function (value, key) {
+                                obj = {}
+                                if (!isNaN(key)) {
+                                    obj = {
+                                        'key': key,
+                                        'value': value,
+                                        'y': value.length
+                                    }
+                                    chartData.push(obj)
+                                    xValueFormatter.push(key.toUpperCase() + ' Rating');
+                                }
+                            })
+                            questionsObj = {
+                                'key': key,
+                                'label': 'Number of Ratings for '+lang_key,
+                                'type': 'chart',
+                                'xValue': xValueFormatter,
+                                'chartData': chartData
+                            }
+                            questions.push(questionsObj)
 
+                        })
+                        chartData = []
                         _.forOwn(groupByAnswer, function (value, key) {
                             obj = {}
                             if (!isNaN(key)) {
@@ -147,7 +172,7 @@ class FilterContainer extends Component {
                         if (addToList) {
                             questionsObj = {
                                 'key': key,
-                                'type': 'chart',
+                                'type': 'stackedchart',
                                 'xValue': xValueFormatter,
                                 'chartData': chartData
                             }

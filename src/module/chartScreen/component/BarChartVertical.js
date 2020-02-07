@@ -55,7 +55,7 @@ class BarChartVertical extends React.Component {
                 valueFormatter: '',
                 granularityEnabled: true,
                 granularity: 1,
-                // labelRotationAngle: -90,
+                labelRotationAngle: -45,
                 position: 'BOTTOM',
                 drawGridLines: false,
                 drawAxisLine: true,
@@ -69,6 +69,7 @@ class BarChartVertical extends React.Component {
                     drawGridLines: false,
                     granularityEnabled: true,
                     granularity: 1,
+                    labelRotationAngle: -90,
                 },
                 right: {
                     drawLabels: false,
@@ -76,7 +77,7 @@ class BarChartVertical extends React.Component {
                     drawGridLines: false,
                     granularityEnabled: true,
                     granularity: 1,
-                    // labelRotationAngle: -90,
+                    labelRotationAngle: -90,
                     // axisMinimum: 0
                 },
             },
@@ -135,7 +136,7 @@ class BarChartVertical extends React.Component {
     render() {
         const { title } = this.props
         return (
-            <Card style={styles.container} onPress={() => this.props.onClickCard(this.state)}>
+            <Card style={styles.container}>
                 <Card.Content style={{ height: height * 0.7 }}>
                     <Title
                         style={{
