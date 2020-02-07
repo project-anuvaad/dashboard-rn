@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, ScrollView, Text, Dimensions } from 'react-native';
 import BarChartVertical from '../../chartScreen/component/BarChartVertical';
 import PieChartScreen from '../../chartScreen/component/PieChartScreen';
-
+import StackedBarChart from '../../chartScreen/component/StackedBarChartScreen'
 const { height } = Dimensions.get('window');
 
 class FeedbackChartComponent extends Component {
@@ -19,13 +19,19 @@ class FeedbackChartComponent extends Component {
                     return (
                         <View key={index}>
                             {item.type === 'chart' &&
-                            <BarChartVertical
-                                title={item.key}
-                                xValueFormatter={item.xValue}
-                                chartData={item.chartData}
-                                onClickCard={(data) => this.props.onClickCard(data)}
-                                label={'Rating'}
-                            />
+                            <StackedBarChart
+                            nothorizontal
+                            title={item.key}
+                            xValueFormatter={item.xValue}
+                            getLanguagesByCourt={item.chartData}
+                          />
+                            // <BarChartVertical
+                            //     title={item.key}
+                            //     xValueFormatter={item.xValue}
+                            //     chartData={item.chartData}
+                            //     onClickCard={(data) => this.props.onClickCard(data)}
+                            //     label={'Rating'}
+                            // />
                     }
                     {item.type === 'pie' && 
                             <PieChartScreen

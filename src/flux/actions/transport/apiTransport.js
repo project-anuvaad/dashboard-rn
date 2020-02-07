@@ -2,7 +2,6 @@ import axios from 'axios';
 import C from '../constants'
 
 export default function dispatchAPI(api) {
-    console.log('api', api)
     if (api.reqType === 'MULTIPART') {
         return dispatch => {
             dispatch(apiStatusAsync(true, false, ''))

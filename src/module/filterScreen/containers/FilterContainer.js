@@ -14,6 +14,7 @@ import _ from 'lodash'
 // import Content from '../../../data'
 
 const stackLabels = ['yes', 'no'];
+const stackLanguageLabels = ['Bengali', 'English', 'Gujarati', 'Hindi', 'Malayalam', 'Marathi', 'Tamil', 'Telugu', 'Kannada', 'Punjabi']
 
 class FilterContainer extends Component {
     constructor(props) {
@@ -38,18 +39,18 @@ class FilterContainer extends Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps != this.props) {
-            const { getChartDataCount, getChartData, getFeedbackDataCount ,getFeedbackData, apiStatus, navigation } = this.props
+            const { getChartDataCount, getChartData, getFeedbackDataCount, getFeedbackData, apiStatus, navigation } = this.props
             const { range, startDate, endDate, dateQuery } = this.state
             if (getChartDataCount && prevProps.getChartDataCount != getChartDataCount && !apiStatus.error) {
-                if(getChartDataCount.hits.total.value !== 0) {
+                if (getChartDataCount.hits.total.value !== 0) {
                     let apiObj = new GetChartDataAction(getChartDataCount.hits.total.value, dateQuery);
-                    this.props.APITransport(apiObj);    
+                    this.props.APITransport(apiObj);
                 }
-                else{
+                else {
                     this.setState({
                         isLoading: false
                     }, () => {
-                        Alert.alert('Message','No Data Available')
+                        Alert.alert('Message', 'No Data Available')
                     })
                 }
             }
@@ -59,29 +60,33 @@ class FilterContainer extends Component {
                 })
             }
             if (getFeedbackDataCount && prevProps.getFeedbackDataCount != getFeedbackDataCount && !apiStatus.error) {
-                if(getFeedbackDataCount.hits.total.value !== 0) {
+                if (getFeedbackDataCount.hits.total.value !== 0) {
                     let apiObj = new GetFeedbackDataAction(getFeedbackDataCount.hits.total.value, dateQuery);
-                    this.props.APITransport(apiObj);    
+                    this.props.APITransport(apiObj);
                 }
-                else{
+                else {
                     this.setState({
                         isLoading: false
                     }, () => {
-                        Alert.alert('Message','No Data Available')
+                        Alert.alert('Message', 'No Data Available')
                     })
                 }
             }
             if (getFeedbackData && prevProps.getFeedbackData != getFeedbackData && !apiStatus.error) {
-                this.setState({ 
-                    isLoading: false 
+                this.setState({
+                    isLoading: false
                 }, () => {
+                    let target_languages = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+                    let languages_by_questions = []
+                    let position_arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    let lang_arr = ['', '', '', '', '', '', '', '', '', '']
                     let questionsArr = []
                     let questions = []
                     getFeedbackData.hits.hits.forEach(items => {
                         questionsArr.push(items._source)
                     });
                     let groupByQuestions = _.groupBy(questionsArr, "question")
-                    
+
                     let chartData = []
                     let pieData = []
                     _.forOwn(groupByQuestions, function (value, key) {
@@ -91,26 +96,46 @@ class FilterContainer extends Component {
                         let questionsObj = {}
                         let obj = {}
                         let xValueFormatter = []
-                        value.map((v)=>{
-                            if(!v.answer){
+                        value.map((v) => {
+                            if (!v.answer) {
                                 v.answer = 0
                             }
                         })
-                        let groupByAnswer = _.groupBy(value, "answer") 
-                        
+                        let groupByAnswer = _.groupBy(value, "answer")
+
                         _.forOwn(groupByAnswer, function (value, key) {
                             obj = {}
-                            if(!isNaN(key)){
-                                addToList = true
-                                obj = {
-                                    'key': key,
-                                    'value': value,
-                                    'y': value.length
+                            if (!isNaN(key)) {
+                                let lang_obj = {}
+                                position_arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                                lang_arr = ['', '', '', '', '', '', '', '', '', '']
+                                _.forEach(value, function (v2, k2) {
+                                    if (lang_obj[v2.target_lang]) {
+                                        lang_obj[v2.target_lang] += 1
+                                    } else {
+                                        lang_obj[v2.target_lang] = 1
+                                    }
+                                })
+                                _.forOwn(lang_obj, function (value, key) {
+                                    let a = stackLanguageLabels.indexOf(key)
+                                    position_arr[a] = value
+                                    lang_arr[a] = key
+                                })
+                                let lang_ans_obj = {
+                                    'y': position_arr,
+                                    // 'marker': langArr
                                 }
-                                chartData.push(obj)
+                                // getLanguagesByCourt.push(lang_ans_obj)
+                                addToList = true
+                                // obj = {
+                                //     'key': key,
+                                //     'value': value,
+                                //     'y': value.length
+                                // }
+                                chartData.push(lang_ans_obj)
                                 xValueFormatter.push(key.toUpperCase());
                             }
-                            else{
+                            else {
                                 let a = stackLabels.indexOf(key)
                                 obj = {
                                     'value': value.length,
@@ -119,25 +144,25 @@ class FilterContainer extends Component {
                                 pieData[a] = obj
                             }
                         })
-                        if(addToList) {
+                        if (addToList) {
                             questionsObj = {
                                 'key': key,
-                                'type':  'chart',
+                                'type': 'chart',
                                 'xValue': xValueFormatter,
-                                'chartData' : chartData
+                                'chartData': chartData
                             }
                             questions.push(questionsObj)
                         }
-                        else{ 
+                        else {
                             questionsObj = {
                                 'key': key,
-                                'type':  'pie',
+                                'type': 'pie',
                                 chartData: pieData
                             }
                             questions.push(questionsObj)
                         }
                     })
-                    navigation.navigate('feedbackChart', {questions: questions})
+                    navigation.navigate('feedbackChart', { questions: questions })
                 })
             }
             if (apiStatus && prevProps.apiStatus != apiStatus && apiStatus.error) {
@@ -163,7 +188,7 @@ class FilterContainer extends Component {
                 })
                 let lastWeekDate = new Date(new Date().setDate(currentDate.getDate() - 7))
                 var firstDay = new Date(new Date().setDate(currentDate.getDate() - 7 - lastWeekDate.getDay()));
-                var lastDay =  new Date(new Date().setDate(currentDate.getDate() - 7 - lastWeekDate.getDay()));
+                var lastDay = new Date(new Date().setDate(currentDate.getDate() - 7 - lastWeekDate.getDay()));
                 lastDay.setDate(lastDay.getDate() + 6);
                 return { startDate: firstDay, endDate: lastDay };
             case 'lastDay':
@@ -190,27 +215,25 @@ class FilterContainer extends Component {
             endDate
         })
         let dateRange = this.getDatesFromSelectedRange(range, startDate, endDate)
-        console.log('dateRange', dateRange)
-        if(index == 0) {
-            if(dateRange) {
-               let dateQuery = {
-                    "query":{
-                        "range" : {
-                            "created_on_iso" : {
-                                "gte" : dateRange.startDate.toISOString(),
-                                "lte" : dateRange.endDate.toISOString()
+        if (index == 0) {
+            if (dateRange) {
+                let dateQuery = {
+                    "query": {
+                        "range": {
+                            "created_on_iso": {
+                                "gte": dateRange.startDate.toISOString(),
+                                "lte": dateRange.endDate.toISOString()
                             }
                         }
                     }
                 }
-                console.log('dateQuery', dateQuery)
                 this.setState({
                     isLoading: true,
                     dateQuery
                 }, () => {
                     let apiObj = new GetChartDataCountAction(dateQuery);
                     this.props.APITransport(apiObj);
-                })   
+                })
             }
             else {
                 this.setState({
@@ -222,14 +245,14 @@ class FilterContainer extends Component {
                 })
             }
         }
-        else if(index == 1) {
-            if(dateRange) {
-               let dateQuery = {
-                    "query":{
-                        "range" : {
-                            "created_on" : {
-                                "gte" : dateRange.startDate.toISOString(),
-                                "lte" : dateRange.endDate.toISOString()
+        else if (index == 1) {
+            if (dateRange) {
+                let dateQuery = {
+                    "query": {
+                        "range": {
+                            "created_on": {
+                                "gte": dateRange.startDate.toISOString(),
+                                "lte": dateRange.endDate.toISOString()
                             }
                         }
                     }
@@ -240,7 +263,7 @@ class FilterContainer extends Component {
                 }, () => {
                     let apiObj = new GetFeedbacktDataCountAction(dateQuery);
                     this.props.APITransport(apiObj);
-                })   
+                })
             }
             else {
                 this.setState({
@@ -254,7 +277,7 @@ class FilterContainer extends Component {
         }
 
     }
-    
+
     render() {
         const { isLoading } = this.state
         return (

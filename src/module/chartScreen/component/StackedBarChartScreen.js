@@ -5,7 +5,7 @@ import {
     Dimensions
 } from 'react-native';
 
-import { HorizontalBarChart } from 'react-native-charts-wrapper';
+import { BarChart, HorizontalBarChart } from 'react-native-charts-wrapper';
 import { Card, Title } from 'react-native-paper';
 
 const stackLabels = ['Bengali', 'English', 'Gujarati', 'Hindi', 'Malayalam', 'Marathi', 'Tamil', 'Telugu', 'Kannada', 'Punjabi']
@@ -45,7 +45,7 @@ class StackedBarChartScreen extends React.Component {
             },
             xAxis: {
                 valueFormatter: [],
-                granularityEnabled: true,   
+                granularityEnabled: true,
                 granularity: 1,
                 // labelRotationAngle: 0,
                 position: 'BOTTOM',
@@ -54,6 +54,20 @@ class StackedBarChartScreen extends React.Component {
                 drawLabels: true,
                 labelCount: 20,
                 // axisMinimum: 5
+            },
+            yAxisLeft: {
+                left: {
+                    drawLabels: true,
+                    drawAxisLine: true,
+                    drawGridLines: false,
+                },
+                right: {
+                    drawLabels: false,
+                    drawAxisLine: false,
+                    drawGridLines: false,
+                    granularityEnabled: true,
+                    granularity: 1,
+                }
             },
             yAxis: {
                 left: {
@@ -65,11 +79,28 @@ class StackedBarChartScreen extends React.Component {
                     drawLabels: true,
                     drawAxisLine: true,
                     drawGridLines: false,
-                    granularityEnabled: true,   
+                    granularityEnabled: true,
                     granularity: 1,
                 }
             },
         };
+    }
+
+    componentDidMount() {
+        const { xValueFormatter, getLanguagesByCourt } = this.props;
+
+        if (xValueFormatter) {
+            let newData = JSON.parse(JSON.stringify(this.state.xAxis))
+            newData.valueFormatter = xValueFormatter
+
+            this.setState({ xAxis: newData })
+        }
+
+        if (getLanguagesByCourt) {
+            let newData = JSON.parse(JSON.stringify(this.state.data))
+            newData.dataSets[0].values = getLanguagesByCourt
+            this.setState({ data: newData })
+        }
     }
 
     componentDidUpdate(prevProps) {
@@ -106,34 +137,64 @@ class StackedBarChartScreen extends React.Component {
             <Card style={styles.container}>
                 <Card.Content style={{ height: height * 0.9 }}>
                     <Title>{this.props.title}</Title>
-                    <HorizontalBarChart
-                        style={styles.chart}
-                        xAxis={this.state.xAxis}
-                        yAxis={this.state.yAxis}
-                        animation={{ durationX: 1000 }}
-                        gridBackgroundColor={processColor('#ffffff')}
-                        data={this.state.data}
-                        legend={this.state.legend}
-                        drawBarShadow={false}
-                        drawValueAboveBar={true}
-                        drawHighlightArrow={false}
-                        chartDescription={this.state.description}
-                        // marker={{
-                        //     enabled: true,
-                        //     markerColor: processColor('#F0C0FF8C'),
-                        //     textColor: processColor('white'),
-                        //     markerFontSize: 14,
-                        // }}
-                        highlights={this.state.highlights}
-                        onSelect={this.handleSelect.bind(this)}
-                        onChange={(event) => console.log(event.nativeEvent)}
-                        scaleEnabled={false}
-                        dragEnabled={false}
-                        pinchZoom={false}
-                        doubleTapToZoomEnabled={false}
-                        drawBorders={false}
-                        noDataText="Opps... no data available!"
-                    />
+                    {this.props.nothorizontal ?
+                        <BarChart
+                            style={styles.chart}
+                            xAxis={this.state.xAxis}
+                            yAxis={this.state.yAxisLeft}
+                            animation={{ durationX: 1000 }}
+                            gridBackgroundColor={processColor('#ffffff')}
+                            data={this.state.data}
+                            legend={this.state.legend}
+                            drawBarShadow={false}
+                            drawValueAboveBar={true}
+                            drawHighlightArrow={false}
+                            chartDescription={this.state.description}
+                            // marker={{
+                            //     enabled: true,
+                            //     markerColor: processColor('#F0C0FF8C'),
+                            //     textColor: processColor('white'),
+                            //     markerFontSize: 14,
+                            // }}
+                            highlights={this.state.highlights}
+                            onSelect={this.handleSelect.bind(this)}
+                            onChange={(event) => console.log(event.nativeEvent)}
+                            scaleEnabled={false}
+                            dragEnabled={false}
+                            pinchZoom={false}
+                            doubleTapToZoomEnabled={false}
+                            drawBorders={false}
+                            noDataText="Opps... no data available!"
+                        />
+                        : <HorizontalBarChart
+                            style={styles.chart}
+                            xAxis={this.state.xAxis}
+                            yAxis={this.state.yAxis}
+                            animation={{ durationX: 1000 }}
+                            gridBackgroundColor={processColor('#ffffff')}
+                            data={this.state.data}
+                            legend={this.state.legend}
+                            drawBarShadow={false}
+                            drawValueAboveBar={true}
+                            drawHighlightArrow={false}
+                            chartDescription={this.state.description}
+                            // marker={{
+                            //     enabled: true,
+                            //     markerColor: processColor('#F0C0FF8C'),
+                            //     textColor: processColor('white'),
+                            //     markerFontSize: 14,
+                            // }}
+                            highlights={this.state.highlights}
+                            onSelect={this.handleSelect.bind(this)}
+                            onChange={(event) => console.log(event.nativeEvent)}
+                            scaleEnabled={false}
+                            dragEnabled={false}
+                            pinchZoom={false}
+                            doubleTapToZoomEnabled={false}
+                            drawBorders={false}
+                            noDataText="Opps... no data available!"
+                        />
+                    }
                 </Card.Content>
             </Card>
         );

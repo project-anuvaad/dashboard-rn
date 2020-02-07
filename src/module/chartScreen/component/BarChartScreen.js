@@ -90,7 +90,6 @@ class BarChartScreen extends React.Component {
             this.setState({ ...this.state, selectedEntry: JSON.stringify(entry) })
         }
 
-        console.log(event.nativeEvent)
     }
 
     componentDidUpdate(prevProps) {
