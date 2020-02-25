@@ -13,6 +13,7 @@ import { GetFeedbackDataAction } from '../../../flux/actions/apis/getFeedbackDat
 import _ from 'lodash'
 import Strings from '../../../utils/Strings'
 // import Content from '../../../data'
+import {sortArray} from '../../../utils/CommonUtils'
 
 const stackLabels = [Strings.yes, Strings.no];
 const stackLanguageLabels = [Strings.bengali_language, Strings.english_language, Strings.gujrati_language, Strings.hindi_language, Strings.malayalam_language, Strings.marathi_language, Strings.tamil_language, Strings.telugu_language, Strings.kannada_language, Strings.punjabi_language]
@@ -94,15 +95,15 @@ class FilterContainer extends Component {
                         pieData = []
                         let questionsObj = {}
                         let obj = {}
-                        let xValueFormatter = []
-                        value.map((v) => {
-                            if (!v.answer) {
+                        let xValueFormatter = []                        
+                        value.map((v) => {                            
+                            if (!v.answer && v.answer != 0) {
                                 v.answer = 0
                             }
                         })
                         let groupByLang = _.groupBy(value, "target_lang")
                         let groupByAnswer = _.groupBy(value, "answer")
-                        _.forOwn(groupByLang, function (value, lang_key) {
+                        _.forOwn(groupByLang, function (value, lang_key) {                            
                             chartData = []
                             let xValueFormatter = []
                             let groupByAnswer = _.groupBy(value, "answer")
@@ -115,8 +116,12 @@ class FilterContainer extends Component {
                                         'y': value.length
                                     }
                                     chartData.push(obj)
-                                    xValueFormatter.push(key.toUpperCase() + Strings.rating);
+                                    // xValueFormatter.push(key.toUpperCase() + Strings.rating);
                                 }
+                            })
+                            chartData =  sortArray(chartData, 'y')
+                            _.forEach(chartData, function (data, k1) {
+                                xValueFormatter.push(data.key.toUpperCase() + Strings.rating);
                             })
                             questionsObj = {
                                 'key': key,
@@ -129,6 +134,21 @@ class FilterContainer extends Component {
 
                         })
                         chartData = []
+                        let ar = []
+                        _.forOwn(groupByAnswer, function (value, key) {
+                            let ans_obj = {
+                                'key': key,
+                                'value': value,
+                                'y': value.length
+                            }
+                            ar.push(ans_obj)
+                            xValueFormatter.push(key.toUpperCase());
+                        });
+                        ar = sortArray(ar, 'y')
+                        let keys = _.keys(groupByAnswer)
+                        _.forOwn(ar, function(value, key) {
+                            groupByAnswer[keys[key]] = value.value
+                        })
                         _.forOwn(groupByAnswer, function (value, key) {
                             obj = {}
                             if (!isNaN(key)) {
@@ -180,6 +200,7 @@ class FilterContainer extends Component {
                             questions.push(questionsObj)
                         }
                         else {
+                            pieData =  sortArray(pieData, 'value')
                             questionsObj = {
                                 'key': key,
                                 'type': 'pie',
@@ -188,7 +209,7 @@ class FilterContainer extends Component {
                             questions.push(questionsObj)
                         }
                     })
-                    navigation.navigate('feedbackChart', { questions: questions })
+                    navigation.navigate('feedbackChart', { selectedRange: range, startDate, endDate, questions: questions })
                 })
             }
             if (apiStatus && prevProps.apiStatus != apiStatus && apiStatus.error) {

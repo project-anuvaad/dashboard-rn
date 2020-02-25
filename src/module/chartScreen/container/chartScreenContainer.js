@@ -11,6 +11,7 @@ import _ from 'lodash'
 import Spinner from '../../common/components/loadingIndicator';
 import HeaderComponent from '../../common/components/HeaderComponent';
 import Strings from '../../../utils/Strings'
+import {sortArray} from '../../../utils/CommonUtils'
 
 
 const { height } = Dimensions.get('window')
@@ -52,11 +53,16 @@ class ChartScreenContainer extends Component {
 
     }
 
-    getHeaderLabel(selectedRange, customStartDate, customEndDate) {
+    getHeaderLabel(selectedRange, customStartDate, customEndDate) {        
         switch (selectedRange) {
             case 'lastMonth':
                 this.setState({
                     headerLabel: Strings.last_month
+                })
+                return
+            case 'lastWeek':
+                this.setState({
+                    headerLabel: Strings.last_week
                 })
                 return
             case 'lastDay':
@@ -105,6 +111,7 @@ class ChartScreenContainer extends Component {
             ar.push(doc_count_obj)
             xValueFormatter.push(key.toUpperCase());
         });
+        ar = sortArray(ar, 'y')
         this.setState({ xValueFormatter, getDocCountPerCourt: ar })
         // for Users per Court Chart
         let getUsersCountPerCourt = []
@@ -117,6 +124,7 @@ class ChartScreenContainer extends Component {
             }
             getUsersCountPerCourt.push(user_court_obj)
         });
+        getUsersCountPerCourt = sortArray(getUsersCountPerCourt, 'y')
         this.setState({ getUsersCountPerCourt })
         // for sentence Count and word Count per court
         let getSentenceCount = []
@@ -131,6 +139,8 @@ class ChartScreenContainer extends Component {
             getSentenceCount.push({ y: sentence_count })
             getwordCount.push({ y: word_count })
         });
+        getSentenceCount = sortArray(getSentenceCount, 'y')
+        getwordCount = sortArray(getwordCount, 'y')
         this.setState({ getSentenceCount, getwordCount })
         // for target languages
         let groupByTargetLang = _.groupBy(fileterArray, "target_lang")
@@ -151,6 +161,7 @@ class ChartScreenContainer extends Component {
             }
             return true
         })
+        getTargetlanguages = sortArray(getTargetlanguages, 'value')
         this.setState({ getTargetlanguages })
         // for Language By Court
         let getLanguagesByCourt = []

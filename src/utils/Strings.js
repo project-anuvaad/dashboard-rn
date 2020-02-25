@@ -1,7 +1,6 @@
 import LocalizedStrings from 'react-native-localization'
 export default strings = new LocalizedStrings({
     en: {
-        welcome_to: 'Welcome to',
         no_data_available: 'Opps... no data available!',
         question:'Question:',
         average_Rating:'Average Rating: ',
@@ -44,14 +43,5 @@ export default strings = new LocalizedStrings({
         dashboard:'Dashboard',
         rating:' Rating',
         api_status:'api Status  ',
-
-
-
-        question:"question",
-
-
-
-        
-
     }
 })
