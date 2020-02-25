@@ -3,6 +3,7 @@ import { View, Dimensions, ScrollView, Text } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import CustomButton from '../../common/components/customButton'
 import DatePicker from '../../common/components/datePicker'
+import Strings from '../../../utils/Strings';
 
 const { height, width } = Dimensions.get('window')
 
@@ -122,7 +123,7 @@ class FilterComponent extends Component {
                         customViewStyle={{ margin: '0%', width: '50%', justifyContent: 'center' }}
                         customBtnStyle={{ height: 50 }}
                         customLabelStyle={index == 0 ? styles.activeTab : styles.inactiveTab}
-                        label={'Documents'}
+                        label={Strings.documents}
                         onPressButton={() => this.onTabClicked(0)}
                     />
                     <View
@@ -132,7 +133,7 @@ class FilterComponent extends Component {
                         customViewStyle={{ margin: '0%', width: '50%', justifyContent: 'center' }}
                         customBtnStyle={{ height: 50 }}
                         customLabelStyle={index == 1 ? styles.activeTab : styles.inactiveTab}
-                        label={'Feedback'}
+                        label={Strings.feedback}
                         onPressButton={() => this.onTabClicked(1)}
                     />
 
@@ -148,11 +149,11 @@ class FilterComponent extends Component {
                         </Text>
                     </View>
 
-                    <CustomButton label={'Show All'} onPressButton={() => this.dateRange('all', index)} />
-                    <CustomButton label={'Last Month'} onPressButton={() => this.dateRange('lastMonth', index)} />
-                    <CustomButton label={'Last Week'} onPressButton={() => this.dateRange('lastWeek', index)} />
-                    <CustomButton label={'Last Day'} onPressButton={() => this.dateRange('lastDay', index)} />
-                    <CustomButton label={'Custom Date'} onPressButton={() => this.onClickCustom()} />
+                    <CustomButton label={Strings.show_all} onPressButton={() => this.dateRange('all', index)} />
+                    <CustomButton label={Strings.last_month} onPressButton={() => this.dateRange('lastMonth', index)} />
+                    <CustomButton label={Strings.last_week} onPressButton={() => this.dateRange('lastWeek', index)} />
+                    <CustomButton label={Strings.last_day} onPressButton={() => this.dateRange('lastDay', index)} />
+                    <CustomButton label={Strings.custom_date} onPressButton={() => this.onClickCustom()} />
 
                     {
                         this.state.renderView ?
@@ -160,7 +161,7 @@ class FilterComponent extends Component {
                                 <DatePicker
                                     showDatepicker={() => this.showDatepicker('from')}
                                     textValue={this.state.fromDate}
-                                    label={'From'}
+                                    label={Strings.from}
                                 />
                                 <DateTimePicker
                                     isVisible={this.state.from}
@@ -173,7 +174,7 @@ class FilterComponent extends Component {
                                 <DatePicker                                    
                                     showDatepicker={() => this.showDatepicker('to')}
                                     textValue={this.state.toDate}
-                                    label={'To'}
+                                    label={Strings.to}
                                 />
                                 <DateTimePicker
                                     isVisible={this.state.to}
@@ -185,7 +186,7 @@ class FilterComponent extends Component {
                                     mode='date'
                                 />
                                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                    <CustomButton label={'Submit'} onPressButton={() => this.onClickSubmit()} />
+                                    <CustomButton label={Strings.submit} onPressButton={() => this.onClickSubmit()} />
                                 </View>
                             </View>
                             : null

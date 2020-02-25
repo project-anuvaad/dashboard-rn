@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, ScrollView, Text } from 'react-native';
 import QuestionCard from '../../common/components/QuestionCard'
+import Strings from '../../../utils/Strings';
 
 class FeedbackQuestionComponent extends Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class FeedbackQuestionComponent extends Component {
         }
         else {
             return(
-                <Text>No Data available</Text>
+                <Text>{Strings.no_data}</Text>
             );
         }
     }

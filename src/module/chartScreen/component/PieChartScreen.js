@@ -5,7 +5,7 @@ import {
     Dimensions
 } from 'react-native';
 
-import { SafeAreaView } from 'react-navigation';
+
 
 import { PieChart } from 'react-native-charts-wrapper';
 import { Card, Title } from 'react-native-paper';

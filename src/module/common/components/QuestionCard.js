@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, Text,  } from 'react-native';
+import Strings from '../../../utils/Strings';
 
 const QuestionCard = ({
     QuestionLabel,
@@ -19,18 +20,18 @@ const QuestionCard = ({
                 activeOpacity={1}
             >   
                 <View style={styles.questionContainer}>
-                    <Text style={styles.titleLabelTextStyle}>{'Question:'}</Text>
+                    <Text style={styles.titleLabelTextStyle}>{Strings.question}</Text>
                     <Text style={styles.titleTextStyle}>{Question}</Text>
                 </View>
                 {chart ? 
                 <View style={styles.questionContainer}>
-                    <Text style={styles.titleLabelTextStyle}>{'Average Rating: '}</Text>
+                    <Text style={styles.titleLabelTextStyle}>{Strings.average_Rating}</Text>
                     <Text style={styles.titleTextStyle}>{rating}</Text>
                 </View> :
                 <View style={styles.questionContainer}>
-                    <Text style={styles.titleLabelTextStyle}>{'No:'}</Text>
+                    <Text style={styles.titleLabelTextStyle}>{Strings.no}</Text>
                     <Text style={styles.titleTextStyle}>{((noCount/sum)*100).toFixed(2)+'%'}</Text>
-                    <Text style={[styles.titleLabelTextStyle, {paddingLeft: '6%'}]}>{'Yes:'}</Text>
+                    <Text style={[styles.titleLabelTextStyle, {paddingLeft: '6%'}]}>{Strings.yes}</Text>
                     <Text style={styles.titleTextStyle}>{((yesCount/sum)*100).toFixed(2)+'%'}</Text>
                 </View>
             }

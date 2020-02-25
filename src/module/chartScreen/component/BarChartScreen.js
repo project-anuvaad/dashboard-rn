@@ -7,6 +7,7 @@ import {
 
 import { HorizontalBarChart } from 'react-native-charts-wrapper';
 import {  Card, Title } from 'react-native-paper';
+import Strings from '../../../utils/Strings';
 
 const { height } = Dimensions.get('window')
 
@@ -172,7 +173,7 @@ class BarChartScreen extends React.Component {
                         pinchZoom={false}
                         doubleTapToZoomEnabled={false}
                         drawBorders={false}
-                        noDataText="Opps... no data available!"
+                        noDataText={Strings.no_data_available}
                     />
                 </Card.Content>
             </Card>

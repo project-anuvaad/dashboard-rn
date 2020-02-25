@@ -3,6 +3,7 @@ import { View, StyleSheet, Dimensions, ScrollView } from 'react-native'
 import BarChartScreen from './BarChartScreen'
 import PieChart from './PieChartScreen'
 import StackedBarChart from './StackedBarChartScreen'
+import Strings from '../../../utils/Strings'
 
 const { height } = Dimensions.get('window')
 
@@ -15,52 +16,52 @@ class ChartScreenComponent extends Component {
       >
         <View style={styles.slide}>
           <BarChartScreen
-            title={'Documents Translated'}
+            title={Strings.document_translate}
             xValueFormatter={xValueFormatter}
             getDocCountPerCourt={getDocCountPerCourt}
             onClickCard={(data) => this.props.onClickCard(data)}
-            label={'Count'}
+            label={Strings.count}
           />
         </View>
         <View style={styles.slide}>
           <BarChartScreen
-            title={'Logged in User'}
+            title={Strings.logged_in_user}
             xValueFormatter={xValueFormatter}
             getUsersCountPerCourt={getUsersCountPerCourt}
             onClickCard={(data) => this.props.onClickCard(data)}
-            label={'Users'}
+            label={Strings.users}
           />
         </View>
         <View style={styles.slide}>
           <BarChartScreen
-            title={'Sentence Count'}
+            title={Strings.sentence_count}
             xValueFormatter={xValueFormatter}
             getSentenceCount={getSentenceCount}
             onClickCard={(data) => this.props.onClickCard(data)}
-            label={'Total Sentence Count'}
+            label={Strings.total_Sentence_count}
           />
 
 
         </View>
         <View style={styles.slide}>
           <BarChartScreen
-            title={'Word Count'}
+            title={Strings.word_count}
             xValueFormatter={xValueFormatter}
             getwordCount={getwordCount}
             onClickCard={(data) => this.props.onClickCard(data)}
-            label={'Total Word Count'}
+            label={Strings.total_word_count}
           />
 
         </View>
         <View style={styles.slide}>
           <PieChart
-            title={'Translated Language Share'}
+            title={Strings.translate_language_share}
             getTargetlanguages={getTargetlanguages}
           />
         </View>
         <View style={styles.slide}>
           <StackedBarChart
-            title={'Languages By Court'}
+            title={Strings.language_by_court}
             xValueFormatter={xValueFormatter}
             getLanguagesByCourt={getLanguagesByCourt}
           />

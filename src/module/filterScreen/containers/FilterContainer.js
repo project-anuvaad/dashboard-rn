@@ -11,10 +11,11 @@ import { GetChartDataAction } from '../../../flux/actions/apis/getChartDataActio
 import { GetFeedbacktDataCountAction } from '../../../flux/actions/apis/getFeedbackDataCountAction'
 import { GetFeedbackDataAction } from '../../../flux/actions/apis/getFeedbackDataAction'
 import _ from 'lodash'
+import Strings from '../../../utils/Strings'
 // import Content from '../../../data'
 
-const stackLabels = ['yes', 'no'];
-const stackLanguageLabels = ['Bengali', 'English', 'Gujarati', 'Hindi', 'Malayalam', 'Marathi', 'Tamil', 'Telugu', 'Kannada', 'Punjabi']
+const stackLabels = [Strings.yes, Strings.no];
+const stackLanguageLabels = [Strings.bengali_language, Strings.english_language, Strings.gujrati_language, Strings.hindi_language, Strings.malayalam_language, Strings.marathi_language, Strings.tamil_language, Strings.telugu_language, Strings.kannada_language, Strings.punjabi_language]
 
 class FilterContainer extends Component {
     constructor(props) {
@@ -50,7 +51,7 @@ class FilterContainer extends Component {
                     this.setState({
                         isLoading: false
                     }, () => {
-                        Alert.alert('Message', 'No Data Available')
+                        Alert.alert(Strings.message, Strings.no_data)
                     })
                 }
             }
@@ -68,7 +69,7 @@ class FilterContainer extends Component {
                     this.setState({
                         isLoading: false
                     }, () => {
-                        Alert.alert('Message', 'No Data Available')
+                        Alert.alert(Strings.message, Strings.no_data)
                     })
                 }
             }
@@ -114,12 +115,12 @@ class FilterContainer extends Component {
                                         'y': value.length
                                     }
                                     chartData.push(obj)
-                                    xValueFormatter.push(key.toUpperCase() + ' Rating');
+                                    xValueFormatter.push(key.toUpperCase() + Strings.rating);
                                 }
                             })
                             questionsObj = {
                                 'key': key,
-                                'label': 'Number of Ratings for '+lang_key,
+                                'label': Strings.no_of_ratings+lang_key,
                                 'type': 'chart',
                                 'xValue': xValueFormatter,
                                 'chartData': chartData
@@ -192,7 +193,7 @@ class FilterContainer extends Component {
             }
             if (apiStatus && prevProps.apiStatus != apiStatus && apiStatus.error) {
                 this.setState({ isLoading: false })
-                alert('api Status  ' + apiStatus.message)
+                alert(Strings.api_status + apiStatus.message)
             }
         }
     }
@@ -202,14 +203,14 @@ class FilterContainer extends Component {
         switch (selectedRange) {
             case 'lastMonth':
                 this.setState({
-                    headerLabel: 'Last Month'
+                    headerLabel: Strings.last_month
                 })
                 var firstDay = new Date(Date.UTC(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
                 var lastDay = new Date(Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), 0));
                 return { startDate: firstDay, endDate: lastDay };
             case 'lastWeek':
                 this.setState({
-                    headerLabel: 'Last Week'
+                    headerLabel: Strings.last_week
                 })
                 let lastWeekDate = new Date(new Date().setDate(currentDate.getDate() - 7))
                 var firstDay = new Date(new Date().setDate(currentDate.getDate() - 7 - lastWeekDate.getDay()));
@@ -218,7 +219,7 @@ class FilterContainer extends Component {
                 return { startDate: firstDay, endDate: lastDay };
             case 'lastDay':
                 this.setState({
-                    headerLabel: 'Last Day'
+                    headerLabel: Strings.last_day
                 })
                 currentDate.setDate(currentDate.getDate() - 1)
                 return { startDate: new Date(currentDate), endDate: new Date(new Date()) };
@@ -307,7 +308,7 @@ class FilterContainer extends Component {
         const { isLoading } = this.state
         return (
             <View>
-                <HeaderComponent title='Dashboard' />
+                <HeaderComponent title={Strings.dashboard} />
                 <FilterComponent
                     filterClickedHandler={this.handleFilterClicked.bind(this)}
                     {...this.props}

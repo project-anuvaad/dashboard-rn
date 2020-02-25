@@ -7,8 +7,9 @@ import {
 
 import { BarChart, HorizontalBarChart } from 'react-native-charts-wrapper';
 import { Card, Title } from 'react-native-paper';
+import Strings from '../../../utils/Strings';
 
-const stackLabels = ['Bengali', 'English', 'Gujarati', 'Hindi', 'Malayalam', 'Marathi', 'Tamil', 'Telugu', 'Kannada', 'Punjabi']
+const stackLabels = [Strings.bengali_language, Strings.english_language, Strings.gujrati_language, Strings.hindi_language, Strings.malayalam_language, Strings.marathi_language, Strings.tamil_language, Strings.telugu_language, Strings.kannada_language, Strings.punjabi_language]
 const { height, width } = Dimensions.get('window')
 class StackedBarChartScreen extends React.Component {
 
@@ -164,7 +165,7 @@ class StackedBarChartScreen extends React.Component {
                             pinchZoom={false}
                             doubleTapToZoomEnabled={false}
                             drawBorders={false}
-                            noDataText="Opps... no data available!"
+                            noDataText={Strings.no_data_available}
                         />
                         : <HorizontalBarChart
                             style={styles.chart}
@@ -192,7 +193,7 @@ class StackedBarChartScreen extends React.Component {
                             pinchZoom={false}
                             doubleTapToZoomEnabled={false}
                             drawBorders={false}
-                            noDataText="Opps... no data available!"
+                            noDataText={Strings.no_data_available}
                         />
                     }
                 </Card.Content>

@@ -10,10 +10,11 @@ import Content from '../../../data'
 import _ from 'lodash'
 import Spinner from '../../common/components/loadingIndicator';
 import HeaderComponent from '../../common/components/HeaderComponent';
+import Strings from '../../../utils/Strings'
 
 
 const { height } = Dimensions.get('window')
-const stackLabels = ['Bengali', 'English', 'Gujarati', 'Hindi', 'Malayalam', 'Marathi', 'Tamil', 'Telugu', 'Kannada', 'Punjabi']
+const stackLabels = [Strings.bengali_language, Strings.english_language, Strings.gujrati_language, Strings.hindi_language, Strings.malayalam_language, Strings.marathi_language, Strings.tamil_language, Strings.telugu_language, Strings.kannada_language, Strings.punjabi_language]
 class ChartScreenContainer extends Component {
     constructor(props) {
         super(props)
@@ -27,7 +28,7 @@ class ChartScreenContainer extends Component {
             getTargetlanguages: [],
             getLanguagesByCourt: [],
             isLoading: false,
-            headerLabel: 'Till Today'
+            headerLabel: Strings.till_today
         }
     }
 
@@ -55,12 +56,12 @@ class ChartScreenContainer extends Component {
         switch (selectedRange) {
             case 'lastMonth':
                 this.setState({
-                    headerLabel: 'Last Month'
+                    headerLabel: Strings.last_month
                 })
                 return
             case 'lastDay':
                 this.setState({
-                    headerLabel: 'Last Day'
+                    headerLabel: Strings.last_day
                 })
                 return
             case 'custom':
