@@ -9,12 +9,16 @@ import SplashContainer from '../module/splash/SplashContainer'
 import FilterContainer from '../module/filterScreen/containers/FilterContainer'
 import FeedbackQuestionContainer from '../module/feedbackScreen/containers/FeedbackQuestionContainer'
 import FeedbackChartContainer from "../module/feedbackScreen/containers/FeedbackChartContainer";
+import LanguageListComponent from "../module/languageScreen/LanguageList";
 
 
 const DashBoardNavigation = createStackNavigator(
     {
         filterScreen: {
             screen: FilterContainer
+        },
+        languageScreen: {
+            screen: LanguageListComponent
         },
         chartScreen: {
             screen: chartScreenContainer

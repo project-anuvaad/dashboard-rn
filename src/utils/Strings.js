@@ -42,7 +42,9 @@ export default strings = new LocalizedStrings({
         dashboard:'Dashboard',
         rating:' Rating',
         api_status:'api Status  ',
-        suvas_text: 'Suvas'
+        suvas_text: 'Suvas',
+        change_language: 'Change Language',
+        done: 'Done',
 
 
     },
@@ -88,7 +90,7 @@ export default strings = new LocalizedStrings({
         no_of_ratings:'रेटिंग की संख्या',
         dashboard:'डैशबोर्ड',
         rating:' रेटिंग',
-        api_status:'एपीआई स्टेटस  ',
+        api_status:'एपीआई स्थिति  ',
         suvas_text: 'सुभाष'
 
     },

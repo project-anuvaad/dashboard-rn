@@ -346,7 +346,8 @@ const mapStateToProps = (state) => {
         getChartData: state.getChartData,
         getChartDataCount: state.getChartDataCount,
         getFeedbackDataCount: state.getFeedbackDataCount,
-        getFeedbackData: state.getFeedbackData
+        getFeedbackData: state.getFeedbackData,
+        languageData: state.languageData
     }
 }
 

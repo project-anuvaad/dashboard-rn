@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, ScrollView, Text } from 'react-native';
+import { View, Dimensions, ScrollView, Text, TouchableOpacity } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import CustomButton from '../../common/components/customButton'
 import DatePicker from '../../common/components/datePicker'
@@ -114,6 +114,10 @@ class FilterComponent extends Component {
         })
     }
 
+    onLangChangeClick = () => {
+        this.props.navigation.navigate('languageScreen')
+    }
+
     render() {
         const { index } = this.state
         return (
@@ -192,6 +196,26 @@ class FilterComponent extends Component {
                             : null
                     }
                 </ScrollView>
+                <TouchableOpacity 
+                    style={{
+                        position: 'absolute',
+                        bottom: 23,
+                        width: '100%',
+                        height: 60,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: '#409DD6'
+                    }}
+                    onPress={this.onLangChangeClick}
+                >
+                    <Text style={{ 
+                        color: 'white', 
+                        textAlign: 'center',
+                        fontSize: 16}}
+                    >
+                        {Strings.change_language}
+                    </Text>
+                </TouchableOpacity>
             </View>
         );
     }

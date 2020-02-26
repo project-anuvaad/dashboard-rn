@@ -30,6 +30,7 @@ const styles = {
         width: '100%',
         height: 50,
         paddingVertical: 13,
+        borderRadius: 8,
         // margin: '2%',
         backgroundColor: '#409DD6'
     },
