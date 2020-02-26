@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Dimensions, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { View, Dimensions, ScrollView, Text } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import CustomButton from '../../common/components/customButton'
 import DatePicker from '../../common/components/datePicker'
@@ -121,7 +121,7 @@ class FilterComponent extends Component {
     render() {
         const { index } = this.state
         return (
-            <View style={{ height: height - 60, paddingVertical: '2%' }}>
+            <View style={{ height: height - 60, paddingVertical: '2%' }}> 
                 <View style={styles.tabContainer}>
                     <CustomButton
                         customViewStyle={{ margin: '0%', width: '50%', justifyContent: 'center' }}
@@ -145,6 +145,7 @@ class FilterComponent extends Component {
         
                 <ScrollView contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', width, paddingBottom: '20%', paddingTop: '20%' }}>
 
+                <CustomButton label={Strings.change_language} onPressButton={() => this.onLangChangeClick()} />
                     <View style={{ paddingVertical: '2%'}}>
                         <Text 
                             style={{ fontSize: 16, textAlign: 'center', fontWeight: 'bold'}}
@@ -196,7 +197,7 @@ class FilterComponent extends Component {
                             : null
                     }
                 </ScrollView>
-                <TouchableOpacity 
+                {/* <TouchableOpacity 
                     style={{
                         position: 'absolute',
                         bottom: 23,
@@ -215,7 +216,7 @@ class FilterComponent extends Component {
                     >
                         {Strings.change_language}
                     </Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         );
     }
