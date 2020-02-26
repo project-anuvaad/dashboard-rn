@@ -4,9 +4,6 @@ import ChartScreenComponent from '../component/chartScreenComponent'
 import APITransport from '../../../flux/actions/transport/apiTransport'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { GetChartDataCountAction } from '../../../flux/actions/apis/getChartDataCountAction'
-import { GetChartDataAction } from '../../../flux/actions/apis/getChartDataAction'
-import Content from '../../../data'
 import _ from 'lodash'
 import Spinner from '../../common/components/loadingIndicator';
 import HeaderComponent from '../../common/components/HeaderComponent';
@@ -15,11 +12,33 @@ import {sortArray} from '../../../utils/CommonUtils'
 
 
 const { height } = Dimensions.get('window')
-const stackLabels = [Strings.bengali_language, Strings.english_language, Strings.gujrati_language, Strings.hindi_language, Strings.malayalam_language, Strings.marathi_language, Strings.tamil_language, Strings.telugu_language, Strings.kannada_language, Strings.punjabi_language]
+const stackLabels = [Strings.Bengali, Strings.English, Strings.Gujarati, Strings.Hindi, Strings.Malayalam, Strings.Marathi, Strings.Tamil, Strings.Telugu, Strings.Kannada, Strings.Punjabi]
+
 class ChartScreenContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            highCourtNames: [
+                {
+                    KAHC: Strings.karnataka,
+                    TSHC: Strings.telangana,
+                    GUHC: Strings.gujarat,
+                    WBHC: Strings.west_bengal,
+                    BMHC: Strings.maharashtra,
+                    KLHC: Strings.kerala,
+                    HRHC: Strings.haryana,
+                    UKHC: Strings.uttarakhand,
+                    TNHC: Strings.tamilnadu,
+                    UPHC: Strings.uttar_pradesh,
+                    APHC: Strings.andhra_pradesh,
+                    CGHC: Strings.chhattisgarh,
+                    RJHC: Strings.rajasthan,
+                    PUHC: Strings.punjab,
+                    HMHC: Strings.himachal,
+                    BRHC: Strings.bihar,
+                    JHHC: Strings.jharkhand,
+                }
+            ],
             doc_courts: [],
             xValueFormatter: [],
             getDocCountPerCourt: [],
@@ -29,7 +48,7 @@ class ChartScreenContainer extends Component {
             getTargetlanguages: [],
             getLanguagesByCourt: [],
             isLoading: false,
-            headerLabel: Strings.till_today
+            headerLabel: Strings.till_today,
         }
     }
 
@@ -102,14 +121,16 @@ class ChartScreenContainer extends Component {
         })
         let groupByName = _.groupBy(fileterArray, "high_court_code")
         delete groupByName.undefined
+        let self = this
         _.forOwn(groupByName, function (value, key) {
             let doc_count_obj = {
                 'key': key,
                 'value': value,
                 'y': value.length
             }
-            ar.push(doc_count_obj)
-            xValueFormatter.push(key.toUpperCase());
+            ar.push(doc_count_obj)            
+            xValueFormatter.push(self.state.highCourtNames[0][key.toUpperCase()].toUpperCase())
+            // xValueFormatter.push(key.toUpperCase());
         });
         ar = sortArray(ar, 'y')
         this.setState({ xValueFormatter, getDocCountPerCourt: ar })
@@ -136,8 +157,8 @@ class ChartScreenContainer extends Component {
                 sentence_count += v2.sentence_count
                 word_count += v2.word_count
             })
-            getSentenceCount.push({ y: sentence_count })
-            getwordCount.push({ y: word_count })
+            getSentenceCount.push({ y: sentence_count/1000 })
+            getwordCount.push({ y: word_count/1000 })
         });
         getSentenceCount = sortArray(getSentenceCount, 'y')
         getwordCount = sortArray(getwordCount, 'y')
@@ -146,11 +167,11 @@ class ChartScreenContainer extends Component {
         let groupByTargetLang = _.groupBy(fileterArray, "target_lang")
         delete groupByTargetLang.undefined
         _.forOwn(groupByTargetLang, function (value, key) {
-            if (key !== undefined) {
+            if (key !== undefined) {                
                 let a = stackLabels.indexOf(key)
                 let tar_lan_obj = {
                     'value': value.length,
-                    'label': key
+                    'label': Strings[key] ? Strings[key] : key
                 }
                 getTargetlanguages[a]= tar_lan_obj
             }
@@ -188,7 +209,7 @@ class ChartScreenContainer extends Component {
                 // 'marker': langArr
             }
             getLanguagesByCourt.push(lang_court_obj)
-        })
+        })        
         this.setState({ getLanguagesByCourt, isLoading: false })
     }
 
@@ -200,7 +221,7 @@ class ChartScreenContainer extends Component {
         this.props.navigation.navigate('filterScreen')
     }
 
-    render() {
+    render() {        
         const { getDocCountPerCourt, getUsersCountPerCourt, getSentenceCount, getwordCount, getTargetlanguages, getLanguagesByCourt, isLoading, headerLabel } = this.state
         return (
             <View style={{ height }}>
@@ -208,7 +229,6 @@ class ChartScreenContainer extends Component {
                 <ChartScreenComponent
                     xValueFormatter={this.state.xValueFormatter}
                     getDocCountPerCourt={getDocCountPerCourt}
-                    stackLabels={stackLabels}
                     getUsersCountPerCourt={getUsersCountPerCourt}
 
                     getSentenceCount={getSentenceCount}
