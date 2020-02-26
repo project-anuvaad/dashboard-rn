@@ -165,7 +165,7 @@ class StackedBarChartScreen extends React.Component {
                             pinchZoom={false}
                             doubleTapToZoomEnabled={false}
                             drawBorders={false}
-                            noDataText={Strings.no_data_available}
+                            noDataText={Strings.no_data}
                         />
                         : <HorizontalBarChart
                             style={styles.chart}
@@ -193,7 +193,7 @@ class StackedBarChartScreen extends React.Component {
                             pinchZoom={false}
                             doubleTapToZoomEnabled={false}
                             drawBorders={false}
-                            noDataText={Strings.no_data_available}
+                            noDataText={Strings.no_data}
                         />
                     }
                 </Card.Content>

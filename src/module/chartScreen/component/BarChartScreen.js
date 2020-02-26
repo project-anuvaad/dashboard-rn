@@ -173,7 +173,7 @@ class BarChartScreen extends React.Component {
                         pinchZoom={false}
                         doubleTapToZoomEnabled={false}
                         drawBorders={false}
-                        noDataText={Strings.no_data_available}
+                        noDataText={Strings.no_data}
                     />
                 </Card.Content>
             </Card>
