@@ -61,7 +61,9 @@ export default strings = new LocalizedStrings({
         punjab: 'Punjab',
         himachal: 'Himachal',
         bihar: 'Bihar',
-        jharkhand: 'Jharkhand'
+        jharkhand: 'Jharkhand',
+        documents_filter: 'Document Filters',
+        feedback_filters: 'Feedback Filters'
 
 
     },
@@ -104,7 +106,7 @@ export default strings = new LocalizedStrings({
         Punjabi:'पंजाबी',
         till_today:'आज तक',
         message:'संदेश',
-        no_of_ratings:'रेटिंग की संख्या',
+        no_of_ratings:'रेटिंग की संख्या ',
         dashboard:'डैशबोर्ड',
         rating:' रेटिंग',
         api_status:'एपीआई स्थिति  ',
@@ -127,7 +129,9 @@ export default strings = new LocalizedStrings({
         punjab: 'पंजाब',
         himachal: 'हिमाचल',
         bihar: 'बिहार',
-        jharkhand: 'झारखंड'
+        jharkhand: 'झारखंड',
+        documents_filter: 'दस्तावेज़ फ़िल्टर',
+        feedback_filters: 'प्रतिक्रिया फ़िल्टर'
 
     },
 
@@ -192,7 +196,9 @@ export default strings = new LocalizedStrings({
         punjab: 'पंजाब',
         himachal: 'हिमाचल',
         bihar: 'बिहार',
-        jharkhand: 'झारखंड'
+        jharkhand: 'झारखंड',
+        documents_filter: 'कागदजत्र फिल्टर',
+        feedback_filters: 'अभिप्राय फिल्टर'
     },
 
 })

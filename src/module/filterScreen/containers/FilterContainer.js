@@ -16,7 +16,7 @@ import Strings from '../../../utils/Strings'
 import {sortArray} from '../../../utils/CommonUtils'
 
 const stackLabels = [Strings.yes, Strings.no];
-const stackLanguageLabels = [Strings.bengali_language, Strings.english_language, Strings.gujrati_language, Strings.hindi_language, Strings.malayalam_language, Strings.marathi_language, Strings.tamil_language, Strings.telugu_language, Strings.kannada_language, Strings.punjabi_language]
+const stackLanguageLabels = [Strings.Bengali, Strings.English, Strings.Gujarati, Strings.Hindi, Strings.Malayalam, Strings.Marathi, Strings.Tamil, Strings.Telugu, Strings.Kannada, Strings.Punjabi]
 
 class FilterContainer extends Component {
     constructor(props) {
@@ -125,7 +125,8 @@ class FilterContainer extends Component {
                             })
                             questionsObj = {
                                 'key': key,
-                                'label': Strings.no_of_ratings+lang_key,
+                                'label': Strings[lang_key] ? Strings.no_of_ratings + Strings[lang_key] : Strings.no_of_ratings  +lang_key,
+                                // 'label': Strings.no_of_ratings+lang_key,
                                 'type': 'chart',
                                 'xValue': xValueFormatter,
                                 'chartData': chartData
@@ -165,7 +166,7 @@ class FilterContainer extends Component {
                                 _.forOwn(lang_obj, function (value, key) {
                                     let a = stackLanguageLabels.indexOf(key)
                                     position_arr[a] = value
-                                    lang_arr[a] = key
+                                    lang_arr[a] = Strings[key] ? Strings[key] : key
                                 })
                                 let lang_ans_obj = {
                                     'y': position_arr,
