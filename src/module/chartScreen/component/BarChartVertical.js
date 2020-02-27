@@ -141,7 +141,7 @@ class BarChartVertical extends React.Component {
                 <Card.Content style={{ height: height * 0.7 }}>
                     <Title
                         style={{
-                            textTransform: 'capitalize'
+                            // textTransform: 'capitalize'
                         }}
                     >{title}</Title>
                     <BarChart
