@@ -114,9 +114,7 @@ class FilterComponent extends Component {
         })
     }
 
-    onLangChangeClick = () => {
-        this.props.navigation.navigate('languageScreen')
-    }
+    
 
     render() {
         const { index } = this.state
@@ -143,13 +141,12 @@ class FilterComponent extends Component {
 
                 </View>
                 
-                <View style={{ height: height * .725 }}>
-                <ScrollView contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', width, paddingBottom: '5%', paddingTop: '10%', }}
+                <ScrollView contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', width, paddingBottom: '20%', paddingTop: '20%', }}
                     bounces={false}
                     contentInsetAdjustmentBehavior={'scrollableAxes'}
                 >
 
-                <CustomButton label={Strings.change_language} onPressButton={() => this.onLangChangeClick()} />
+                {/* <CustomButton label={Strings.change_language} onPressButton={() => this.onLangChangeClick()} /> */}
                     <View style={{ paddingVertical: '2%'}}>
                         <Text 
                             style={{ fontSize: 16, textAlign: 'center', fontWeight: 'bold'}}
@@ -201,27 +198,6 @@ class FilterComponent extends Component {
                             : null
                     }
                 </ScrollView>
-                </View>
-                
-                <View 
-                    style={{
-                        width: '100%',
-                        height: 30,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginVertical: '1%'
-                    }}
-                    onPress={this.onLangChangeClick}
-                >
-                    <Text style={{ 
-                        color: 'black', 
-                        textAlign: 'center',
-                        fontWeight: 'bold',
-                        fontSize: 14}}
-                    >
-                        {Strings.suvas_full_text}
-                    </Text>
-                </View>
                 
             </View>
         );

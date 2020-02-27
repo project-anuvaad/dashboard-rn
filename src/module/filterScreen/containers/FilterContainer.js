@@ -326,11 +326,15 @@ class FilterContainer extends Component {
 
     }
 
+    onLangChangeClick = () => {
+        this.props.navigation.navigate('languageScreen')
+    }
+
     render() {
         const { isLoading } = this.state
         return (
             <View>
-                <HeaderComponent title={Strings.suvas_text} />
+                <HeaderComponent onLangClick={this.onLangChangeClick} title={Strings.suvas_text} />
                 <FilterComponent
                     filterClickedHandler={this.handleFilterClicked.bind(this)}
                     {...this.props}

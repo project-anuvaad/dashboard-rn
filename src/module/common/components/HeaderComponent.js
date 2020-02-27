@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
+import Strings from '../../../utils/Strings';
 
 
 class HeaderComponent extends Component {
@@ -12,10 +13,11 @@ class HeaderComponent extends Component {
         const {
             backButton,
             backClick,
-            title
+            title,
+            onLangClick
         } = this.props
         return (
-            <View style={styles.mainHeaderContainerStyle}>
+            <View style={[styles.mainHeaderContainerStyle, {height: backButton ? 60 : 75}]}>
                 {backButton ? 
                 <TouchableOpacity 
                     style={styles.hamburgerBtnStyle}
@@ -27,28 +29,48 @@ class HeaderComponent extends Component {
                         resizeMode='contain'
                     />
                 </TouchableOpacity> : null }
-                {!backButton ? 
+                {!backButton ?
                 <View style={{
-                    flexDirection: 'row',
-                    height: '60%',
+                    height: '80%',
                     width: '100%',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}>
-                    <Image 
-                        source={require('../../../assets/images/logo.png')}
-                        style={{ width: 40, height: 50}}
-                        resizeMode={'contain'}
-                    />
+                }}> 
+                    <View style={{
+                        flexDirection: 'row',
+                        height: '60%',
+                        width: '100%',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}>
+                        <Image 
+                            source={require('../../../assets/images/logo.png')}
+                            style={{ width: 40, height: 50}}
+                            resizeMode={'contain'}
+                        />
+                        <Text
+                            style={[styles.headerTitleTextStyle, { width: 'auto', paddingHorizontal: '2%'}]}
+                        >{title}</Text>
+                    </View>
                     <Text
-                        style={[styles.headerTitleTextStyle, { width: 'auto', paddingHorizontal: '2%'}]}
-                    >{title}</Text>
+                            style={[styles.headerTitleTextStyle, { paddingVertical: '2.5%', fontSize: 13}]}
+                        >{Strings.suvas_full_text}</Text> 
                 </View> :
 
                 <Text style={[styles.headerTitleTextStyle, {
                     // width: !backButton ? '100%' : '80%'
                     textAlign: 'left'
                 }]}>{title}</Text> }
+                {!backButton && 
+                <TouchableOpacity 
+                    style={styles.languageBtnStyle}
+                    onPress={onLangClick}
+                >
+                    {/* <Text style={{ color: 'white'}}>HI</Text> */}
+                    <Image 
+                        style={{ width: 30, height: 40}}
+                        source={require('../../../assets/images/language.png')}
+                        resizeMode={'contain'}
+                    />
+                </TouchableOpacity>}
             </View>
         );
     }
@@ -59,8 +81,8 @@ const styles = {
         height: 60, 
         backgroundColor: '#409DD6',
         flexDirection: 'row',
-        alignItems: 'center',   
-        
+        alignItems: 'center',  
+
         zIndex:100
     },
     hamburgerBtnStyle: {
@@ -83,6 +105,17 @@ const styles = {
         fontWeight: '500'
         // padding: '2%',
         // marginStart: '5%'
+    },
+    languageBtnStyle: {
+        position: 'absolute', 
+        right: 10, 
+        borderWidth: 1, 
+        borderColor: 'white',
+        borderRadius: 15, 
+        width: 30, 
+        height: 30, 
+        alignItems: 'center', 
+        justifyContent: 'center'
     }
 }
 export default HeaderComponent;

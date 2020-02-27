@@ -201,7 +201,7 @@ export default strings = new LocalizedStrings({
         jharkhand: 'झारखंड',
         documents_filter: 'कागदजत्र फिल्टर',
         feedback_filters: 'अभिप्राय फिल्टर',
-        suvas_full_text: 'सुप्रीम कोर्ट विधी अनुवाद सिस्टम'
+        suvas_full_text: 'सुप्रीम कोर्ट विधिक अनुवाद प्रणाली'
     },
 
 })
