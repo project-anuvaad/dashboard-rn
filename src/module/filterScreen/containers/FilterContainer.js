@@ -330,7 +330,7 @@ class FilterContainer extends Component {
         const { isLoading } = this.state
         return (
             <View>
-                <HeaderComponent title={Strings.dashboard} />
+                <HeaderComponent title={Strings.suvas_text} />
                 <FilterComponent
                     filterClickedHandler={this.handleFilterClicked.bind(this)}
                     {...this.props}

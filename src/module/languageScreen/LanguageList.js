@@ -7,6 +7,7 @@ import { setAppLanguage, getAppLanguage } from '../../utils/StorageUtils';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {setLanguage} from '../../flux/actions/languageAction'
+import HeaderComponent from '../common/components/HeaderComponent';
 
 const { height, width } = Dimensions.get('window')
 class LanguageListComponent extends Component {
@@ -79,20 +80,27 @@ class LanguageListComponent extends Component {
 
   onOkClick = async() => {
     const { langCode, langSelected } = this.state
-    Strings.setLanguage(langCode);
-    let data = {
-      name: langSelected,
-      code: langCode
+    if(this.state.isItemSelected) {
+      Strings.setLanguage(langCode);
+      let data = {
+        name: langSelected,
+        code: langCode
+      }
+      this.props.setLanguage(data)
+      await setAppLanguage(langCode, langSelected);      
     }
-    this.props.setLanguage(data)
-    await setAppLanguage(langCode, langSelected);
     // this.setState({})
-    this.props.navigation.navigate('filterScreen');
+    this.props.navigation.pop(1)
+  }
+
+  onBackClick = () => {
+    this.props.navigation.pop(1)
   }
 
   render() {
     return (
       <View style={{ flex: 1 }}>
+        <HeaderComponent title={Strings.change_language} backButton={true} backClick={this.onBackClick}/>
         <View style={{ flex: 5}}>
           <FlatList
             data={this.state.appLanguages}
@@ -123,7 +131,7 @@ class LanguageListComponent extends Component {
 
 const styleInline = {
   btnActiveStyle: {
-    backgroundColor: '#5AB64A',
+    backgroundColor: '#409DD6',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 15,

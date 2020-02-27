@@ -14,11 +14,13 @@ import { Provider } from 'react-redux';
 import { storeFactory } from './src/flux/store/store';
 import { getAppLanguage } from './src/utils/StorageUtils';
 import Strings from './src/utils/Strings'
+import RNBootSplash from "react-native-bootsplash";
 
 
 const App = () => {
 
   useEffect(() => {
+    RNBootSplash.hide();
     setCurrentLanguage()
   }, []);
 

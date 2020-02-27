@@ -121,7 +121,7 @@ class FilterComponent extends Component {
     render() {
         const { index } = this.state
         return (
-            <View style={{ height: height - 60, paddingVertical: '2%' }}> 
+            <View style={{ height: height, paddingVertical: '2%' }}> 
                 <View style={styles.tabContainer}>
                     <CustomButton
                         customViewStyle={{ margin: '0%', width: '50%', justifyContent: 'center' }}
@@ -142,8 +142,12 @@ class FilterComponent extends Component {
                     />
 
                 </View>
-        
-                <ScrollView contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', width, paddingBottom: '20%', paddingTop: '20%' }}>
+                
+                <View style={{ height: height * .725 }}>
+                <ScrollView contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', width, paddingBottom: '5%', paddingTop: '10%', }}
+                    bounces={false}
+                    contentInsetAdjustmentBehavior={'scrollableAxes'}
+                >
 
                 <CustomButton label={Strings.change_language} onPressButton={() => this.onLangChangeClick()} />
                     <View style={{ paddingVertical: '2%'}}>
@@ -197,26 +201,28 @@ class FilterComponent extends Component {
                             : null
                     }
                 </ScrollView>
-                {/* <TouchableOpacity 
+                </View>
+                
+                <View 
                     style={{
-                        position: 'absolute',
-                        bottom: 23,
                         width: '100%',
-                        height: 60,
+                        height: 30,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        backgroundColor: '#409DD6'
+                        marginVertical: '1%'
                     }}
                     onPress={this.onLangChangeClick}
                 >
                     <Text style={{ 
-                        color: 'white', 
+                        color: 'black', 
                         textAlign: 'center',
-                        fontSize: 16}}
+                        fontWeight: 'bold',
+                        fontSize: 14}}
                     >
-                        {Strings.change_language}
+                        {Strings.suvas_full_text}
                     </Text>
-                </TouchableOpacity> */}
+                </View>
+                
             </View>
         );
     }
@@ -227,7 +233,7 @@ const styles = {
         alignSelf: 'center',
         flexDirection: 'row',
         width: '90%',
-        height: '9%',
+        height: height * .08,
         backgroundColor: '#409DD6',
         borderRadius: 8,
         elevaion: 8,

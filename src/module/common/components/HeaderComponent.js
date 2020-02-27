@@ -27,10 +27,28 @@ class HeaderComponent extends Component {
                         resizeMode='contain'
                     />
                 </TouchableOpacity> : null }
+                {!backButton ? 
+                <View style={{
+                    flexDirection: 'row',
+                    height: '60%',
+                    width: '100%',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}>
+                    <Image 
+                        source={require('../../../assets/images/logo.png')}
+                        style={{ width: 40, height: 50}}
+                        resizeMode={'contain'}
+                    />
+                    <Text
+                        style={[styles.headerTitleTextStyle, { width: 'auto', paddingHorizontal: '2%'}]}
+                    >{title}</Text>
+                </View> :
+
                 <Text style={[styles.headerTitleTextStyle, {
                     // width: !backButton ? '100%' : '80%'
-                    textAlign: !backButton ? 'center' : 'left'
-                }]}>{title}</Text>
+                    textAlign: 'left'
+                }]}>{title}</Text> }
             </View>
         );
     }

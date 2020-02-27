@@ -63,7 +63,8 @@ export default strings = new LocalizedStrings({
         bihar: 'Bihar',
         jharkhand: 'Jharkhand',
         documents_filter: 'Document Filters',
-        feedback_filters: 'Feedback Filters'
+        feedback_filters: 'Feedback Filters',
+        suvas_full_text: 'Supreme Court Vidhik Anuvaad System'
 
 
     },
@@ -79,9 +80,9 @@ export default strings = new LocalizedStrings({
         logged_in_user:'लॉग इन किया हुआ उपयोगकर्ता',
         users:'उपयोगकर्ता',
         sentence_count:'वाक्य गणना',
-        total_Sentence_count:'कुल वाक्य गणना',
+        total_Sentence_count:'कुल वाक्य गणना (हजार में)',
         word_count:'शब्द गणना',
-        total_word_count:'कुल शब्द गणना',
+        total_word_count:'कुल शब्द गणना (हजार में)',
         translate_language_share:'अनुवादित भाषा हिस्सा',
         language_by_court:'न्यायालय द्वारा भाषाएँ',
         documents:'दस्तावेज़',
@@ -110,7 +111,7 @@ export default strings = new LocalizedStrings({
         dashboard:'डैशबोर्ड',
         rating:' रेटिंग',
         api_status:'एपीआई स्थिति  ',
-        suvas_text: 'सुभाष',
+        suvas_text: 'सुवास',
         change_language: 'भाषा बदलो',
         done: 'संपन्न',
         karnataka: 'कर्नाटक',
@@ -131,7 +132,8 @@ export default strings = new LocalizedStrings({
         bihar: 'बिहार',
         jharkhand: 'झारखंड',
         documents_filter: 'दस्तावेज़ फ़िल्टर',
-        feedback_filters: 'प्रतिक्रिया फ़िल्टर'
+        feedback_filters: 'प्रतिक्रिया फ़िल्टर',
+        suvas_full_text: 'सुप्रीम कोर्ट विधिक अनुवाद प्रणाली'
 
     },
 
@@ -146,9 +148,9 @@ export default strings = new LocalizedStrings({
         logged_in_user:'लॉग इन वापरकर्ता',
         users:'वापरकर्ते',
         sentence_count:'वाक्य गणना',
-        total_Sentence_count:'एकूण वाक्य गणना',
+        total_Sentence_count:'एकूण वाक्य गणना (हजार मध्ये)',
         word_count:'शब्द संख्या',
-        total_word_count:'एकूण शब्द गणना',
+        total_word_count:'एकूण शब्द गणना (हजार मध्ये)',
         translate_language_share:'अनुवादित भाषेचा वाटा',
         language_by_court:'कोर्टाद्वारे भाषा',
         documents:'कागदपत्रे',
@@ -177,7 +179,7 @@ export default strings = new LocalizedStrings({
         dashboard:'डॅशबोर्ड',
         rating:' रेटिंग',
         api_status:'एपीआय स्थिती  ',
-        suvas_text: 'सुभाष',
+        suvas_text: 'सुवास',
         change_language: 'भाषा बदला',
         done: 'पूर्ण झाले',
         karnataka: 'कर्नाटक',
@@ -198,7 +200,8 @@ export default strings = new LocalizedStrings({
         bihar: 'बिहार',
         jharkhand: 'झारखंड',
         documents_filter: 'कागदजत्र फिल्टर',
-        feedback_filters: 'अभिप्राय फिल्टर'
+        feedback_filters: 'अभिप्राय फिल्टर',
+        suvas_full_text: 'सुप्रीम कोर्ट विधी अनुवाद सिस्टम'
     },
 
 })
