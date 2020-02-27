@@ -42,7 +42,7 @@ export default strings = new LocalizedStrings({
         dashboard:'Dashboard',
         rating:' Rating',
         api_status:'api Status  ',
-        suvas_text: 'Suvas',
+        suvas_text: 'SUVAS',
         change_language: 'Change Language',
         done: 'Done',
         karnataka: 'Karnataka',
